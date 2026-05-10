@@ -6,6 +6,9 @@ import { useCallback, useEffect, useState } from "react";
 import { navItems } from "@/lib/site-data";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
+// Sections that open as overlays instead of scrolling
+const overlaySections = new Set(["#destinations", "#recruitment", "#travel"]);
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
@@ -21,6 +24,23 @@ export function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      if (overlaySections.has(href)) {
+        e.preventDefault();
+        // Extract section name from href (e.g. "#destinations" → "destinations")
+        const sectionName = href.replace("#", "");
+        window.dispatchEvent(
+          new CustomEvent("open-section-overlay", { detail: sectionName })
+        );
+        close();
+      } else {
+        close();
+      }
+    },
+    [close]
+  );
 
   return (
     <>
@@ -40,7 +60,12 @@ export function Navbar() {
           </a>
           <nav className="hidden items-center gap-7 lg:flex">
             {navItems.map((item) => (
-              <a key={item.href} className="text-sm font-medium text-navy/62 transition hover:text-royal" href={item.href}>
+              <a
+                key={item.href}
+                className="text-sm font-medium text-navy/62 transition hover:text-royal cursor-pointer"
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+              >
                 {item.label}
               </a>
             ))}
@@ -75,14 +100,14 @@ export function Navbar() {
                 <motion.a
                   key={item.href}
                   href={item.href}
-                  onClick={close}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className="flex items-center gap-4 rounded-2xl px-4 py-4 text-lg font-semibold text-navy transition active:bg-royal/8"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 + 0.1 }}
                 >
-                  <span className="grid h-8 w-8 place-items-center rounded-full bg-royal/8 text-xs font-bold text-royal">
-                    {String(index + 1).padStart(2, "0")}
+                  <span className="grid h-3 w-3 place-items-center rounded-full bg-royal/20">
+                    <span className="block h-1.5 w-1.5 rounded-full bg-royal" />
                   </span>
                   {item.label}
                 </motion.a>
