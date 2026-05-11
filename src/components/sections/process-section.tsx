@@ -15,9 +15,9 @@ export function ProcessSection() {
         <div className="relative mt-10">
           <div className="absolute left-4 right-4 top-1/2 hidden h-px bg-gradient-to-r from-transparent via-[#d42a36]/30 to-transparent lg:block" />
           <div className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-3 snap-x snap-mandatory hide-scrollbar sm:mx-0 sm:px-0 sm:pb-0 lg:grid lg:grid-cols-6 lg:gap-5 lg:overflow-visible">
-            {processSteps.map((step, i) => (
-              <Reveal key={step} delay={i * 0.06}>
-                <div className="relative min-w-[10rem] shrink-0 snap-start rounded-xl border border-gray-200 bg-white p-5 shadow-sm sm:min-w-0 sm:shrink sm:rounded-xl sm:p-6 transition hover:shadow-md hover:-translate-y-1">
+            {processSteps.map((step, i) => {
+              const cardContent = (
+                <>
                   <span className="grid h-10 w-10 place-items-center rounded-full bg-[#d42a36] font-display text-base font-bold text-white">
                     {i + 1}
                   </span>
@@ -25,9 +25,24 @@ export function ProcessSection() {
                   <p className="mt-2 text-xs text-gray-500 leading-5 sm:text-sm">
                     Structured checkpoints keep your journey visible, accountable, and ready for the next move.
                   </p>
+                </>
+              );
+
+              return (
+                <div key={step} className="contents">
+                  {/* Mobile Static */}
+                  <div className="relative min-w-[10rem] shrink-0 snap-start rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition sm:hidden">
+                    {cardContent}
+                  </div>
+                  {/* Desktop Animated */}
+                  <Reveal delay={i * 0.06} className="hidden sm:block">
+                    <div className="relative h-full rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:-translate-y-1">
+                      {cardContent}
+                    </div>
+                  </Reveal>
                 </div>
-              </Reveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
