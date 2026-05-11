@@ -9,31 +9,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: "#06111F",
-        ink: "#08182C",
-        royal: "#0B57D0",
-        electric: "#23A6FF",
-        cyanSoft: "#9CEBFF",
-        porcelain: "#F6FAFF",
-        champagne: "#D7C9A6"
+        navy: "#1a1a6e",
+        ink: "#12124e",
+        royal: "#1a1a6e",
+        electric: "#0052CC",
+        cyanSoft: "#5BA4E6",
+        porcelain: "#f0f4fa",
+        champagne: "#f5a623",
+        crimson: "#d42a36",
+        lightBg: "#f0f4fa"
       },
       fontFamily: {
-        sans: ["var(--font-satoshi)", "Inter", "sans-serif"],
-        display: ["var(--font-clash)", "Satoshi", "sans-serif"],
-        inter: ["var(--font-inter)", "sans-serif"]
+        sans: ["'Poppins'", "'Inter'", "sans-serif"],
+        display: ["'Poppins'", "'Inter'", "sans-serif"],
+        inter: ["'Inter'", "sans-serif"]
       },
       boxShadow: {
-        glass: "0 24px 80px rgba(9, 46, 92, 0.26)",
-        premium: "0 30px 100px rgba(0, 80, 180, 0.28)"
-      },
-      backgroundImage: {
-        grain:
-          "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.13) 1px, transparent 0)"
+        glass: "0 2px 12px rgba(0,0,0,0.06)",
+        premium: "0 4px 20px rgba(0,0,0,0.08)",
+        card: "0 2px 12px rgba(0,0,0,0.06)",
+        cardHover: "0 8px 30px rgba(0,0,0,0.1)"
       },
       keyframes: {
         float: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-18px)" }
+          "50%": { transform: "translateY(-12px)" }
         },
         marquee: {
           "0%": { transform: "translateX(0)" },
@@ -41,7 +41,7 @@ const config: Config = {
         },
         pulseGlow: {
           "0%, 100%": { opacity: "0.55", transform: "scale(1)" },
-          "50%": { opacity: "0.9", transform: "scale(1.08)" }
+          "50%": { opacity: "0.9", transform: "scale(1.06)" }
         }
       },
       animation: {

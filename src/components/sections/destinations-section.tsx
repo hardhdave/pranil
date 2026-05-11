@@ -3,46 +3,44 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { destinations } from "@/lib/site-data";
-import { SectionHeading } from "@/components/sections/section-heading";
+import { Reveal } from "@/components/motion/reveal";
 
 export function DestinationsSection() {
   return (
-    <section id="destinations" className="px-4 py-12 sm:py-24">
-      <SectionHeading
-        eyebrow="Study Destinations"
-        title="Global routes with a tailored strategy behind each one."
-        copy="Every destination has different admission rhythms, visa expectations, and career possibilities. The experience adapts to that reality."
-      />
-      {/* Horizontal scroll on mobile, flex row on desktop */}
-      <div className="section-shell">
-        <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-3 snap-x snap-mandatory sm:mx-0 sm:px-0 sm:pb-0 lg:grid lg:grid-cols-5 lg:gap-4 lg:overflow-visible">
-          {destinations.map((destination, index) => (
+    <section id="destinations" className="py-16 sm:py-24 bg-white">
+      <div className="section-shell px-4">
+        <div className="flex items-end justify-between mb-10">
+          <Reveal>
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-[2.5rem] font-extrabold text-[#1a1a6e] leading-tight">
+              Explore Opportunities <span className="underline decoration-[#d42a36] decoration-2 underline-offset-4">ACROSS</span> the Globe
+            </h2>
+          </Reveal>
+        </div>
+
+        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-4 snap-x snap-mandatory hide-scrollbar sm:mx-0 sm:px-0 lg:grid lg:grid-cols-5 lg:gap-5 lg:overflow-visible lg:pb-0">
+          {destinations.map((dest, i) => (
             <motion.article
-              key={destination.country}
-              className="group relative min-h-[18rem] min-w-[14rem] shrink-0 snap-start overflow-hidden rounded-[1.5rem] border border-white/10 sm:min-h-[26rem] sm:min-w-0 sm:shrink sm:snap-align-none sm:rounded-[2rem] lg:col-span-1"
-              initial={{ opacity: 0, y: 50 }}
+              key={dest.country}
+              className="group relative min-w-[15rem] shrink-0 snap-start overflow-hidden rounded-xl sm:min-w-0 sm:shrink lg:col-span-1"
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.75, delay: index * 0.06 }}
-              whileHover={{ flex: 2 }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
             >
-              <Image
-                src={destination.image}
-                alt={`${destination.country} study destination`}
-                fill
-                sizes="(max-width: 1024px) 60vw, 20vw"
-                className="object-cover transition duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/55 to-black/10" />
-              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
-                <span className="rounded-full bg-white/12 px-2.5 py-1 text-[10px] font-semibold text-cyanSoft backdrop-blur sm:px-3 sm:text-xs">
-                  {destination.badge}
-                </span>
-                <h3 className="mt-2 font-display text-2xl font-semibold text-white sm:mt-4 sm:text-3xl">{destination.country}</h3>
-                <p className="mt-2 hidden rounded-2xl bg-black/42 p-2.5 text-xs font-semibold leading-5 text-white shadow-[0_12px_35px_rgba(0,0,0,0.22)] backdrop-blur-md drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:block sm:mt-3 sm:p-3 sm:text-sm sm:leading-6">
-                  {destination.line}
-                </p>
+              <div className="relative h-[18rem] sm:h-[22rem] overflow-hidden rounded-xl">
+                <Image
+                  src={dest.image}
+                  alt={dest.country}
+                  fill
+                  sizes="(max-width: 1024px) 60vw, 20vw"
+                  className="object-cover transition duration-500 group-hover:scale-110"
+                />
+                {/* Flag badge */}
+                <div className="absolute top-3 left-3 h-8 w-8 rounded-full bg-white shadow-md flex items-center justify-center text-xs font-bold text-[#1a1a6e]">
+                  {dest.country[0]}
+                </div>
               </div>
+              <h3 className="mt-3 font-display text-lg font-bold text-[#1a1a6e]">{dest.country}</h3>
             </motion.article>
           ))}
         </div>

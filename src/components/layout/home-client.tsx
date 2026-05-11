@@ -13,11 +13,14 @@ import { ProcessSection } from "@/components/sections/process-section";
 import { RecruitmentSection } from "@/components/sections/recruitment-section";
 import { ServicesSection } from "@/components/sections/services-section";
 import { TravelSection } from "@/components/sections/travel-section";
+import { WhyChooseSection } from "@/components/sections/why-choose-section";
+import { CtaBannerSection } from "@/components/sections/cta-banner-section";
+import { FaqSection } from "@/components/sections/faq-section";
 
 const TestimonialsSection = dynamic(
   () => import("@/components/sections/testimonials-section").then((mod) => mod.TestimonialsSection),
   {
-    loading: () => <div className="section-shell h-64 rounded-[2rem] bg-white/5" />,
+    loading: () => <div className="section-shell h-64 rounded-xl bg-gray-50" />,
   }
 );
 
@@ -48,11 +51,25 @@ export function HomeClient() {
     <>
       <Navbar />
       <main>
+        {/* 1. Hero slider */}
         <HeroSection />
+        {/* 2. Why Choose Us + Stats */}
+        <WhyChooseSection />
+        {/* 3. Destinations globe */}
+        <DestinationsSection />
+        {/* 4. Services / In-Demand Programs */}
         <ServicesSection />
-        <BrochureServicesSection />
-        <ProcessSection />
+        {/* 5. CTA Banner */}
+        <CtaBannerSection />
+        {/* 6. Testimonials / Success Stories */}
         <TestimonialsSection />
+        {/* 7. FAQ */}
+        <FaqSection />
+        {/* 8. Brochure Services (coaching + visa) */}
+        <BrochureServicesSection />
+        {/* 9. Process steps */}
+        <ProcessSection />
+        {/* 10. Contact / About partner */}
         <ContactSection />
       </main>
       <Footer />

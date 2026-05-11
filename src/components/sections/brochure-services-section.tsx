@@ -1,71 +1,73 @@
 import { CheckCircle2 } from "lucide-react";
 import { coachingServices, companyContacts, visaProcessServices } from "@/lib/site-data";
 import { Reveal } from "@/components/motion/reveal";
-import { SectionHeading } from "@/components/sections/section-heading";
 
 export function BrochureServicesSection() {
   return (
-    <section className="px-4 py-12 sm:py-24">
-      <SectionHeading
-        eyebrow="Brochure Services"
-        title="Everything PRANIL offers, shown clearly."
-        copy="The website now reflects the client brochure: education, visa process, coaching, recruitment, and tours all in one place."
-      />
-
-      <div className="section-shell grid gap-4 sm:gap-5 lg:grid-cols-[0.95fr_1.05fr]">
+    <section className="py-12 sm:py-24 bg-[#f0f4fa]">
+      <div className="section-shell px-4">
         <Reveal>
-          <div className="paper-card h-full rounded-[1.5rem] p-4 sm:rounded-[2.5rem] sm:p-7 md:p-9">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-royal">Coaching Services</p>
-            <h3 className="mt-3 font-display text-xl font-semibold tracking-[-0.04em] text-navy sm:mt-4 sm:text-4xl">
-              Language and skill coaching for global readiness.
-            </h3>
-            <div className="mt-5 grid grid-cols-2 gap-2 sm:mt-8 sm:gap-3">
-              {coachingServices.map((service, index) => (
-                <div key={service} className="flex items-center gap-2 rounded-xl border border-navy/8 bg-white/72 p-2.5 sm:gap-3 sm:rounded-2xl sm:p-4">
-                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-royal text-[10px] font-bold text-white sm:h-9 sm:w-9 sm:rounded-xl sm:text-sm">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-xs font-semibold text-navy sm:text-base">{service}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#d42a36] sm:text-sm">Our Offerings</p>
+          <h2 className="mt-2 font-display text-2xl sm:text-3xl lg:text-[2.5rem] font-extrabold text-[#1a1a6e] leading-tight">
+            Everything PRANIL Offers, Shown Clearly
+          </h2>
         </Reveal>
 
-        <Reveal delay={0.08}>
-          <div className="blueprint-gradient h-full rounded-[1.5rem] border border-navy/10 p-4 shadow-[0_28px_90px_rgba(6,17,31,0.12)] sm:rounded-[2.5rem] sm:p-7 md:p-9">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-royal">Visa Process Services</p>
-            <h3 className="mt-3 font-display text-xl font-semibold tracking-[-0.04em] text-navy sm:mt-4 sm:text-4xl">
-              Expert support for student visa and settlement routes.
-            </h3>
-            <div className="mt-5 grid grid-cols-2 gap-2 sm:mt-8 sm:gap-3">
-              {visaProcessServices.map((service) => (
-                <div key={service} className="flex items-center gap-2 rounded-xl bg-white/78 p-2.5 shadow-[0_14px_38px_rgba(6,17,31,0.07)] sm:gap-3 sm:rounded-2xl sm:p-4">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-royal sm:h-5 sm:w-5" />
-                  <span className="text-xs font-semibold text-navy sm:text-base">{service}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </div>
-
-      {/* Company contacts: horizontal scroll on mobile */}
-      <div className="section-shell mt-4 sm:mt-5">
-        <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2 snap-x snap-mandatory sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0">
-          {companyContacts.map((company, index) => (
-            <Reveal key={company.label} delay={index * 0.05}>
-              <div className="flex min-w-[16rem] shrink-0 snap-start flex-col rounded-[1.25rem] border border-navy/10 bg-white/76 p-4 shadow-[0_18px_60px_rgba(6,17,31,0.08)] backdrop-blur sm:min-w-0 sm:rounded-[2rem] sm:p-6">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-navy text-xs font-black text-white sm:h-12 sm:w-12 sm:rounded-2xl sm:text-sm">
-                  {company.short}
-                </span>
-                <h3 className="mt-3 font-display text-lg font-semibold text-navy sm:mt-5 sm:text-2xl">{company.label}</h3>
-                <p className="mt-2 text-sm font-bold text-royal sm:mt-4">{company.phone}</p>
-                {company.email && <p className="mt-1 text-xs text-navy/56 sm:mt-2 sm:text-sm">{company.email}</p>}
-                {company.website && <p className="mt-1 text-xs text-navy/56 sm:mt-2 sm:text-sm">{company.website}</p>}
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          <Reveal>
+            <div className="h-full rounded-xl bg-white border border-gray-200 p-6 sm:p-8">
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#d42a36]">Coaching Services</p>
+              <h3 className="mt-3 font-display text-xl sm:text-2xl font-bold text-[#1a1a6e]">
+                Language and skill coaching for global readiness.
+              </h3>
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                {coachingServices.map((service, i) => (
+                  <div key={service} className="flex items-center gap-3 rounded-lg bg-[#f0f4fa] p-3 transition hover:bg-white hover:shadow-md">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#1a1a6e] text-xs font-bold text-white">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-sm font-semibold text-[#1a1a6e]">{service}</span>
+                  </div>
+                ))}
               </div>
-            </Reveal>
-          ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="h-full rounded-xl bg-white border border-gray-200 p-6 sm:p-8">
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#d42a36]">Visa Process Services</p>
+              <h3 className="mt-3 font-display text-xl sm:text-2xl font-bold text-[#1a1a6e]">
+                Expert support for student visa and settlement routes.
+              </h3>
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                {visaProcessServices.map((service) => (
+                  <div key={service} className="flex items-center gap-3 rounded-lg bg-[#f0f4fa] p-3 transition hover:bg-white hover:shadow-md">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-[#d42a36]" />
+                    <span className="text-sm font-semibold text-[#1a1a6e]">{service}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Company contacts */}
+        <div className="mt-5">
+          <div className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-2 snap-x snap-mandatory hide-scrollbar sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0">
+            {companyContacts.map((company, i) => (
+              <Reveal key={company.label} delay={i * 0.05}>
+                <div className="flex min-w-[16rem] shrink-0 snap-start flex-col rounded-xl border border-gray-200 bg-white p-5 shadow-sm sm:min-w-0 sm:p-6 transition hover:shadow-md hover:-translate-y-1">
+                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-[#1a1a6e] text-xs font-black text-white">
+                    {company.short}
+                  </span>
+                  <h3 className="mt-4 font-display text-lg font-bold text-[#1a1a6e]">{company.label}</h3>
+                  <p className="mt-2 text-sm font-bold text-[#d42a36]">{company.phone}</p>
+                  {company.email && <p className="mt-1 text-xs text-gray-500">{company.email}</p>}
+                  {company.website && <p className="mt-1 text-xs text-gray-500">{company.website}</p>}
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

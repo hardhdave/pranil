@@ -14,11 +14,84 @@ import {
 } from "lucide-react";
 
 export const navItems = [
+  { label: "Home", href: "#" },
+  { label: "About Us", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Destinations", href: "#destinations" },
   { label: "Recruitment", href: "#recruitment" },
   { label: "Travel", href: "#travel" },
-  { label: "Contact", href: "#contact" }
+  { label: "Contact Us", href: "#contact" }
+];
+
+/* ── Hero slides ── */
+export const heroSlides = [
+  {
+    title: "Study Abroad",
+    subtitle: "One Destination for Your Study Abroad Dreams",
+    cta: "KNOW MORE",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=90"
+  },
+  {
+    title: "Student Visa",
+    subtitle: "Get Your Visa Approved – Fast & Reliable Visa Assistance",
+    cta: "KNOW MORE",
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=90"
+  },
+  {
+    title: "IELTS / PTE Coaching",
+    subtitle: "Ace Your Language Test with Our Coaching – Guaranteed Results!",
+    cta: "KNOW MORE",
+    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1400&q=90"
+  },
+  {
+    title: "Career Counselling",
+    subtitle: "Find Your Dream Career with Expert Guidance – Get Started Today!",
+    cta: "KNOW MORE",
+    image: "https://images.unsplash.com/photo-1498307833015-e7b400441eb8?auto=format&fit=crop&w=1400&q=90"
+  }
+];
+
+/* ── Stats counters ── */
+export const statsCounters = [
+  { value: "5K+", label: "Visas Granted" },
+  { value: "50K+", label: "Families Counseled" },
+  { value: "100+", label: "University Partners" },
+  { value: "95%", label: "Visa Approval Rate" }
+];
+
+/* ── About / Why Choose section bullet points ── */
+export const whyChoosePoints = [
+  { bold: "Student Visas:", text: "Pursue your education abroad seamlessly." },
+  { bold: "Immigration Visas (Canada PR):", text: "Turn your dream into reality with expert guidance." },
+  { bold: "Europe Work Permits:", text: "Work in Europe without a Job Offer Letter." },
+  { bold: "IELTS/PTE Coaching:", text: "Achieve your desired score with our expert coaching." },
+  { bold: "Recruitment Services:", text: "Free job placement support for eligible profiles." },
+  { bold: "Tours & Travels:", text: "Flights, hotels, insurance, and curated tour packages." },
+  { bold: "Post-Visa Services:", text: "Ensure a smooth transition to your new life abroad." }
+];
+
+/* ── FAQ data ── */
+export const faqItems = [
+  {
+    question: "What services does PRANIL Group provide?",
+    answer: "PRANIL Group of Companies provides comprehensive services including study abroad consulting, student visa processing, Canada PR assistance, Europe work permits, IELTS/PTE coaching, recruitment services, and tours & travels. We are your one-stop solution for going global."
+  },
+  {
+    question: "How can PRANIL help me in my educational journey abroad?",
+    answer: "We offer end-to-end support including university shortlisting, admission strategy, SOP guidance, documentation, visa file preparation, interview readiness, and post-visa support to ensure a seamless study abroad experience."
+  },
+  {
+    question: "What types of visas and permits can PRANIL help me with?",
+    answer: "We assist with student visas, Canada PR, Europe work permits, Canada LMIA, spouse visas, visitor visas, tourist visas, and non-immigration visas for any country and any visa type."
+  },
+  {
+    question: "Does PRANIL charge any fees for job placement?",
+    answer: "No, PRANIL Recruitment Services provides free job placement support. We connect candidates with opportunities that match their skills and career goals without any placement charges."
+  },
+  {
+    question: "What are the benefits of choosing PRANIL Group for my needs?",
+    answer: "With experienced professionals across education, recruitment, and travel, we offer personalized guidance, transparent processes, high success rates, and comprehensive post-service support. Our integrated approach means all your global needs are handled under one roof."
+  }
 ];
 
 export const services = [

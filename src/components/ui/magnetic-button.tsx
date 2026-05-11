@@ -18,10 +18,10 @@ export function MagneticButton({ children, href, variant = "light", className }:
   const springY = useSpring(y, { stiffness: 180, damping: 18 });
 
   const classes = cn(
-    "relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-3 text-sm font-semibold transition-colors",
-    variant === "light" && "bg-white text-navy shadow-premium",
-    variant === "dark" && "bg-navy text-white shadow-premium",
-    variant === "ghost" && "border border-white/18 bg-white/8 text-white backdrop-blur-xl hover:bg-white/14",
+    "relative inline-flex items-center justify-center overflow-hidden rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300",
+    variant === "light" && "bg-crimson text-white shadow-lg hover:bg-[#b8222d]",
+    variant === "dark" && "bg-navy text-white shadow-lg hover:bg-ink",
+    variant === "ghost" && "border border-gray-200 bg-white text-navy hover:border-crimson hover:text-crimson",
     className
   );
 
@@ -31,8 +31,8 @@ export function MagneticButton({ children, href, variant = "light", className }:
       style={{ x: springX, y: springY }}
       onMouseMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
-        x.set((event.clientX - rect.left - rect.width / 2) * 0.22);
-        y.set((event.clientY - rect.top - rect.height / 2) * 0.22);
+        x.set((event.clientX - rect.left - rect.width / 2) * 0.18);
+        y.set((event.clientY - rect.top - rect.height / 2) * 0.18);
       }}
       onMouseLeave={() => {
         x.set(0);
@@ -40,7 +40,6 @@ export function MagneticButton({ children, href, variant = "light", className }:
       }}
       whileTap={{ scale: 0.97 }}
     >
-      <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cyanSoft/70 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
       <span className="relative z-10">{children}</span>
     </motion.span>
   );

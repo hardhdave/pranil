@@ -50,7 +50,7 @@ export function SectionOverlay({ isOpen, onClose, title, children }: SectionOver
       {isOpen && (
         <motion.div
           ref={scrollRef}
-          className="fixed inset-0 z-[60] flex flex-col bg-[#f4f6fb]"
+          className="fixed inset-0 z-[60] flex flex-col bg-white"
           style={{
             overflowY: "scroll",
             overscrollBehavior: "contain",
@@ -62,15 +62,15 @@ export function SectionOverlay({ isOpen, onClose, title, children }: SectionOver
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Top bar */}
-          <div className="sticky top-0 z-10 flex items-center gap-3 bg-white/80 px-4 py-3 shadow-[0_4px_30px_rgba(6,17,31,0.06)] backdrop-blur-2xl">
+          <div className="sticky top-0 z-10 flex items-center gap-3 bg-white border-b border-gray-100 px-4 py-3 shadow-card">
             <button
               onClick={onClose}
-              className="grid h-10 w-10 place-items-center rounded-full border border-navy/10 text-navy transition hover:bg-royal/8 active:scale-95"
+              className="grid h-10 w-10 place-items-center rounded-lg border border-gray-200 text-navy transition hover:bg-crimson/5 active:scale-95"
               aria-label="Go back"
             >
               <ArrowLeft size={18} />
             </button>
-            <span className="font-display text-sm font-semibold tracking-[0.12em] text-navy uppercase">{title}</span>
+            <span className="font-display text-sm font-bold tracking-[0.08em] text-navy uppercase">{title}</span>
           </div>
 
           {/* Content */}

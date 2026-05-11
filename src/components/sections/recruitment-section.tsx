@@ -9,7 +9,7 @@ const logos = ["Talent Grid", "NovaWorks", "HireSphere", "BluePeak", "Orbit HR",
 
 export function RecruitmentSection() {
   return (
-    <section id="recruitment" className="overflow-hidden px-4 py-12 sm:py-24">
+    <section id="recruitment" className="overflow-hidden px-4 py-12 sm:py-24 bg-[#F4F7FC]">
       <SectionHeading
         eyebrow="Recruitment Engine"
         title="Career preparation that feels sharp, human, and employer-ready."
@@ -17,9 +17,9 @@ export function RecruitmentSection() {
       />
       <div className="section-shell grid items-center gap-5 sm:gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
-          <div className="paper-card relative overflow-hidden rounded-[1.5rem] p-5 sm:rounded-[2.5rem] sm:p-8 md:p-10">
-            <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-electric/16 blur-3xl" />
-            <div className="absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-royal/8 to-transparent" />
+          <div className="relative overflow-hidden rounded-xl border border-gray-100 bg-white p-5 shadow-card sm:rounded-2xl sm:p-8 md:p-10">
+            <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-crimson/5 blur-3xl" />
+            <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-navy/3 to-transparent" />
             <div className="relative z-10 grid grid-cols-2 gap-3 sm:gap-4">
               {[
                 ["4", "placement pillars"],
@@ -27,9 +27,9 @@ export function RecruitmentSection() {
                 ["0", "placement fees"],
                 ["360°", "career grooming"]
               ].map(([value, label]) => (
-                <div key={label} className="rounded-[1rem] border border-navy/8 bg-white/72 p-3 shadow-[0_18px_45px_rgba(6,17,31,0.08)] sm:rounded-[1.5rem] sm:p-5">
-                  <p className="font-display text-2xl font-semibold text-royal sm:text-4xl">{value}</p>
-                  <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-navy/46 sm:mt-2 sm:text-xs sm:tracking-[0.22em]">{label}</p>
+                <div key={label} className="rounded-xl border border-gray-100 bg-[#F4F7FC] p-3 sm:rounded-2xl sm:p-5 transition hover:bg-white hover:shadow-card">
+                  <p className="font-display text-2xl font-bold text-crimson sm:text-4xl">{value}</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-gray-400 font-medium sm:mt-2 sm:text-xs sm:tracking-[0.18em]">{label}</p>
                 </div>
               ))}
             </div>
@@ -41,12 +41,12 @@ export function RecruitmentSection() {
             return (
               <Reveal key={point.label} delay={index * 0.05}>
                 <motion.div
-                  className="group paper-card rounded-[1.25rem] p-4 sm:rounded-[2rem] sm:p-6"
-                  whileHover={{ x: index % 2 === 0 ? 10 : -10 }}
+                  className="group rounded-xl border border-gray-100 bg-white p-4 shadow-card sm:rounded-2xl sm:p-6 transition hover:shadow-cardHover"
+                  whileHover={{ x: index % 2 === 0 ? 6 : -6 }}
                 >
-                  <Icon className="h-6 w-6 text-royal sm:h-8 sm:w-8" />
-                  <h3 className="mt-4 font-display text-sm font-semibold text-navy sm:mt-8 sm:text-2xl">{point.label}</h3>
-                  <p className="mt-2 text-xs leading-5 text-navy/55 sm:mt-3 sm:text-sm sm:leading-6">{point.description}</p>
+                  <Icon className="h-6 w-6 text-crimson sm:h-8 sm:w-8" />
+                  <h3 className="mt-4 font-display text-sm font-bold text-navy sm:mt-6 sm:text-xl">{point.label}</h3>
+                  <p className="mt-2 text-xs leading-5 text-gray-500 sm:mt-3 sm:text-sm sm:leading-6">{point.description}</p>
                 </motion.div>
               </Reveal>
             );
@@ -56,7 +56,7 @@ export function RecruitmentSection() {
       <div className="premium-mask section-shell mt-8 overflow-hidden sm:mt-12">
         <div className="flex w-max animate-marquee gap-3 sm:gap-4">
           {[...logos, ...logos].map((logo, index) => (
-            <span key={`${logo}-${index}`} className="rounded-full border border-navy/10 bg-white/70 px-5 py-2 text-xs text-navy/55 sm:px-8 sm:py-3 sm:text-sm">
+            <span key={`${logo}-${index}`} className="rounded-lg border border-gray-200 bg-white px-5 py-2 text-xs text-gray-400 font-medium sm:px-8 sm:py-3 sm:text-sm">
               {logo}
             </span>
           ))}
