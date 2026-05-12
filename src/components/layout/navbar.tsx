@@ -57,11 +57,7 @@ export function Navbar() {
       <div className="hidden lg:block bg-white border-b border-gray-100">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
           <a href="#" className="flex items-center gap-3">
-            <span className="grid h-12 w-12 place-items-center rounded-lg bg-[#1a1a6e] text-base font-black text-white tracking-wide">PG</span>
-            <span className="leading-tight">
-              <span className="block font-display text-[22px] font-extrabold tracking-wide text-[#1a1a6e]">PRANIL</span>
-              <span className="block text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold">Group of Companies</span>
-            </span>
+            <img src="/logos/main-logo.jpg" alt="PRANIL Group of Companies" className="h-[3.2rem] w-auto" />
           </a>
           <p className="text-sm text-gray-600">
             Building Global Futures – Education, Recruitment & Travel{" "}
@@ -87,8 +83,7 @@ export function Navbar() {
 
           {/* Mobile logo */}
           <a href="#" className="flex items-center gap-2 lg:hidden">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#1a1a6e] text-xs font-black text-white">PG</span>
-            <span className="font-display text-lg font-extrabold text-[#1a1a6e]">PRANIL</span>
+            <img src="/logos/main-logo.jpg" alt="PRANIL Group of Companies" className="h-9 w-auto" />
           </a>
 
           {/* Nav links */}

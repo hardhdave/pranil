@@ -15,6 +15,7 @@ export function TravelSection() {
     <section id="travel" className="px-4 py-12 sm:py-24 bg-white">
       <SectionHeading
         eyebrow="Tours & Travels"
+        logoUrl="/logos/travel-logo.png"
         title="Travel planning with the calm polish of a concierge desk."
         copy="Tickets, hotels, buses, packages, visas, and insurance come together through one clean, reliable travel experience."
       />

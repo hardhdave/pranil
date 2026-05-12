@@ -12,6 +12,7 @@ export function RecruitmentSection() {
     <section id="recruitment" className="overflow-hidden px-4 py-12 sm:py-24 bg-[#F4F7FC]">
       <SectionHeading
         eyebrow="Recruitment Engine"
+        logoUrl="/logos/recruitment-logo.png"
         title="Career preparation that feels sharp, human, and employer-ready."
         copy="From corporate training to interview confidence, PRANIL helps candidates present the right story for the right opportunity."
       />

@@ -19,11 +19,7 @@ export function Footer() {
             {/* Brand + contact */}
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <span className="grid h-11 w-11 place-items-center rounded-lg bg-[#1a1a6e] text-sm font-black text-white">PG</span>
-                <span className="leading-tight">
-                  <span className="block font-display text-xl font-extrabold text-[#1a1a6e]">PRANIL</span>
-                  <span className="block text-[9px] uppercase tracking-[0.2em] text-gray-400 font-semibold">Group of Companies</span>
-                </span>
+                <img src="/logos/main-logo.jpg" alt="PRANIL Group of Companies" className="h-14 w-auto rounded-md bg-white p-1" />
               </div>
               <div className="space-y-2 text-sm text-gray-600">
                 <p>Call : <a href="tel:+917383997679" className="font-semibold text-[#d42a36] hover:underline">+91 73839 97679</a></p>

@@ -8,12 +8,15 @@ export function SectionHeading({
   eyebrow?: string;
   title: string;
   copy?: string;
+  logoUrl?: string;
 }) {
   return (
     <Reveal className="mx-auto mb-10 max-w-3xl px-2 sm:mb-14">
-      {eyebrow && (
+      {logoUrl ? (
+        <img src={logoUrl} alt={eyebrow || "Logo"} className="mb-6 h-20 sm:h-24 w-auto object-contain drop-shadow-sm" />
+      ) : eyebrow ? (
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#d42a36] sm:text-sm">{eyebrow}</p>
-      )}
+      ) : null}
       <h2 className="font-display text-2xl font-extrabold leading-tight text-[#1a1a6e] sm:text-3xl lg:text-[2.5rem]">
         {title.split(/(\b[A-Z-]+\b)/).map((part, i) =>
           /^[A-Z-]{4,}$/.test(part)
