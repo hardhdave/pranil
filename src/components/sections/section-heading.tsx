@@ -3,7 +3,8 @@ import { Reveal } from "@/components/motion/reveal";
 export function SectionHeading({
   eyebrow,
   title,
-  copy
+  copy,
+  logoUrl
 }: {
   eyebrow?: string;
   title: string;

@@ -207,7 +207,7 @@ export const companyPages: Record<string, CompanyPageData> = {
     ],
     process: [
       { step: "Share Your Wishlist", description: "Tell us your dream destination, dates, budget, and travel preferences." },
-      { step: "Custom Itinerary", description: "We design a personalized itinerary with flights, hotels, sightseeing, pickup & drop, and insurance.", icon: "Plane" },
+      { step: "Custom Itinerary", description: "We design a personalized itinerary with flights, hotels, sightseeing, pickup & drop, and insurance." },
       { step: "Booking & Confirmation", description: "Flights, hotels, transfers - all booked and confirmed with best-price guarantee." },
       { step: "Pre-Trip Briefing", description: "Detailed travel guide, tips, emergency contacts, and packing recommendations." },
       { step: "Travel Support", description: "24/7 on-trip support for any changes, emergencies, or assistance needed." },
