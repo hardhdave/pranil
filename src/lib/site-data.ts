@@ -10,20 +10,36 @@ import {
   ShieldCheck,
   Sparkles,
   Ticket,
-  UserRoundCheck
+  UserRoundCheck,
+  Lightbulb,
+  Heart,
+  Handshake,
+  Target,
+  Eye,
+  Award
 } from "lucide-react";
 
 export const navItems = [
   { label: "Home", href: "#" },
   { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Destinations", href: "#destinations" },
-  { label: "Recruitment", href: "#recruitment" },
-  { label: "Travel", href: "#travel" },
+  { label: "Our Companies", href: "#companies" },
+  { label: "Our Vision", href: "#vision" },
+  { label: "News & Events", href: "#news" },
   { label: "Contact Us", href: "#contact" }
 ];
 
-/* ── Hero slides ── */
+/* ── Hero content ── */
+export const heroContent = {
+  line1: "Building Trust.",
+  line2: "Creating Value.",
+  line3: "Delivering Excellence.",
+  description:
+    "Pranil Group of Companies is a diversified organization driven by integrity, innovation and a commitment to building a better tomorrow.",
+  image:
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=90"
+};
+
+/* ── Hero slides (keep for backward compat) ── */
 export const heroSlides = [
   {
     title: "Study Abroad",
@@ -51,12 +67,100 @@ export const heroSlides = [
   }
 ];
 
+/* ── Our Companies ── */
+export const companies = [
+  {
+    name: "Visa",
+    slug: "education",
+    fullName: "PRANIL Education Services LLP",
+    tagline: "Success is Our New Horizon",
+    logoUrl: "/logos/main-logo.jpg",
+    color: "#0a4d8c"
+  },
+  {
+    name: "Recruitment",
+    slug: "recruitment",
+    fullName: "PRANIL Recruitment Services",
+    tagline: "Connecting Talent with Opportunity",
+    logoUrl: "/logos/recruitment-logo.png",
+    color: "#1a6e3a"
+  },
+  {
+    name: "Tours & Travel",
+    slug: "travel",
+    fullName: "PRANIL Tours & Travel",
+    tagline: "Your Journey, Our Passion",
+    logoUrl: "/logos/travel-logo.png",
+    color: "#0052CC"
+  },
+  {
+    name: "IT Services",
+    slug: "it-services",
+    fullName: "PRANIL IT Solutions",
+    tagline: "Digital Innovation for Growth",
+    logoUrl: null,
+    color: "#6B21A8"
+  }
+];
+
+/* ── Our Values ── */
+export const values = [
+  {
+    title: "INTEGRITY",
+    description: "We do what is right, always.",
+    icon: ShieldCheck
+  },
+  {
+    title: "COMMITMENT",
+    description: "We are committed to excellence in everything we do.",
+    icon: Target
+  },
+  {
+    title: "INNOVATION",
+    description: "We embrace new ideas to create lasting value.",
+    icon: Lightbulb
+  },
+  {
+    title: "TRUST",
+    description: "We build lasting relationships based on trust and respect.",
+    icon: Handshake
+  }
+];
+
 /* ── Stats counters ── */
 export const statsCounters = [
-  { value: "5K+", label: "Visas Granted" },
-  { value: "50K+", label: "Families Counseled" },
-  { value: "100+", label: "University Partners" },
-  { value: "95%", label: "Visa Approval Rate" }
+  { value: 12, suffix: "+", label: "Years of Experience" },
+  { value: 4, suffix: "", label: "Group Companies" },
+  { value: 500, suffix: "+", label: "Happy Clients" },
+  { value: 100, suffix: "+", label: "Projects Completed" }
+];
+
+/* ── News & Events ── */
+export const newsEvents = [
+  {
+    date: "17 May 2024",
+    title: "PRANIL Group Expands Education Services",
+    excerpt:
+      "Pranil Education Services launches new partnerships with leading universities across Canada and Australia for 2025 intake.",
+    image:
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    date: "15 Apr 2024",
+    title: "Recruitment Drive Success Story",
+    excerpt:
+      "Over 200 candidates placed in multinational companies through our free recruitment services program this quarter.",
+    image:
+      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    date: "29 Mar 2024",
+    title: "Travel Division Launches Premium Packages",
+    excerpt:
+      "Pranil Tours & Travel introduces exclusive international tour packages with personalized itineraries and dedicated support.",
+    image:
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&q=80"
+  }
 ];
 
 /* ── About / Why Choose section bullet points ── */
@@ -108,22 +212,22 @@ export const services = [
     stat: "File-ready"
   },
   {
-    title: "Canada PR",
-    description: "Profile assessment and settlement-first guidance for Canada PR pathways.",
+    title: "Permanent Residency",
+    description: "PR assistance for Canada, Australia, New Zealand, UK, Germany, Portugal, Malta, and UAE.",
     icon: Landmark,
-    stat: "Future-first"
+    stat: "8 countries"
   },
   {
-    title: "Europe WP",
-    description: "Work permit guidance for Europe with document planning and profile readiness support.",
+    title: "Work Permit",
+    description: "Work permit processing for Europe, UK, Canada, Australia, New Zealand, Dubai, and Singapore.",
     icon: FileCheck2,
-    stat: "Work abroad"
+    stat: "7 countries"
   },
   {
     title: "Spouse Visa",
-    description: "Spouse visa documentation support with clear file preparation and step-by-step assistance.",
+    description: "Spouse visa for Canada, Australia, NZ, UK, USA, Germany, France, Italy, Portugal, and UAE.",
     icon: ShieldCheck,
-    stat: "Family route"
+    stat: "10 countries"
   },
   {
     title: "Visitor Visa",
@@ -139,9 +243,9 @@ export const services = [
   },
   {
     title: "IELTS / PTE Coaching",
-    description: "Focused coaching programs designed around confidence, practice rhythm, and test-day performance.",
+    description: "Expert coaching for IELTS, PTE, Spoken English, and Duolingo with interactive sessions and individual attention.",
     icon: ScrollText,
-    stat: "Score clarity"
+    stat: "4 programs"
   },
   {
     title: "Tours & Travels",
@@ -244,14 +348,9 @@ export const travelServices = [
     image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=1000&q=80"
   },
   {
-    title: "Bus Booking",
-    icon: Ticket,
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80"
-  },
-  {
-    title: "Hotel Booking",
-    icon: Building2,
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80"
+    title: "Tourist Visa",
+    icon: FileCheck2,
+    image: "https://images.unsplash.com/photo-1548957175-84f0f9af659e?auto=format&fit=crop&w=1000&q=80"
   },
   {
     title: "Domestic Tour",
@@ -259,19 +358,24 @@ export const travelServices = [
     image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80"
   },
   {
-    title: "International Tour",
-    icon: Plane,
-    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1000&q=80"
+    title: "Hotel Booking",
+    icon: Building2,
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80"
   },
   {
-    title: "Tourist Visa",
-    icon: FileCheck2,
-    image: "https://images.unsplash.com/photo-1548957175-84f0f9af659e?auto=format&fit=crop&w=1000&q=80"
+    title: "Bus Booking",
+    icon: Ticket,
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80"
   },
   {
     title: "Insurance",
     icon: ShieldCheck,
     image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    title: "International Tour",
+    icon: Plane,
+    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1000&q=80"
   }
 ];
 
@@ -332,7 +436,7 @@ export const testimonials = [
   }
 ];
 
-export const coachingServices = ["IELTS", "PTE", "Duolingo", "Spoken English", "French Language", "Computer Class"];
+export const coachingServices = ["IELTS", "PTE", "Spoken English", "Duolingo"];
 
 export const visaProcessServices = [
   "Student Visa",
@@ -347,18 +451,21 @@ export const companyContacts = [
   {
     label: "PRANIL Education Services",
     short: "PES",
+    logoUrl: "/logos/main-logo.jpg",
     phone: "+91 73839 97679",
     website: "www.pranileducation.in"
   },
   {
     label: "PRANIL Recruitment Services",
     short: "PRS",
+    logoUrl: "/logos/recruitment-logo.png",
     phone: "+91 73832 99556",
     email: "hr@pranilrecruitment.com"
   },
   {
     label: "PRANIL Tours & Travels",
     short: "PTT",
+    logoUrl: "/logos/travel-logo.png",
     phone: "+91 73833 69769",
     email: "Tours, tickets, visas and packages"
   }

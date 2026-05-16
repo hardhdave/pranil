@@ -57,12 +57,28 @@ export function BrochureServicesSection() {
             {companyContacts.map((company, i) => (
               <Reveal key={company.label} delay={i * 0.05}>
                 <div className="flex min-w-[16rem] shrink-0 snap-start flex-col rounded-xl border border-gray-200 bg-white p-5 shadow-sm sm:min-w-0 sm:p-6 transition hover:shadow-md hover:-translate-y-1">
-                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-[#1a1a6e] text-xs font-black text-white">
-                    {company.short}
-                  </span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-[#1a1a6e]">{company.label}</h3>
-                  <p className="mt-2 text-sm font-bold text-[#d42a36]">{company.phone}</p>
-                  {company.email && <p className="mt-1 text-xs text-gray-500">{company.email}</p>}
+                  {company.logoUrl ? (
+                    <div className="flex items-center justify-start mb-4 h-16 sm:h-20">
+                      <img src={company.logoUrl} alt={company.short} className="max-h-full max-w-[80%] object-contain object-left" />
+                    </div>
+                  ) : (
+                    <span className="grid h-11 w-11 place-items-center rounded-lg bg-[#1a1a6e] text-xs font-black text-white mb-4">
+                      {company.short}
+                    </span>
+                  )}
+                  <h3 className="mt-auto font-display text-lg font-bold text-[#1a1a6e]">{company.label}</h3>
+                  <p className="mt-2 text-sm font-bold text-[#d42a36]">
+                    <a href={`tel:${company.phone.replace(/[^+\d]/g, "")}`} className="hover:underline">{company.phone}</a>
+                  </p>
+                  {company.email && (
+                    <p className="mt-1 text-xs text-gray-500">
+                      {company.email.includes("@") ? (
+                        <a href={`mailto:${company.email}`} className="hover:text-[#d42a36] transition">{company.email}</a>
+                      ) : (
+                        company.email
+                      )}
+                    </p>
+                  )}
                   {company.website && <p className="mt-1 text-xs text-gray-500">{company.website}</p>}
                 </div>
               </Reveal>

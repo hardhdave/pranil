@@ -1,103 +1,85 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useState, useCallback, useEffect } from "react";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { SectionOverlay } from "@/components/layout/section-overlay";
-import { ContactSection } from "@/components/sections/contact-section";
-import { BrochureServicesSection } from "@/components/sections/brochure-services-section";
-import { DestinationsSection } from "@/components/sections/destinations-section";
 import { HeroSection } from "@/components/sections/hero-section";
-import { ProcessSection } from "@/components/sections/process-section";
-import { RecruitmentSection } from "@/components/sections/recruitment-section";
-import { ServicesSection } from "@/components/sections/services-section";
-import { TravelSection } from "@/components/sections/travel-section";
-import { WhyChooseSection } from "@/components/sections/why-choose-section";
-import { CtaBannerSection } from "@/components/sections/cta-banner-section";
+import { CompaniesSection } from "@/components/sections/companies-section";
+import { ValuesSection } from "@/components/sections/values-section";
+import { VisionSection } from "@/components/sections/vision-section";
+import { NewsSection } from "@/components/sections/news-section";
+import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { FaqSection } from "@/components/sections/faq-section";
+import { ContactSection } from "@/components/sections/contact-section";
 
-const TestimonialsSection = dynamic(
-  () => import("@/components/sections/testimonials-section").then((mod) => mod.TestimonialsSection),
-  {
-    loading: () => <div className="section-shell h-64 rounded-xl bg-gray-50" />,
-  }
-);
-
-type OverlaySection = "destinations" | "recruitment" | "travel" | null;
+/*
+ * Overlap / stacking scroll layout:
+ * - Hero is sticky so it stays pinned while the next section slides over it
+ * - Each subsequent section has a higher z-index and rounded top corners
+ *   creating a "card stacking" / "overlap scroll" effect
+ * - Sections with solid backgrounds slide over the previous one
+ */
 
 export function HomeClient() {
-  const [activeOverlay, setActiveOverlay] = useState<OverlaySection>(null);
-
-  const openOverlay = useCallback((section: OverlaySection) => {
-    setActiveOverlay(section);
-  }, []);
-
-  const closeOverlay = useCallback(() => {
-    setActiveOverlay(null);
-  }, []);
-
-  // Listen for custom events from the navbar
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent).detail as OverlaySection;
-      openOverlay(detail);
-    };
-    window.addEventListener("open-section-overlay", handler);
-    return () => window.removeEventListener("open-section-overlay", handler);
-  }, [openOverlay]);
-
   return (
     <>
       <Navbar />
       <main>
-        {/* 1. Hero slider */}
-        <HeroSection />
-        {/* 2. Why Choose Us + Stats */}
-        <WhyChooseSection />
-        {/* 3. Destinations globe */}
-        <DestinationsSection />
-        {/* 4. Services / In-Demand Programs */}
-        <ServicesSection />
-        {/* 5. CTA Banner */}
-        <CtaBannerSection />
-        {/* 6. Testimonials / Success Stories */}
-        <TestimonialsSection />
-        {/* 7. FAQ */}
-        <FaqSection />
-        {/* 8. Brochure Services (coaching + visa) */}
-        <BrochureServicesSection />
-        {/* 9. Process steps */}
-        <ProcessSection />
-        {/* 10. Contact / About partner */}
-        <ContactSection />
+        {/* Hero pins behind everything — other sections scroll over it */}
+        <div className="sticky top-0 z-[1]">
+          <HeroSection />
+        </div>
+
+        {/* Each section overlaps the previous one with rounded top + shadow */}
+        <section
+          className="relative z-[2] -mt-8 rounded-t-[2rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-8px_40px_rgba(0,0,0,0.1)]"
+          style={{ willChange: "transform" }}
+        >
+          <CompaniesSection />
+        </section>
+
+        <section
+          className="relative z-[3] -mt-6 rounded-t-[2rem] sm:rounded-t-[3rem] bg-white shadow-[0_-8px_40px_rgba(0,0,0,0.08)]"
+          style={{ willChange: "transform" }}
+        >
+          <ValuesSection />
+        </section>
+
+        <section
+          className="relative z-[4] -mt-6"
+          style={{ willChange: "transform" }}
+        >
+          <VisionSection />
+        </section>
+
+        <section
+          className="relative z-[5] -mt-6 rounded-t-[2rem] sm:rounded-t-[3rem] bg-white shadow-[0_-8px_40px_rgba(0,0,0,0.08)]"
+          style={{ willChange: "transform" }}
+        >
+          <NewsSection />
+        </section>
+
+        <section
+          className="relative z-[6] -mt-6 rounded-t-[2rem] sm:rounded-t-[3rem] bg-white shadow-[0_-6px_30px_rgba(0,0,0,0.06)]"
+          style={{ willChange: "transform" }}
+        >
+          <TestimonialsSection />
+        </section>
+
+        <section
+          className="relative z-[7] -mt-6 rounded-t-[2rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-8px_40px_rgba(0,0,0,0.08)]"
+          style={{ willChange: "transform" }}
+        >
+          <FaqSection />
+        </section>
+
+        <section
+          className="relative z-[8] -mt-6 rounded-t-[2rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-8px_40px_rgba(0,0,0,0.1)]"
+          style={{ willChange: "transform" }}
+        >
+          <ContactSection />
+        </section>
       </main>
       <Footer />
-
-      {/* Overlay sections - accessible via navbar only */}
-      <SectionOverlay
-        isOpen={activeOverlay === "destinations"}
-        onClose={closeOverlay}
-        title="Destinations"
-      >
-        <DestinationsSection />
-      </SectionOverlay>
-
-      <SectionOverlay
-        isOpen={activeOverlay === "recruitment"}
-        onClose={closeOverlay}
-        title="Recruitment"
-      >
-        <RecruitmentSection />
-      </SectionOverlay>
-
-      <SectionOverlay
-        isOpen={activeOverlay === "travel"}
-        onClose={closeOverlay}
-        title="Travel"
-      >
-        <TravelSection />
-      </SectionOverlay>
     </>
   );
 }

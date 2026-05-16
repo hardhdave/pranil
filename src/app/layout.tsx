@@ -8,23 +8,25 @@ const siteUrl = "https://pranilgroup.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "PRANIL Group of Companies | Education, Recruitment & Travel",
+    default: "PRANIL Group of Companies | Building Trust. Creating Value. Delivering Excellence.",
     template: "%s | PRANIL Group"
   },
   description:
-    "Premium study abroad, student visa, Canada PR, recruitment, IELTS/PTE coaching, tours and travel consulting from PRANIL Group of Companies.",
+    "PRANIL Group of Companies is a diversified organization driven by integrity, innovation and a commitment to building a better tomorrow. Education, Recruitment, Tours & Travel, IT Services.",
   keywords: [
+    "PRANIL Group of Companies",
     "PRANIL Education Services",
     "student visa consulting",
     "study abroad",
     "Canada PR",
     "IELTS PTE coaching",
     "recruitment services",
-    "tours and travels"
+    "tours and travels",
+    "Ahmedabad"
   ],
   openGraph: {
-    title: "Build Your Global Future With Confidence",
-    description: "Visa, careers, education, and travel consulting by PRANIL Group of Companies.",
+    title: "Building Trust. Creating Value. Delivering Excellence.",
+    description: "PRANIL Group of Companies — Education, Recruitment, Tours & Travel, and IT Services.",
     url: siteUrl,
     siteName: "PRANIL Group of Companies",
     type: "website",
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "PRANIL Group of Companies",
-    description: "Education, recruitment, and travel consulting for global futures."
+    description: "Building Trust. Creating Value. Delivering Excellence."
   },
   alternates: {
     canonical: siteUrl
@@ -59,7 +61,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       "Student Visa Consulting",
       "Recruitment Services",
       "IELTS PTE Coaching",
-      "Tours and Travels"
+      "Tours and Travels",
+      "IT Services"
     ]
   };
 
