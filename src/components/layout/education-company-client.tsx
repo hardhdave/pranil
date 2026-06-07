@@ -10,7 +10,7 @@ import {
   Facebook, Instagram, GraduationCap, FileCheck2,
   BookOpen, ScrollText, CheckCircle2, Landmark,
   Award, Plane, Users, Compass, HelpCircle, ChevronRight,
-  TrendingUp, Users2, FileText, Globe, Sparkles, Briefcase, Heart
+  TrendingUp, Users2, FileText, Globe, Sparkles, Briefcase, Heart, Menu, X
 } from "lucide-react";
 import type { CompanyPageData } from "@/lib/company-pages-data";
 import { EarthGlobe3D } from "@/components/ui/earth-globe-3d";
@@ -520,6 +520,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
   const [submitted, setSubmitted] = useState(false);
   const [scrolledNav, setScrolledNav] = useState(false);
   const [heroSlideIdx, setHeroSlideIdx] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const heroRef = useRef<HTMLDivElement>(null);
 
@@ -594,43 +595,83 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
   return (
     <div className="bg-[#F4F7FB] text-slate-800 min-h-screen font-sans antialiased overflow-hidden relative selection:bg-[#E11D48]/10 selection:text-[#991B1B]">
       
-      {/* 1. STICKY NAVBAR */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolledNav
-          ? "bg-[#F4F7FB]/95 backdrop-blur-lg border-b border-slate-200/50 shadow-[0_4px_30px_rgba(153,27,27,0.04)] py-3"
-          : "bg-transparent py-5"
-      }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#991B1B] to-[#E11D48] flex items-center justify-center text-white shadow-md">
-              <GraduationCap className="h-5 w-5" />
-            </div>
-            <div className="leading-none">
-              <div className="text-lg font-black text-[#991B1B] tracking-tight">PRANIL</div>
-              <div className="text-[8px] font-bold text-slate-400 uppercase tracking-[0.18em] -mt-0.5">Education & Visa</div>
-            </div>
-          </Link>
-
-          <div className="hidden lg:flex items-center gap-8">
-            {["About Us", "Journey", "Destinations", "Training", "Pathways", "Success"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                className="text-[11px] font-extrabold text-slate-500 hover:text-[#E11D48] transition uppercase tracking-widest"
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/*  1. NAVBAR                                                        */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAFBFD]/80 backdrop-blur-xl border-b border-slate-100/50 shadow-[0_2px_30px_rgba(0,0,0,0.02)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+          <div className="flex items-center gap-6">
+            <Link href="/" className="group text-[10px] font-black text-slate-400 hover:text-[#E11D48] transition-all flex items-center gap-1.5 uppercase tracking-wider">
+              <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-1 transition-transform" /> Home
+            </Link>
+            <span className="text-slate-200">|</span>
+            <span className="text-xl font-black text-[#991B1B] tracking-tight flex items-center gap-2">
+              <Image src="/logos/main-logo.png" alt="PRANIL Education" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
+              PRANIL <span className="text-[#E11D48] font-semibold">Education</span>
+            </span>
+          </div>
+          
+          <div className="hidden lg:flex items-center gap-9">
+            {["Home", "About Us", "Destinations", "Training", "Pathways", "Contact"].map((item) => (
+              <a 
+                key={item} 
+                href={item === "Home" ? "#" : `#${item.toLowerCase().replace(/ /g, "-")}`} 
+                className="text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-[#E11D48] transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#E11D48] hover:after:w-full after:transition-all after:duration-300"
               >
                 {item}
               </a>
             ))}
           </div>
 
-          <a
-            href="#contact-form"
-            className="bg-gradient-to-r from-[#991B1B] to-[#E11D48] hover:from-[#E11D48] hover:to-[#881337] text-white text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-lg hover:shadow-lg hover:shadow-[#E11D48]/20 transition-all hover:scale-[1.03] shadow-md shadow-[#991B1B]/10"
-          >
-            Apply Now
-          </a>
+          <div className="flex items-center gap-4">
+            <a href="#contact-form" className="hidden sm:inline-block relative group overflow-hidden bg-gradient-to-r from-[#991B1B] to-[#E11D48] text-white text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-xl hover:shadow-[0_8px_25px_rgba(225,29,72,0.25)] transition-all">
+              <span className="relative z-10">Apply Now</span>
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-[#E11D48] to-[#881337] transition-transform duration-500" />
+            </a>
+
+            {/* Mobile hamburger menu button */}
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-xl bg-slate-100 text-[#991B1B] hover:bg-slate-200 transition cursor-pointer"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-20 left-0 right-0 bg-white border-b border-slate-100 shadow-xl z-40 lg:hidden p-6 space-y-4"
+          >
+            <div className="flex flex-col gap-4">
+              {["Home", "About Us", "Destinations", "Training", "Pathways", "Contact"].map((item) => (
+                <a 
+                  key={item} 
+                  href={item === "Home" ? "#" : `#${item.toLowerCase().replace(/ /g, "-")}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-xs font-black text-slate-500 uppercase tracking-widest hover:text-[#E11D48] transition py-2 border-b border-slate-50"
+                >
+                  {item}
+                </a>
+              ))}
+              <a 
+                href="#contact-form"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full bg-gradient-to-r from-[#991B1B] to-[#E11D48] text-white text-center text-xs font-black uppercase tracking-widest py-3.5 rounded-xl block mt-2"
+              >
+                Apply Now
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 2. HERO — Centered layout with fanned visual dashboard cards */}
       <section ref={heroRef} className="relative min-h-[95vh] lg:min-h-screen pt-32 pb-20 overflow-hidden z-10 flex items-center bg-[#F4F7FB] border-b border-slate-200/50">
@@ -1114,9 +1155,13 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
                 Connecting exceptional talent and students with global opportunities. High-success admissions and visa transits.
               </p>
               <div className="flex gap-3">
-                {[Facebook, Twitter, Instagram].map((SIcon, i) => (
-                  <a key={i} href="#" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition">
-                    <SIcon className="h-3.5 w-3.5" />
+                {[
+                  { SIcon: Facebook, href: "https://www.facebook.com/share/18i3WEoGMT/" },
+                  { SIcon: Twitter, href: "#" },
+                  { SIcon: Instagram, href: "https://www.instagram.com/pranil_education_services_llp?igsh=b3dlanZuaXpsZzUy" },
+                ].map((item, i) => (
+                  <a key={i} href={item.href} target={item.href !== "#" ? "_blank" : undefined} rel={item.href !== "#" ? "noopener noreferrer" : undefined} className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition">
+                    <item.SIcon className="h-3.5 w-3.5" />
                   </a>
                 ))}
               </div>

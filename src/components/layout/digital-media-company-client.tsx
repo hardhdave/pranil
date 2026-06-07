@@ -11,7 +11,7 @@ import {
   Plane, Train, Bus, Hotel, Shield, FileText, Map, Camera, Car, ArrowRight,
   ChevronRight, Users, Award, Headphones, Youtube, Search, Info,
   Palette, Monitor, TrendingUp, Code, Share2, MessageCircle, Bookmark,
-  TrendingDown, CheckCircle, ExternalLink, Terminal, Cpu
+  TrendingDown, CheckCircle, ExternalLink, Terminal, Cpu, Menu, X
 } from "lucide-react";
 import type { CompanyPageData } from "@/lib/company-pages-data";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
@@ -20,6 +20,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", service: "Flyer Design", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Custom states for interactive mockups
   const [activeCarouselSlide, setActiveCarouselSlide] = useState(0);
@@ -112,9 +113,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
             </Link>
             <span className="text-white/10">|</span>
             <span className="text-xl font-black tracking-tight flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0099FF] via-[#8B5CF6] to-[#FF7A00] flex items-center justify-center shadow-lg shadow-[#0099FF]/20">
-                <Sparkles className="h-4.5 w-4.5 text-white" />
-              </div>
+              <Image src="/logos/karv-logo.png" alt="KARV Media" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
               KARV <span className="text-[#0099FF] font-semibold">Media</span>
             </span>
           </div>
@@ -131,12 +130,53 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
             ))}
           </div>
 
-          <a href="#contact" className="relative group overflow-hidden bg-white text-slate-900 text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-xl hover:shadow-[0_8px_25px_rgba(0,153,255,0.2)] transition-all">
+          <a href="#contact" className="hidden sm:inline-block relative group overflow-hidden bg-white text-slate-900 text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-xl hover:shadow-[0_8px_25px_rgba(0,153,255,0.2)] transition-all">
             <span className="relative z-10">Start Project</span>
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-[#0099FF] to-[#8B5CF6] transition-transform duration-500" />
           </a>
+
+            {/* Mobile hamburger menu button */}
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 transition cursor-pointer"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-20 left-0 right-0 bg-[#0F1117] border-b border-white/5 shadow-xl z-40 lg:hidden p-6 space-y-4"
+          >
+            <div className="flex flex-col gap-4">
+              {["Hero", "About", "Services", "Portfolio", "Dashboard", "Team", "Contact"].map((item) => (
+                <a 
+                  key={item} 
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-xs font-black text-slate-400 uppercase tracking-widest hover:text-[#0099FF] transition py-2 border-b border-white/5"
+                >
+                  {item}
+                </a>
+              ))}
+              <a 
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full bg-gradient-to-r from-[#0099FF] to-[#8B5CF6] text-white text-center text-xs font-black uppercase tracking-widest py-3.5 rounded-xl block mt-2"
+              >
+                Start Project
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  HERO — Giant Instagram Post frame and stats                        */}
@@ -1159,9 +1199,14 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
                 We don&apos;t just market — we build legacies. Creative digital solutions and event strategies that make your business impossible to ignore.
               </p>
               <div className="flex gap-3">
-                {[Facebook, Instagram, Twitter, Youtube].map((Icon, i) => (
-                  <a key={i} href="#" className="w-9 h-9 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/50 hover:bg-[#0099FF] hover:text-white hover:border-transparent transition">
-                    <Icon className="h-4 w-4" />
+                {[
+                  { Icon: Facebook, href: "https://www.facebook.com/share/1AHGgjP4Qn/" },
+                  { Icon: Instagram, href: "https://www.instagram.com/karvdigitalmedia?igsh=c2hxdXgxYWFjOGRp" },
+                  { Icon: Twitter, href: "#" },
+                  { Icon: Youtube, href: "#" },
+                ].map((item, i) => (
+                  <a key={i} href={item.href} target={item.href !== "#" ? "_blank" : undefined} rel={item.href !== "#" ? "noopener noreferrer" : undefined} className="w-9 h-9 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/50 hover:bg-[#0099FF] hover:text-white hover:border-transparent transition">
+                    <item.Icon className="h-4 w-4" />
                   </a>
                 ))}
               </div>

@@ -10,7 +10,7 @@ import {
   UserRoundCheck, MapPin, Facebook, Twitter, Instagram, Linkedin,
   CheckCircle2, Users2, Award, Globe, TrendingUp, ArrowRight,
   GraduationCap, HeartPulse, Cpu, Landmark, FileText, Headphones,
-  Handshake, Zap, Target, Youtube
+  Handshake, Zap, Target, Youtube, Menu, X
 } from "lucide-react";
 import type { CompanyPageData } from "@/lib/company-pages-data";
 
@@ -438,6 +438,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", role: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [scrolledNav, setScrolledNav] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handler = () => setScrolledNav(window.scrollY > 60);
@@ -527,43 +528,83 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
         <div className="absolute bottom-[-15%] right-[-10%] w-[60%] h-[60%] rounded-full bg-gradient-to-bl from-[#0B4F8A]/[0.02] to-[#00A6D6]/[0.02] blur-[150px]" />
       </div>
 
-      {/* 1. STICKY NAVBAR */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolledNav
-          ? "bg-white/95 backdrop-blur-lg border-b border-slate-100 shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-3"
-          : "bg-transparent py-5"
-      }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0B4F8A] to-[#00A6D6] flex items-center justify-center text-white shadow-md">
-              <Building2 className="h-5 w-5" />
-            </div>
-            <div className="leading-none">
-              <div className="text-lg font-black text-[#0B1B3D] tracking-tight">PRANIL</div>
-              <div className="text-[8px] font-bold text-slate-400 uppercase tracking-[0.18em] -mt-0.5">Recruitment Services</div>
-            </div>
-          </Link>
-
-          <div className="hidden lg:flex items-center gap-8">
-            {["About Us", "Journey", "Industries", "Services", "Success Stories", "Why Us"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                className="text-[11px] font-extrabold text-slate-500 hover:text-[#0B4F8A] transition uppercase tracking-widest"
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/*  1. NAVBAR                                                        */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAFBFD]/80 backdrop-blur-xl border-b border-slate-100/50 shadow-[0_2px_30px_rgba(0,0,0,0.02)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+          <div className="flex items-center gap-6">
+            <Link href="/" className="group text-[10px] font-black text-slate-400 hover:text-[#0B4F8A] transition-all flex items-center gap-1.5 uppercase tracking-wider">
+              <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-1 transition-transform" /> Home
+            </Link>
+            <span className="text-slate-200">|</span>
+            <span className="text-xl font-black text-[#0B1B3D] tracking-tight flex items-center gap-2">
+              <Image src="/logos/recruitment-logo.png" alt="PRANIL Recruitment" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
+              PRANIL <span className="text-[#0B4F8A] font-semibold">Recruitment</span>
+            </span>
+          </div>
+          
+          <div className="hidden lg:flex items-center gap-9">
+            {["Home", "About Us", "Industries", "Services", "Success Stories", "Contact"].map((item) => (
+              <a 
+                key={item} 
+                href={item === "Home" ? "#" : `#${item.toLowerCase().replace(/ /g, "-")}`} 
+                className="text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-[#0B4F8A] transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#0B4F8A] hover:after:w-full after:transition-all after:duration-300"
               >
                 {item}
               </a>
             ))}
           </div>
 
-          <a
-            href="#contact-form"
-            className="bg-[#0B4F8A] text-white text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-lg hover:shadow-lg hover:shadow-[#0B4F8A]/20 transition-all hover:scale-[1.03]"
-          >
-            Get Started
-          </a>
+          <div className="flex items-center gap-4">
+            <a href="#contact-form" className="hidden sm:inline-block relative group overflow-hidden bg-gradient-to-r from-[#0B4F8A] to-[#00A6D6] text-white text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-xl hover:shadow-[0_8px_25px_rgba(0,166,214,0.25)] transition-all">
+              <span className="relative z-10">Get Started</span>
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-[#00A6D6] to-[#13C4B5] transition-transform duration-500" />
+            </a>
+
+            {/* Mobile hamburger menu button */}
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-xl bg-slate-100 text-[#0B4F8A] hover:bg-slate-200 transition cursor-pointer"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-20 left-0 right-0 bg-white border-b border-slate-100 shadow-xl z-40 lg:hidden p-6 space-y-4"
+          >
+            <div className="flex flex-col gap-4">
+              {["Home", "About Us", "Industries", "Services", "Success Stories", "Contact"].map((item) => (
+                <a 
+                  key={item} 
+                  href={item === "Home" ? "#" : `#${item.toLowerCase().replace(/ /g, "-")}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-xs font-black text-slate-500 uppercase tracking-widest hover:text-[#0B4F8A] transition py-2 border-b border-slate-50"
+                >
+                  {item}
+                </a>
+              ))}
+              <a 
+                href="#contact-form"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full bg-gradient-to-r from-[#0B4F8A] to-[#00A6D6] text-white text-center text-xs font-black uppercase tracking-widest py-3.5 rounded-xl block mt-2"
+              >
+                Get Started
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 2. HERO — Premium Light-Theme Dashboard */}
       <section className="relative min-h-screen pt-32 pb-16 overflow-hidden z-10 flex items-center bg-gradient-to-b from-[#F5F8FC]/60 via-white to-white">
@@ -1036,9 +1077,14 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
                 Connecting exceptional talent with global opportunities across multiple industries. Zero placement charges for candidates.
               </p>
               <div className="flex gap-3">
-                {[Facebook, Twitter, Linkedin, Instagram].map((SIcon, i) => (
-                  <a key={i} href="#" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition">
-                    <SIcon className="h-4 w-4" />
+                {[
+                  { SIcon: Facebook, href: "https://www.facebook.com/share/18jzwzF5fx/" },
+                  { SIcon: Twitter, href: "#" },
+                  { SIcon: Linkedin, href: "#" },
+                  { SIcon: Instagram, href: "https://www.instagram.com/pranil_recruitment_services?igsh=MTMyanQ5b2V0cWV3Ng==" },
+                ].map((item, i) => (
+                  <a key={i} href={item.href} target={item.href !== "#" ? "_blank" : undefined} rel={item.href !== "#" ? "noopener noreferrer" : undefined} className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition">
+                    <item.SIcon className="h-4 w-4" />
                   </a>
                 ))}
               </div>

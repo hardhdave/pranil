@@ -268,7 +268,7 @@ export function HeroSection() {
               </a>
               
               <a
-                href="https://www.instagram.com/pranil_education_services_llp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                href="https://www.instagram.com/pranil_education_services_llp?igsh=b3dlanZuaXpsZzUy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 transition-all duration-300 hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white hover:border-transparent hover:scale-110"
@@ -278,7 +278,7 @@ export function HeroSection() {
               </a>
               
               <a
-                href="https://www.facebook.com/share/1FNPPMhovh/"
+                href="https://www.facebook.com/share/18i3WEoGMT/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 transition-all duration-300 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:scale-110"

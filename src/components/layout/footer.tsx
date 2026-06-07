@@ -62,13 +62,15 @@ export function Footer({ companyLogoUrl }: { companyLogoUrl?: string }) {
               {/* Social icons */}
               <div className="flex items-center gap-3">
                 {[
-                  { icon: Facebook, href: "#", label: "Facebook" },
+                  { icon: Facebook, href: "https://www.facebook.com/share/18i3WEoGMT/", label: "Facebook" },
                   { icon: Linkedin, href: "#", label: "LinkedIn" },
-                  { icon: Instagram, href: "#", label: "Instagram" }
+                  { icon: Instagram, href: "https://www.instagram.com/pranil_education_services_llp?igsh=b3dlanZuaXpsZzUy", label: "Instagram" }
                 ].map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
+                    target={social.href !== "#" ? "_blank" : undefined}
+                    rel={social.href !== "#" ? "noopener noreferrer" : undefined}
                     className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white/60 hover:bg-[var(--teal)] hover:text-white transition-all duration-300"
                     whileHover={{ scale: 1.1, y: -2 }}
                     aria-label={social.label}

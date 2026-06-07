@@ -176,9 +176,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
             </Link>
             <span className="text-slate-200">|</span>
             <span className="text-xl font-black text-[#0B4F8A] tracking-tight flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0B4F8A] to-[#00A6D6] flex items-center justify-center shadow-lg shadow-[#00A6D6]/10">
-                <Plane className="h-4.5 w-4.5 text-white -rotate-45" />
-              </div>
+              <Image src="/logos/travel-logo.png" alt="PRANIL Tours" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
               PRANIL <span className="text-[#00A6D6] font-semibold">Tours</span>
             </span>
           </div>
@@ -1067,9 +1065,14 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
                 Your trusted travel partner for domestic & international vacations. Creating unforgettable memories since 2009.
               </p>
               <div className="flex gap-3">
-                {[Facebook, Instagram, Twitter, Youtube].map((Icon, i) => (
-                  <a key={i} href="#" className="w-9 h-9 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/50 hover:bg-[#00A6D6] hover:text-white hover:border-transparent transition">
-                    <Icon className="h-4 w-4" />
+                {[
+                  { Icon: Facebook, href: "https://www.facebook.com/share/1L9KZqZKbS/" },
+                  { Icon: Instagram, href: "https://www.instagram.com/pranil_tours_and_travels?igsh=cXU4N2k4OG1pdnQw" },
+                  { Icon: Twitter, href: "#" },
+                  { Icon: Youtube, href: "#" },
+                ].map((item, i) => (
+                  <a key={i} href={item.href} target={item.href !== "#" ? "_blank" : undefined} rel={item.href !== "#" ? "noopener noreferrer" : undefined} className="w-9 h-9 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/50 hover:bg-[#00A6D6] hover:text-white hover:border-transparent transition">
+                    <item.Icon className="h-4 w-4" />
                   </a>
                 ))}
               </div>
