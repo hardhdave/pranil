@@ -1,0 +1,11 @@
+.next
+node_modules
+out
+.env
+.env.local
+dist
+coverage
+*.log
+public/gallery/*.mp4
+public/gallery/*.mov
+public/gallery/*.webm

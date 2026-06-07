@@ -1,0 +1,1198 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { motion, AnimatePresence, useMotionValue, useTransform, animate, useInView, useScroll } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import {
+  ArrowLeft, ArrowRight, Phone, Mail, Check, Play, Star,
+  MapPin, ShieldCheck, UserCheck, Globe2, Twitter,
+  Facebook, Instagram, GraduationCap, FileCheck2,
+  BookOpen, ScrollText, CheckCircle2, Landmark,
+  Award, Plane, Users, Compass, HelpCircle, ChevronRight,
+  TrendingUp, Users2, FileText, Globe, Sparkles, Briefcase, Heart
+} from "lucide-react";
+import type { CompanyPageData } from "@/lib/company-pages-data";
+import { EarthGlobe3D } from "@/components/ui/earth-globe-3d";
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/*  HELPERS & SUB-COMPONENTS                                                 */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="text-[#E11D48] text-[11px] font-black uppercase tracking-[0.25em] block mb-2">
+      {children}
+    </span>
+  );
+}
+
+function SectionTitle({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <h2 className={`font-display text-2xl sm:text-[2.2rem] font-black text-[#991B1B] leading-[1.2] tracking-tight ${className}`}>
+      {children}
+    </h2>
+  );
+}
+
+interface StudentProfile {
+  name: string;
+  destination: string;
+  code: string;
+  university: string;
+  score: string;
+  image: string;
+}
+
+function StudentSlideshow() {
+  const students: StudentProfile[] = [
+    { name: "Priya Sharma", destination: "Canada", code: "ca", university: "University of Toronto", score: "PTE 78 | Study Visa", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&crop=faces&facepad=2&w=400&h=500&q=80" },
+    { name: "Aarav Mehta", destination: "Australia", code: "au", university: "University of Melbourne", score: "IELTS 8.0 | Study Visa", image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&crop=faces&facepad=2&w=400&h=500&q=80" },
+    { name: "Meera Patel", destination: "United Kingdom", code: "gb", university: "Coventry University", score: "IELTS 7.5 | Spouse Pathway", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&crop=faces&facepad=2&w=400&h=500&q=80" },
+    { name: "Rohan Shah", destination: "Germany", code: "de", university: "TU Munich", score: "PTE 81 | Work Transit", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&crop=faces&facepad=2&w=400&h=500&q=80" }
+  ];
+
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIdx((prev) => (prev + 1) % students.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const active = students[idx];
+
+  return (
+    <div className="relative w-full max-w-[240px] bg-white/95 backdrop-blur-md border border-white/70 rounded-3xl p-4 shadow-2xl overflow-hidden group flex flex-col text-left">
+      {/* Opacity-only fade — no y-movement prevents any layout shift */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className="flex flex-col gap-3"
+        >
+          {/* Portrait Image */}
+          <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shrink-0 border border-slate-100 shadow-sm relative bg-slate-100">
+            <img src={active.image} alt={active.name} className="w-full h-full object-cover object-top" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+            {/* Country badge */}
+            <div className="absolute top-2.5 right-2.5 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full border border-white/20 shadow-sm">
+              <CircularFlag code={active.code} alt={active.destination} size={5} />
+              <span className="text-[8px] font-black uppercase text-[#991B1B] tracking-wider">{active.destination}</span>
+            </div>
+          </div>
+          
+          {/* Student details */}
+          <div className="text-left min-w-0 px-0.5">
+            <h4 className="text-[11px] font-black text-[#991B1B] leading-tight mb-0.5">{active.name}</h4>
+            <p className="text-[9px] text-slate-500 font-bold leading-tight mb-1.5">{active.university}</p>
+            <span className="inline-block bg-[#E11D48]/8 border border-[#E11D48]/15 rounded-md px-2 py-0.5 text-[7px] font-black uppercase tracking-wider text-[#E11D48]">
+              {active.score}
+            </span>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+      
+      {/* Indicators */}
+      <div className="flex gap-1.5 justify-center mt-3 pt-2 border-t border-slate-100/50">
+        {students.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIdx(i)}
+            className="min-h-0 min-w-0 h-1 rounded-full transition-all duration-300 p-0 border-none outline-none shrink-0"
+            style={{ width: idx === i ? "20px" : "6px", backgroundColor: idx === i ? "#991B1B" : "#cbd5e1" }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Counter({ value, suffix }: { value: number; suffix: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const [displayValue, setDisplayValue] = useState("0");
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (inView) {
+      const controls = animate(count, value, {
+        duration: 2.2,
+        ease: [0.16, 1, 0.3, 1]
+      });
+      return controls.stop;
+    }
+  }, [value, inView]);
+
+  useEffect(() => {
+    return rounded.on("change", (latest) => {
+      setDisplayValue(latest.toString());
+    });
+  }, []);
+
+  return <span ref={ref}>{displayValue}{suffix}</span>;
+}
+
+function RedDivider() {
+  return <div className="h-[3px] w-14 bg-gradient-to-r from-[#991B1B] to-[#E11D48] mt-4" />;
+}
+
+function CircularFlag({ code, alt, size = 12 }: { code: string; alt: string; size?: number }) {
+  let sizeClass = "w-14 h-14";
+  if (size === 12) sizeClass = "w-12 h-12";
+  if (size === 5) sizeClass = "w-5 h-5";
+  return (
+    <div className={`${sizeClass} rounded-full border border-slate-200 bg-slate-50 flex items-center justify-center overflow-hidden shrink-0 shadow-sm group-hover:scale-110 group-hover:border-[#E11D48] group-hover:shadow-md transition-all duration-500`}>
+      <img 
+        src={`https://flagcdn.com/w160/${code.toLowerCase()}.png`} 
+        alt={alt} 
+        className="w-full h-full object-cover scale-105" 
+      />
+    </div>
+  );
+}
+
+const heroSlides = [
+  "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1920&q=80"
+];
+
+// ─── Unified Visa Category Pathways Dashboard ───
+interface CountryItem {
+  name: string;
+  code: string;
+  detail: string;
+}
+
+interface CategoryData {
+  title: string;
+  id: string;
+  icon: any; // Lucide icon
+  intro: string;
+  description: string;
+  countries: CountryItem[];
+  process: { title: string; desc: string }[];
+}
+
+function VisaPathwaysDashboard() {
+  const [activeTab, setActiveTab] = useState<"student" | "work" | "pr" | "spouse">("student");
+
+  const categories: Record<"student" | "work" | "pr" | "spouse", CategoryData> = {
+    student: {
+      title: "Student Visa",
+      id: "student",
+      icon: GraduationCap,
+      intro: "Your Gateway to Global Education",
+      description: "We help students secure admissions and study visas in top global academic destinations, offering end-to-end guidance from course shortlisting to post-visa settlement.",
+      countries: [
+        { name: "Australia", code: "au", detail: "Group of Eight universities. High post-study work rights and student lifestyle." },
+        { name: "France", code: "fr", detail: "Grandes Écoles and historic business schools. 2-year postgraduate work rights." },
+        { name: "New Zealand", code: "nz", detail: "100% of universities in top 3% globally. Secure up to 3 years PGWP." },
+        { name: "United Kingdom", code: "gb", detail: "Historic 1-year Masters programs. Graduate route allows 2-year work permit." },
+        { name: "Canada", code: "ca", detail: "Top-ranked universities, flexible co-op programs, and PGWP rights up to 3 years." },
+        { name: "Germany", code: "de", detail: "Tuition-free public universities. Strong industrial hub with 18-month job seeker visa." },
+        { name: "Singapore", code: "sg", detail: "NUS/NTU leading global top 15. World-class financial and technological hub." },
+        { name: "United States", code: "us", detail: "Ivy League and research powerhouses. STEM OPT extensions up to 3 years." }
+      ],
+      process: [
+        { title: "Course shortlisting", desc: "Selecting the ideal universities and courses based on budget and goals." },
+        { title: "SOP & Admission", desc: "Crafting professional SOPs, LORs, and processing university offers." },
+        { title: "Visa File Preparation", desc: "Comprehensive documentation, financial proof checks, and interview drills." },
+        { title: "Departure Settlement", desc: "Pre-departure briefings, flight transits, and accommodation help." }
+      ]
+    },
+    work: {
+      title: "Work Permit",
+      id: "work",
+      icon: Briefcase,
+      intro: "Global Career & Employment Transits",
+      description: "Direct assistance with securing employer-sponsored work permits, visa filing compliance, and professional relocation support.",
+      countries: [
+        { name: "Europe", code: "eu", detail: "Work permits for Germany, Poland, Portugal, Croatia, and other EU states." },
+        { name: "United Kingdom", code: "gb", detail: "Skilled Worker sponsorship visa filing with certified employer matching." },
+        { name: "Canada", code: "ca", detail: "LMIA-backed work permit processing and intra-company transfer options." },
+        { name: "Australia", code: "au", detail: "TSS subclass 482 and employer-sponsored visa streams." },
+        { name: "New Zealand", code: "nz", detail: "Accredited Employer Work Visa (AEWV) pathways for skilled professionals." },
+        { name: "Dubai", code: "ae", detail: "Tax-free employment contracts with rapid residency approvals." },
+        { name: "Singapore", code: "sg", detail: "Employment Pass (EP) and S Pass work permit sponsorships." }
+      ],
+      process: [
+        { title: "Profile Evaluation", desc: "Assessing candidate CV, work experience, and occupation code matching." },
+        { title: "Document Attestation", desc: "Notarizing and attesting degrees, police clearances, and logs." },
+        { title: "Contract Approval", desc: "Obtaining and reviewing government-approved work contracts/LMIAs." },
+        { title: "Visa Stamping", desc: "Lodging visa application for immediate employment travel permit." }
+      ]
+    },
+    pr: {
+      title: "Permanent Residency (PR)",
+      id: "pr",
+      icon: Landmark,
+      intro: "Direct Migration & Long-Term Settlement",
+      description: "Step-by-step guidance on points-tested migration systems, skilled worker nominations, and residency acquisition.",
+      countries: [
+        { name: "Canada", code: "ca", detail: "Express Entry (FSW, CEC), Provincial Nominee Programs (PNP), and Francophone streams." },
+        { name: "Australia", code: "au", detail: "SkillSelect points-tested subclass 189, 190 state nomination, and 491 regional paths." },
+        { name: "New Zealand", code: "nz", detail: "Green List straight-to-residence and Skilled Migrant residency pathways." },
+        { name: "United Kingdom", code: "gb", detail: "Indefinite Leave to Remain (ILR) pathways after qualifying skilled residency." },
+        { name: "Germany", code: "de", detail: "EU Blue Card fast-track to permanent settlement in 21-27 months." },
+        { name: "Portugal", code: "pt", detail: "Golden Visa, D7, and D2 residency streams leading to permanent status." },
+        { name: "Malta", code: "mt", detail: "European PR programs through investment, residency, and real estate options." },
+        { name: "United Arab Emirates", code: "ae", detail: "Long-term Golden Visa residency for professionals, specialists, and investors." }
+      ],
+      process: [
+        { title: "Points Calculation", desc: "Acquiring maximum points based on age, education, and language levels." },
+        { title: "Skills Assessment", desc: "Verifying qualifications with bodies like WES, ACS, VETASSESS, etc." },
+        { title: "EOI Lodgement", desc: "Submitting Expression of Interest profiles in the country's candidate pool." },
+        { title: "ITA & Visa Grant", desc: "Receiving Invitation to Apply, filing medicals/backgrounds, and receiving PR." }
+      ]
+    },
+    spouse: {
+      title: "Spouse Visa",
+      id: "spouse",
+      icon: Users,
+      intro: "Family Reunification & Partner Sponsorship",
+      description: "Reunite with your family with direct, high-success sponsorship pathways allowing your partner to live and work abroad.",
+      countries: [
+        { name: "Canada", code: "ca", detail: "Spousal sponsorship class with immediate open work permit eligibility." },
+        { name: "Australia", code: "au", detail: "Partner subclass 309/100 and 820/801 visas for direct local migration." },
+        { name: "New Zealand", code: "nz", detail: "Partnership-based work visas leading to stable resident paths." },
+        { name: "United Kingdom", code: "gb", detail: "Family settlement visas with full employment and residence rights." },
+        { name: "United States", code: "us", detail: "CR1/IR1 family unification spouse visas for immediate Green Card." },
+        { name: "Germany", code: "de", detail: "Family reunion visa for spouses of skilled workers and researchers." },
+        { name: "France", code: "fr", detail: "Spouse of French citizen / talent passport partner visa." },
+        { name: "Italy", code: "it", detail: "Family cohesion visas and residency registration." },
+        { name: "Portugal", code: "pt", detail: "Family reunification pathways under article 98-A." },
+        { name: "United Arab Emirates", code: "ae", detail: "Family sponsorship under unified residency portal." }
+      ],
+      process: [
+        { title: "Relationship Audit", desc: "Compiling proof of marriage, cohabitation logs, and financial interdependency." },
+        { title: "Sponsor Evaluation", desc: "Reviewing the sponsor's income levels, tax status, and legal declarations." },
+        { title: "Immigration Lodgement", desc: "Lodging high-compliance visa files with the target nation's registry." },
+        { title: "Biometrics & Stamp", desc: "Completing scans, attending embassy interviews if required, and visa stamp." }
+      ]
+    }
+  };
+
+  const active = categories[activeTab];
+  const ActiveIcon = active.icon;
+
+  return (
+    <div className="max-w-6xl mx-auto text-left relative z-10 px-4">
+      {/* Tab Selector Buttons */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        {(Object.keys(categories) as Array<keyof typeof categories>).map((key) => {
+          const cat = categories[key];
+          const TabIcon = cat.icon;
+          const isSelected = activeTab === key;
+          return (
+            <button
+              key={key}
+              onClick={() => setActiveTab(key)}
+              className={`flex items-center gap-3.5 p-4 rounded-2xl transition-all duration-300 border text-left ${
+                isSelected
+                  ? "bg-gradient-to-br from-[#991B1B] to-[#881337] border-[#991B1B] text-white shadow-lg shadow-[#991B1B]/10 scale-[1.02]"
+                  : "bg-white border-slate-200/80 text-slate-600 hover:bg-slate-50 hover:border-slate-300"
+              }`}
+            >
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition duration-300 ${
+                isSelected ? "bg-white/10 border-white/20 text-white" : "bg-slate-50 border-slate-100 text-[#991B1B]"
+              }`}>
+                <TabIcon className="h-5 w-5" />
+              </div>
+              <div>
+                <div className={`text-xs font-black uppercase tracking-wider ${isSelected ? "text-white" : "text-slate-800"}`}>
+                  {cat.title}
+                </div>
+                <div className={`text-[8px] font-bold uppercase tracking-widest mt-0.5 ${isSelected ? "text-[#E11D48]" : "text-slate-400"}`}>
+                  Visa Pathway
+                </div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Main Content Dashboard Grid */}
+      <div className="grid lg:grid-cols-12 gap-8 items-start">
+        
+        {/* Left Side: Category Details & Custom Roadmap */}
+        <div className="lg:col-span-5 bg-slate-50/50 border border-slate-200/60 rounded-3xl p-6 sm:p-8 min-h-[460px] flex flex-col justify-between shadow-sm">
+          <div>
+            <div className="flex items-center gap-4 pb-5 mb-5 border-b border-slate-200/60">
+              <div className="w-12 h-12 rounded-2xl bg-[#991B1B]/6 text-[#991B1B] flex items-center justify-center border border-[#991B1B]/10 shadow-inner">
+                <ActiveIcon className="h-6 w-6" />
+              </div>
+              <div>
+                <span className="text-[9px] font-black text-[#E11D48] uppercase tracking-[0.2em]">{active.title} Services</span>
+                <h3 className="text-lg sm:text-xl font-black text-[#991B1B] uppercase tracking-wide leading-none mt-0.5">{active.intro}</h3>
+              </div>
+            </div>
+
+            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-semibold mb-8">
+              {active.description}
+            </p>
+
+            {/* Custom Interactive Roadmap */}
+            <div>
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-4">Service Action Plan</span>
+              <div className="space-y-4">
+                {active.process.map((p, idx) => (
+                  <div key={idx} className="flex gap-4 items-start text-left">
+                    <div className="w-6 h-6 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center shrink-0 font-mono text-[10px] font-black text-[#991B1B]">
+                      {idx + 1}
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-black text-[#991B1B] uppercase tracking-wider leading-none mb-1">{p.title}</h4>
+                      <p className="text-[10px] text-slate-400 font-semibold leading-normal">{p.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-6 border-t border-slate-200/60 mt-8">
+            <a
+              href="#contact-form"
+              className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#991B1B] to-[#E11D48] hover:from-[#E11D48] hover:to-[#881337] text-white text-xs font-black uppercase tracking-widest py-4 rounded-xl shadow-lg shadow-[#991B1B]/10 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-[#E11D48]/20"
+            >
+              Consult for {active.title}
+            </a>
+          </div>
+        </div>
+
+        {/* Right Side: Countries Grid */}
+        <div className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <div className="mb-6 flex justify-between items-center">
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Countries & Perks</span>
+            <span className="text-[9px] font-mono font-bold bg-[#E11D48]/8 text-[#E11D48] px-2 py-0.5 rounded-full border border-[#E11D48]/15 uppercase">
+              {active.countries.length} Destinations
+            </span>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            {active.countries.map((c, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-100 hover:border-[#E11D48]/50 bg-slate-50/20 hover:bg-white hover:shadow-md transition-all duration-300 group"
+              >
+                <CircularFlag code={c.code} alt={c.name} size={12} />
+                <div className="text-left">
+                  <h4 className="text-xs font-black text-[#991B1B] uppercase tracking-wider mb-1 group-hover:text-[#E11D48] transition-colors">
+                    {c.name}
+                  </h4>
+                  <p className="text-[10px] text-slate-400 leading-normal font-semibold font-sans">
+                    {c.detail}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  );
+}
+
+// ─── Cinematic Journey Timeline ───
+// ─── Cinematic Journey Timeline (Three-Column Phase Dashboard) ───
+function StudentJourney() {
+  const phases = [
+    {
+      title: "Phase I: Foundation & Prep",
+      desc: "Laying the groundwork for your international academic path.",
+      color: "from-[#991B1B] to-[#E11D48]",
+      steps: [
+        { title: "Dream", desc: "Envision your global career and destination.", icon: Compass, num: 1 },
+        { title: "Prepare", desc: "Profile assessment and university shortlisting.", icon: BookOpen, num: 2 },
+        { title: "Learn", desc: "Expert coaching for IELTS, PTE, and Duolingo.", icon: ScrollText, num: 3 }
+      ]
+    },
+    {
+      title: "Phase II: Admissions & Filing",
+      desc: "Navigating university applications and visa procedures.",
+      color: "from-[#E11D48] to-[#F43F5E]",
+      steps: [
+        { title: "Apply", desc: "Structured admissions and scholarship filings.", icon: FileCheck2, num: 4 },
+        { title: "Visa Approval", desc: "High-success immigration file reviews.", icon: ShieldCheck, num: 5 },
+        { title: "Fly Abroad", desc: "Flight reservations & pre-departure briefs.", icon: Plane, num: 6 }
+      ]
+    },
+    {
+      title: "Phase III: Arrival & Success",
+      desc: "Succeeding in your studies and launching your global career.",
+      color: "from-[#F43F5E] to-[#991B1B]",
+      steps: [
+        { title: "Study", desc: "Engage in international university systems.", icon: GraduationCap, num: 7 },
+        { title: "Graduate", desc: "Complete degree programs with high grades.", icon: Award, num: 8 },
+        { title: "Build Career", desc: "Step directly into global professional markets.", icon: TrendingUp, num: 9 }
+      ]
+    }
+  ];
+
+  return (
+    <div className="relative max-w-6xl mx-auto py-12 px-4">
+      <div className="grid lg:grid-cols-3 gap-8 relative z-10">
+        {phases.map((phase, pIdx) => (
+          <motion.div
+            key={pIdx}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.6, delay: pIdx * 0.15 }}
+            className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.015)] relative overflow-hidden flex flex-col justify-between group hover:border-[#E11D48]/30 hover:shadow-[0_15px_40px_rgba(153,27,27,0.04)] transition-all duration-500"
+          >
+            {/* Ambient corner glow */}
+            <div className={`absolute top-0 right-0 w-24 h-24 rounded-full blur-2xl opacity-40 -mr-6 -mt-6 bg-gradient-to-br ${phase.color}`} />
+            
+            <div>
+              {/* Phase Header */}
+              <div className="mb-6 pb-4 border-b border-slate-100">
+                <span className={`inline-block bg-gradient-to-r ${phase.color} bg-clip-text text-transparent text-[10px] font-black uppercase tracking-widest`}>
+                  {phase.title}
+                </span>
+                <p className="text-[10px] text-slate-400 font-semibold mt-1">{phase.desc}</p>
+              </div>
+
+              {/* Vertical steps */}
+              <div className="space-y-8 relative">
+                {/* Vertical connecting line */}
+                <div className="absolute top-4 bottom-4 left-6 w-[1.5px] bg-slate-100 z-0">
+                  <motion.div
+                    animate={{ y: ["-100%", "100%"] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                    className={`w-full h-1/2 bg-gradient-to-b from-transparent via-[#E11D48] to-transparent`}
+                  />
+                </div>
+
+                {phase.steps.map((s, sIdx) => {
+                  const Icon = s.icon;
+                  return (
+                    <div key={sIdx} className="flex items-start gap-4 text-left relative z-10 group/step">
+                      {/* Step Circle Node */}
+                      <div className="w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center shrink-0 group-hover/step:border-[#E11D48] group-hover/step:shadow-[0_0_15px_rgba(225,29,72,0.15)] transition-all duration-300 relative bg-white">
+                        <Icon className="h-5 w-5 text-[#991B1B] group-hover/step:text-[#E11D48] transition-colors" />
+                        <div className="absolute -top-1 -right-1 bg-slate-50 border border-slate-200 text-[7px] font-mono px-1 py-0.5 rounded text-slate-500">
+                          {s.num}
+                        </div>
+                      </div>
+
+                      {/* Step Description */}
+                      <div className="pt-1">
+                        <h4 className="text-xs font-black text-[#991B1B] uppercase tracking-wider mb-1 group-hover/step:text-[#E11D48] transition-colors">
+                          {s.title}
+                        </h4>
+                        <p className="text-[10px] text-slate-400 leading-relaxed font-semibold">
+                          {s.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+
+}
+
+// Unused visa layouts replaced by VisaPathwaysDashboard
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/*  MAIN PORTAL COMPONENT                                                    */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", service: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [scrolledNav, setScrolledNav] = useState(false);
+  const [heroSlideIdx, setHeroSlideIdx] = useState(0);
+
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const cardsY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const cardsScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const cardsOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroSlideIdx((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const handler = () => setScrolledNav(window.scrollY > 60);
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    setSendError(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          company: "pranil-education",
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", phone: "", service: "", message: "" });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setSendError(true);
+      }
+    } catch {
+      setSendError(true);
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const chooseCards = [
+    { title: "Corporate Training Programs", desc: "Special modules built for professional language and corporate integration.", icon: Landmark },
+    { title: "Personality Development & Communication", desc: "Communication skills, accent neutralization, and self-confidence coaching.", icon: UserCheck },
+    { title: "End-to-End Support", desc: "Complete assistance from classroom training to university admission and post-visa support.", icon: ShieldCheck },
+    { title: "Interactive Classrooms", desc: "Focus on real-time dialogue and daily practice modules.", icon: BookOpen },
+    { title: "Four-Core Focus", desc: "Focus on Listening, Reading, Writing & Speaking during training.", icon: ScrollText },
+    { title: "Personalized Doubt Sessions", desc: "One-on-one doubt-clearing sessions with certified language experts.", icon: Users },
+    { title: "Weekend Activity Forums", desc: "Special weekend activities for real-time communication practice.", icon: Users2 },
+    { title: "Individual Attention", desc: "Individual attention and practice for every single student.", icon: Sparkles },
+    { title: "Supportive Learning Environment", desc: "Supportive and engaging learning environment in all coaching centers.", icon: Compass },
+    { title: "Student Encouragement", desc: "Dedicated activities to encourage, motivate, and guide students.", icon: HelpCircle }
+  ];
+
+  return (
+    <div className="bg-[#F4F7FB] text-slate-800 min-h-screen font-sans antialiased overflow-hidden relative selection:bg-[#E11D48]/10 selection:text-[#991B1B]">
+      
+      {/* 1. STICKY NAVBAR */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolledNav
+          ? "bg-[#F4F7FB]/95 backdrop-blur-lg border-b border-slate-200/50 shadow-[0_4px_30px_rgba(153,27,27,0.04)] py-3"
+          : "bg-transparent py-5"
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#991B1B] to-[#E11D48] flex items-center justify-center text-white shadow-md">
+              <GraduationCap className="h-5 w-5" />
+            </div>
+            <div className="leading-none">
+              <div className="text-lg font-black text-[#991B1B] tracking-tight">PRANIL</div>
+              <div className="text-[8px] font-bold text-slate-400 uppercase tracking-[0.18em] -mt-0.5">Education & Visa</div>
+            </div>
+          </Link>
+
+          <div className="hidden lg:flex items-center gap-8">
+            {["About Us", "Journey", "Destinations", "Training", "Pathways", "Success"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                className="text-[11px] font-extrabold text-slate-500 hover:text-[#E11D48] transition uppercase tracking-widest"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+
+          <a
+            href="#contact-form"
+            className="bg-gradient-to-r from-[#991B1B] to-[#E11D48] hover:from-[#E11D48] hover:to-[#881337] text-white text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-lg hover:shadow-lg hover:shadow-[#E11D48]/20 transition-all hover:scale-[1.03] shadow-md shadow-[#991B1B]/10"
+          >
+            Apply Now
+          </a>
+        </div>
+      </nav>
+
+      {/* 2. HERO — Centered layout with fanned visual dashboard cards */}
+      <section ref={heroRef} className="relative min-h-[95vh] lg:min-h-screen pt-32 pb-20 overflow-hidden z-10 flex items-center bg-[#F4F7FB] border-b border-slate-200/50">
+        
+        {/* Full-bleed background image slideshow with slow zoom transition (Ken Burns effect) */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <AnimatePresence initial={false} mode="wait">
+            <motion.div
+              key={heroSlideIdx}
+              initial={{ scale: 1.08, opacity: 0 }}
+              animate={{ scale: 1, opacity: 0.75 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              style={{ backgroundImage: `url(${heroSlides[heroSlideIdx]})` }}
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            />
+          </AnimatePresence>
+          {/* Dark Red Gradient Overlays to preserve white text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#991B1B] via-[#991B1B]/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#F4F7FB] via-transparent to-[#991B1B]/40" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:44px_44px]" />
+          
+          {/* Ambient light glow spheres */}
+          <div className="absolute top-[12%] left-[30%] w-[550px] h-[550px] rounded-full bg-[#E11D48]/12 blur-[130px] pointer-events-none" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-4">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Column: Centered-left Typography & CTA */}
+            <motion.div 
+              style={{ y: textY, opacity: textOpacity }}
+              className="lg:col-span-6 text-left flex flex-col justify-center items-start"
+            >
+              <span className="inline-flex items-center gap-1.5 text-[#991B1B] text-[10px] font-black uppercase tracking-[0.25em] mb-5 bg-white/90 backdrop-blur-sm border border-white/50 rounded-full px-3.5 py-1.5 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+                TRUSTED IMMIGRATION SERVICES
+              </span>
+
+              <h1 className="font-display text-[2.8rem] sm:text-[3.8rem] lg:text-[4.2rem] font-black text-white leading-[1.1] mb-6 tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
+                Your Future<br />
+                <span className="bg-gradient-to-r from-[#FFD700] via-[#FFC107] to-[#FFAA00] bg-clip-text text-transparent italic drop-shadow-none">
+                  Has No Borders
+                </span>
+              </h1>
+
+              <p className="text-white/90 text-sm sm:text-base leading-[1.8] font-medium max-w-lg mb-8 drop-shadow-[0_1px_3px_rgba(0,0,0,0.2)]">
+                From IELTS preparation to university admissions, student visas, work permits and permanent residency pathways, we help students and professionals build successful global futures.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <a href="#destinations" className="inline-flex items-center justify-center bg-gradient-to-r from-[#991B1B] to-[#E11D48] hover:from-[#E11D48] hover:to-[#881337] text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:shadow-[#E11D48]/20 transition-all hover:scale-[1.02] gap-2">
+                  Explore Destinations <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+                <a href="#contact-form" className="inline-flex items-center justify-center bg-white/10 border border-white/20 text-white hover:bg-white/25 text-xs font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all gap-2 hover:scale-[1.02] shadow-sm">
+                  Book Free Consultation
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Right Column: Fanned visual dashboard cards stack beside quotes */}
+            <motion.div
+              style={{ y: cardsY, scale: cardsScale, opacity: cardsOpacity }}
+              className="lg:col-span-6 relative w-full flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-3 py-12"
+            >
+              {/* Card 1: Left Rotated Card (Language Prep Stats) */}
+              <motion.div
+                initial={{ opacity: 0, y: 40, rotate: 0 }}
+                animate={{ opacity: 1, y: 0, rotate: -6 }}
+                whileHover={{ y: -10, scale: 1.04, rotate: 0, zIndex: 30 }}
+                transition={{ type: "spring", stiffness: 90, damping: 14 }}
+                className="w-full max-w-[210px] bg-white/90 backdrop-blur-md border border-white/70 rounded-3xl p-5 shadow-xl text-left shrink-0 cursor-pointer hover:shadow-2xl sm:-mr-8"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div className="w-9 h-9 rounded-xl bg-[#E11D48]/8 flex items-center justify-center text-[#E11D48] border border-[#E11D48]/15">
+                    <BookOpen className="h-4.5 w-4.5" />
+                  </div>
+                  <span className="inline-block bg-[#E11D48]/8 border border-[#E11D48]/15 rounded-md px-2 py-0.5 text-[8px] font-black uppercase text-[#E11D48]">Academy</span>
+                </div>
+                <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Language Coaching</h4>
+                <h3 className="text-xs font-black text-[#991B1B] uppercase mb-3 tracking-wider">Expert Preparation</h3>
+                <div className="space-y-2 text-[10px] font-bold">
+                  <div className="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                    <span className="text-slate-500">IELTS Classes</span>
+                    <span className="text-[#E11D48] font-black">Band 7.5+</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                    <span className="text-slate-500">PTE Academic</span>
+                    <span className="text-[#E11D48] font-black">79+ Score</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                    <span className="text-slate-500">Duolingo Test</span>
+                    <span className="text-[#E11D48] font-black">125+ Score</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 2: Center Elevated Card (Student Showcase slideshow) */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -12, scale: 1.05, zIndex: 30 }}
+                transition={{ type: "spring", stiffness: 90, damping: 14 }}
+                className="z-10 shadow-2xl shrink-0 scale-95 sm:scale-100"
+              >
+                <StudentSlideshow />
+              </motion.div>
+
+              {/* Card 3: Right Rotated Card (Global Pathways countries list) */}
+              <motion.div
+                initial={{ opacity: 0, y: 40, rotate: 0 }}
+                animate={{ opacity: 1, y: 0, rotate: 6 }}
+                whileHover={{ y: -10, scale: 1.04, rotate: 0, zIndex: 30 }}
+                transition={{ type: "spring", stiffness: 90, damping: 14 }}
+                className="w-full max-w-[210px] bg-white/90 backdrop-blur-md border border-white/70 rounded-3xl p-5 shadow-xl text-left shrink-0 cursor-pointer hover:shadow-2xl sm:-ml-8"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div className="w-9 h-9 rounded-xl bg-[#991B1B]/8 flex items-center justify-center text-[#991B1B] border border-[#991B1B]/15">
+                    <Globe className="h-4.5 w-4.5" />
+                  </div>
+                  <span className="inline-block bg-[#991B1B]/8 border border-[#991B1B]/15 rounded-md px-2 py-0.5 text-[8px] font-black uppercase text-[#991B1B]">Pathways</span>
+                </div>
+                <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Global Transits</h4>
+                <h3 className="text-xs font-black text-[#991B1B] uppercase mb-3 tracking-wider">Active Countries</h3>
+                <div className="grid grid-cols-2 gap-2 text-[9px] font-black uppercase tracking-wider text-slate-600">
+                  <div className="flex items-center gap-1.5 bg-slate-50 p-2 rounded-xl border border-slate-100">
+                    <CircularFlag code="ca" alt="Canada" size={5} />
+                    <span>Canada</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-slate-50 p-2 rounded-xl border border-slate-100">
+                    <CircularFlag code="au" alt="Australia" size={5} />
+                    <span>Australia</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-slate-50 p-2 rounded-xl border border-slate-100">
+                    <CircularFlag code="gb" alt="UK" size={5} />
+                    <span>UK</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-slate-50 p-2 rounded-xl border border-slate-100">
+                    <CircularFlag code="de" alt="Germany" size={5} />
+                    <span>Germany</span>
+                  </div>
+                </div>
+              </motion.div>
+
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Floating statistics Counter grid overlaying Hero Bottom ─── */}
+      <div className="relative z-20 max-w-5xl mx-auto -mt-10 px-4">
+        <div className="bg-white border border-slate-100 rounded-3xl shadow-[0_15px_50px_rgba(0,0,0,0.03)] px-6 py-6 sm:py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { val: 98, suffix: "%", label: "Student Success", text: "Visa Approvals" },
+              { val: 15, suffix: "+", label: "Countries Covered", text: "Global Destinations" },
+              { val: 8, suffix: "+", label: "Visa Pathways", text: "Immigration Options" },
+              { val: 4, suffix: "+", label: "Training Programs", text: "Language Academics" }
+            ].map((st, idx) => (
+              <div key={idx} className="text-center md:border-r border-slate-100 last:border-0 flex flex-col justify-center">
+                <div className="text-2xl sm:text-3xl font-black text-[#991B1B] bg-clip-text mb-1">
+                  <Counter value={st.val} suffix={st.suffix} />
+                </div>
+                <div className="text-[10px] font-black text-[#E11D48] uppercase tracking-wider mb-0.5">{st.label}</div>
+                <div className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">{st.text}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* 3. IMMERSIVE DESTINATION & SERVICES CATEGORIES */}
+      <section id="destinations" className="py-24 bg-[#FDF2F2]/40 border-b border-slate-200/50 relative z-10">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <SectionLabel>GLOBAL PATHWAYS</SectionLabel>
+            <SectionTitle>Services & Visa Categories</SectionTitle>
+            <div className="flex justify-center"><RedDivider /></div>
+          </div>
+          <VisaPathwaysDashboard />
+        </div>
+      </section>
+
+      {/* 4. LANGUAGE TRAINING ECOSYSTEM */}
+      <section id="training" className="py-24 bg-[#F4F7FB] border-b border-slate-200/50 relative z-10">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <SectionLabel>LANGUAGE ACADEMY</SectionLabel>
+            <SectionTitle>Language Training Ecosystem</SectionTitle>
+            <div className="flex justify-center"><RedDivider /></div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {[
+              { name: "IELTS", desc: "International English Language Testing System. Comprehensive study paths.", score: "Target Band 7.5+" },
+              { name: "PTE", desc: "Pearson Test of English. Fast score releases and certified mock platforms.", score: "Target Score 79+" },
+              { name: "Duolingo", desc: "Duolingo English Test. Dynamic home-based test preparation.", score: "Target Score 125+" },
+              { name: "Spoken English", desc: "Accent training, general dialogue, and corporate presentation modules.", score: "Fluency Confident" }
+            ].map((lh, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -6 }}
+                className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:border-[#E11D48] hover:shadow-[0_12px_30px_rgba(225,29,72,0.08)] transition-all duration-300 text-left group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-[#E11D48]/6 text-[#E11D48] flex items-center justify-center mb-5 border border-[#E11D48]/15 group-hover:bg-[#E11D48] group-hover:text-white transition duration-300">
+                    <ScrollText className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-sm font-black text-[#991B1B] uppercase tracking-wider mb-2">{lh.name}</h3>
+                  <p className="text-[11px] text-slate-400 leading-relaxed font-semibold mb-4">{lh.desc}</p>
+                </div>
+
+                <div className="border-t border-slate-100 pt-3 flex items-center justify-between text-[9px] font-mono font-black uppercase text-[#E11D48] tracking-wider">
+                  <span>Standard</span>
+                  <span>{lh.score}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CINEMATIC JOURNEY MAP */}
+      <section id="journey" className="py-24 bg-[#FDF2F2]/40 border-b border-slate-200/50 relative z-10">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <SectionLabel>STUDENT TIMELINE</SectionLabel>
+            <SectionTitle>Cinematic Professional Journey</SectionTitle>
+            <div className="flex justify-center"><RedDivider /></div>
+          </div>
+          <StudentJourney />
+        </div>
+      </section>
+
+      {/* 9. WHY CHOOSE US */}
+      <section id="why-us" className="py-24 bg-[#FDF2F2]/40 border-b border-slate-200/50 relative z-10">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <SectionLabel>WHY CHOOSE PRANIL</SectionLabel>
+            <SectionTitle>Global Strengths & Assured Support</SectionTitle>
+            <div className="flex justify-center"><RedDivider /></div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {chooseCards.map((cc, idx) => {
+              const Icon = cc.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:border-[#E11D48] hover:shadow-[0_12px_35px_rgba(225,29,72,0.1)] transition-all duration-300 text-left group cursor-pointer"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[#991B1B]/6 text-[#991B1B] flex items-center justify-center mb-5 border border-[#991B1B]/10 group-hover:bg-[#991B1B] group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition duration-300">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-xs font-black text-[#991B1B] uppercase tracking-wider mb-2 group-hover:text-[#E11D48] transition-colors">
+                    {cc.title}
+                  </h3>
+                  <p className="text-[10px] text-slate-400 leading-relaxed font-semibold">
+                    {cc.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 10. UNIVERSITY GRADUATE EDITORIAL */}
+      <section id="success" className="py-24 bg-[#F4F7FB] border-b border-slate-200/50 relative z-10">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <SectionLabel>GRADUATE STORIES</SectionLabel>
+            <SectionTitle>Global Placements & University Futures</SectionTitle>
+            <div className="flex justify-center"><RedDivider /></div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-center">
+            {/* Editorial graphic */}
+            <div className="relative rounded-3xl overflow-hidden border border-slate-200/60 p-8 min-h-[350px] bg-[#FDF2F2]/50 flex flex-col justify-between text-left group shadow-sm">
+              <div className="flex justify-between items-start">
+                <div className="w-12 h-12 rounded-xl bg-[#E11D48]/8 flex items-center justify-center text-[#E11D48] border border-[#E11D48]/15">
+                  <GraduationCap className="h-6 w-6" />
+                </div>
+                <span className="text-[9px] font-mono text-slate-400 font-black uppercase tracking-widest">EDITORIAL v2.0</span>
+              </div>
+              <div>
+                <span className="text-[9px] font-black text-[#E11D48] tracking-widest uppercase block mb-1">GLOBAL FUTURE</span>
+                <h3 className="text-xl font-black text-[#991B1B] uppercase tracking-wider mb-3 leading-snug">Empowering Candidates to Excel Worldwide</h3>
+                <p className="text-xs text-slate-500 leading-relaxed font-semibold max-w-sm">
+                  Our certified counselling team has mapped thousands of students to top ranking universities in UK, Canada, Australia, and USA.
+                </p>
+              </div>
+            </div>
+
+            {/* Stories List */}
+            <div className="space-y-6 text-left">
+              {[
+                { name: "Bindya Mankadya", route: "Canada PR Secured", text: "Their expert guidance helped me secure Canadian PR. Professional, thorough, and always updated." },
+                { name: "Hars Patel", route: "Canada Work Permit Approved", text: "Heartfelt gratitude for their invaluable assistance in obtaining my Canadian work permit." },
+                { name: "Dhruv Parekh", route: "UK Student Visa Placed", text: "Guided me through the visa process step-by-step, ensuring accurate documentation." }
+              ].map((s, idx) => (
+                <div key={idx} className="border-b border-slate-200/50 pb-5 last:border-0">
+                  <div className="flex justify-between items-center mb-2">
+                    <h4 className="text-xs font-black text-[#991B1B] uppercase tracking-wider">{s.name}</h4>
+                    <span className="text-[9px] font-mono text-[#E11D48] font-black uppercase tracking-wider">{s.route}</span>
+                  </div>
+                  <p className="text-xs text-slate-500 italic leading-relaxed font-semibold">&ldquo;{s.text}&rdquo;</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 11. FINAL CTA SECTION (Clean background) */}
+      <section className="py-24 bg-gradient-to-b from-[#F4F7FB] via-[#FDF2F2] to-[#F4F7FB] relative z-10 overflow-hidden border-b border-slate-200/50">
+        
+        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+          <SectionLabel>START TODAY</SectionLabel>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-[#991B1B] leading-tight uppercase mb-6">
+            Where Will Your Future Take You?
+          </h2>
+          <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-lg mx-auto mb-10 font-semibold">
+            Start your journey with trusted education, visa and migration experts. Get custom profile evaluation andIntakes updates.
+          </p>
+          <div className="flex justify-center gap-4">
+            <a
+              href="#contact-form"
+              className="inline-flex items-center justify-center bg-gradient-to-r from-[#991B1B] to-[#E11D48] hover:from-[#E11D48] hover:to-[#881337] text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-xl shadow-lg shadow-[#991B1B]/10 transition-all hover:scale-[1.03]"
+            >
+              Book Consultation
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 12. TESTIMONIALS (Marquee) */}
+      <section id="testimonials" className="py-24 bg-[#FDF2F2]/40 border-b border-slate-200/50 relative z-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 mb-14 text-center">
+          <SectionLabel>TESTIMONIALS</SectionLabel>
+          <SectionTitle>Student Success Feedbacks</SectionTitle>
+          <div className="flex justify-center"><RedDivider /></div>
+        </div>
+
+        <div className="relative flex overflow-x-hidden w-full py-2">
+          <div className="flex animate-marquee-nonstop py-1 shrink-0">
+            {data.testimonials.map((t, idx) => (
+              <div
+                key={idx}
+                className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm w-[320px] shrink-0 mr-6 whitespace-normal text-left select-none"
+              >
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current text-[#E11D48]" />)}
+                </div>
+                <p className="text-xs text-slate-500 font-medium italic leading-relaxed mb-6 h-[70px] overflow-hidden">&ldquo;{t.quote}&rdquo;</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-[#991B1B]/10 text-[#991B1B] flex items-center justify-center font-black text-xs border border-[#991B1B]/20 shrink-0">
+                    {t.name[0]}
+                  </div>
+                  <div>
+                    <div className="text-xs font-black text-slate-800 uppercase tracking-wider">{t.name}</div>
+                    <div className="text-[9px] text-[#E11D48] font-bold uppercase tracking-widest">{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex animate-marquee-nonstop py-1 shrink-0" aria-hidden="true">
+            {data.testimonials.map((t, idx) => (
+              <div
+                key={idx}
+                className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm w-[320px] shrink-0 mr-6 whitespace-normal text-left select-none"
+              >
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current text-[#E11D48]" />)}
+                </div>
+                <p className="text-xs text-slate-500 font-medium italic leading-relaxed mb-6 h-[70px] overflow-hidden">&ldquo;{t.quote}&rdquo;</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-[#991B1B]/10 text-[#991B1B] flex items-center justify-center font-black text-xs border border-[#991B1B]/20 shrink-0">
+                    {t.name[0]}
+                  </div>
+                  <div>
+                    <div className="text-xs font-black text-slate-800 uppercase tracking-wider">{t.name}</div>
+                    <div className="text-[9px] text-[#E11D48] font-bold uppercase tracking-widest">{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 13. CONTACT FORM */}
+      <section id="contact-form" className="py-24 bg-[#F4F7FB] relative z-10">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <SectionLabel>PORTAL ENTRANCE</SectionLabel>
+            <SectionTitle>Connect With Certifed Advisers</SectionTitle>
+            <div className="flex justify-center"><RedDivider /></div>
+          </div>
+
+          <div className="bg-white rounded-[2rem] p-8 sm:p-10 border border-slate-200/80 shadow-sm">
+            {submitted ? (
+              <div className="text-center py-12 flex flex-col items-center">
+                <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mb-4 border border-emerald-100">
+                  <CheckCircle2 className="h-7 w-7" />
+                </div>
+                <h3 className="font-display text-xl font-bold text-[#991B1B] uppercase tracking-wider">Consultation Booked!</h3>
+                <p className="text-xs text-slate-400 font-medium mt-2 max-w-sm font-semibold font-mono">A certified counsellor will contact you within 2 hours.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5 text-left">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Full Name</label>
+                    <input type="text" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Your Name"
+                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#991B1B] text-xs font-semibold focus:outline-none focus:border-[#E11D48] transition font-medium" />
+                  </div>
+                  <div>
+                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Email Address</label>
+                    <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="you@example.com"
+                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#991B1B] text-xs font-semibold focus:outline-none focus:border-[#E11D48] transition font-medium" />
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Phone Number</label>
+                    <input type="tel" required value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} placeholder="+91 99999 99999"
+                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#991B1B] text-xs font-semibold focus:outline-none focus:border-[#E11D48] transition font-medium" />
+                  </div>
+                  <div>
+                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Select Program</label>
+                    <select value={formData.service} onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#991B1B] text-xs font-semibold focus:outline-none focus:border-[#E11D48] transition font-medium">
+                      <option value="">Choose global service...</option>
+                      <option value="student">Student Visa</option>
+                      <option value="work">Work Permit</option>
+                      <option value="pr">PR Residency</option>
+                      <option value="spouse">Spouse Visa</option>
+                      <option value="coaching">IELTS/PTE Coaching</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Message</label>
+                  <textarea rows={4} required value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Tell us about your study abroad or migration preferences..."
+                    className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#991B1B] text-xs font-semibold focus:outline-none focus:border-[#E11D48] transition resize-none font-medium" />
+                </div>
+                <button type="submit" className="w-full py-4 bg-gradient-to-r from-[#991B1B] to-[#E11D48] hover:from-[#E11D48] hover:to-[#881337] text-white text-[11px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-[#991B1B]/10 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-[#E11D48]/20">
+                  Book Free Consultation
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 14. FOOTER */}
+      <footer className="bg-[#991B1B] text-white relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-left">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+            
+            {/* Brand */}
+            <div className="lg:col-span-2">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#991B1B] to-[#E11D48] flex items-center justify-center text-white shadow-md">
+                  <GraduationCap className="h-5 w-5" />
+                </div>
+                <div className="leading-none">
+                  <div className="text-lg font-black text-white tracking-tight">PRANIL</div>
+                  <div className="text-[8px] font-bold text-white/40 uppercase tracking-[0.18em] -mt-0.5">Education & Visa</div>
+                </div>
+              </div>
+              <p className="text-xs text-white/40 font-medium leading-relaxed max-w-xs mb-6">
+                Connecting exceptional talent and students with global opportunities. High-success admissions and visa transits.
+              </p>
+              <div className="flex gap-3">
+                {[Facebook, Twitter, Instagram].map((SIcon, i) => (
+                  <a key={i} href="#" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition">
+                    <SIcon className="h-3.5 w-3.5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-xs font-black text-white uppercase tracking-widest mb-5">Quick Links</h4>
+              <ul className="space-y-2.5">
+                {["Home", "About Us", "Training", "Destinations", "Timeline", "Contact Us"].map((l) => (
+                  <li key={l}><a href="#" className="text-[11px] text-white/40 hover:text-white transition font-medium">{l}</a></li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Pathways */}
+            <div>
+              <h4 className="text-xs font-black text-white uppercase tracking-widest mb-5">Pathways</h4>
+              <ul className="space-y-2.5">
+                {["Student Visa", "Work Permit", "PR Residency", "Spouse Visa", "Language Coaching"].map((s) => (
+                  <li key={s}><a href="#" className="text-[11px] text-white/40 hover:text-white transition font-medium">{s}</a></li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact Info */}
+            <div>
+              <h4 className="text-xs font-black text-white uppercase tracking-widest mb-5">Contact Info</h4>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2.5">
+                  <Phone className="h-3.5 w-3.5 text-[#E11D48] shrink-0 mt-0.5" />
+                  <span className="text-[11px] text-white/40 font-medium">{data.phone}</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Mail className="h-3.5 w-3.5 text-[#E11D48] shrink-0 mt-0.5" />
+                  <span className="text-[11px] text-white/40 font-medium">{data.email}</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <MapPin className="h-3.5 w-3.5 text-[#E11D48] shrink-0 mt-0.5" />
+                  <span className="text-[11px] text-white/40 font-medium leading-relaxed">525, SV SQUARE, New Ranip,<br />Ahmedabad, Gujarat - 382470</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="border-t border-white/5 py-5 text-left">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <span className="text-[10px] text-white/30 font-medium">&copy; {new Date().getFullYear()} Pranil Education Services. All Rights Reserved.</span>
+            <div className="flex gap-4">
+              <a href="#" className="text-[10px] text-white/30 hover:text-white/60 transition font-medium">Privacy Policy</a>
+              <a href="#" className="text-[10px] text-white/30 hover:text-white/60 transition font-medium">Terms & Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Global CSS marquee overrides */}
+      <style jsx global>{`
+        @keyframes marquee-nonstop {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-100%); }
+        }
+        @keyframes marquee-work-permit {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-33.333%); }
+        }
+        .animate-marquee-nonstop {
+          animation: marquee-nonstop 25s linear infinite;
+        }
+        .animate-marquee-work-permit {
+          animation: marquee-work-permit 32s linear infinite;
+        }
+      `}</style>
+
+    </div>
+  );
+}
