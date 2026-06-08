@@ -31,49 +31,49 @@ export function HomeClient() {
 
         {/* Each section overlaps the previous one with rounded top + shadow */}
         <section
-          className="relative z-[2] -mt-6 rounded-t-[2.5rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-6px_30px_rgba(0,0,0,0.08)]"
+          className="relative z-[2] -mt-4 sm:-mt-6 rounded-t-[1.5rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-6px_30px_rgba(0,0,0,0.08)]"
           style={{ willChange: "transform" }}
         >
           <CompaniesSection />
         </section>
 
         <section
-          className="relative z-[3] -mt-4 rounded-t-[2.5rem] sm:rounded-t-[3rem] bg-white shadow-[0_-4px_24px_rgba(0,0,0,0.06)]"
+          className="relative z-[3] -mt-3 sm:-mt-4 rounded-t-[1.5rem] sm:rounded-t-[3rem] bg-white shadow-[0_-4px_24px_rgba(0,0,0,0.06)]"
           style={{ willChange: "transform" }}
         >
           <ValuesSection />
         </section>
 
         <section
-          className="relative z-[4] -mt-4"
+          className="relative z-[4] -mt-3 sm:-mt-4"
           style={{ willChange: "transform" }}
         >
           <VisionSection />
         </section>
 
         <section
-          className="relative z-[5] -mt-4 rounded-t-[2.5rem] sm:rounded-t-[3rem] bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.05)]"
+          className="relative z-[5] -mt-3 sm:-mt-4 rounded-t-[1.5rem] sm:rounded-t-[3rem] bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.05)]"
           style={{ willChange: "transform" }}
         >
           <TestimonialsSection />
         </section>
 
         <section
-          className="relative z-[6] -mt-4 rounded-t-[2.5rem] sm:rounded-t-[3rem] bg-white shadow-[0_-4px_24px_rgba(0,0,0,0.06)]"
+          className="relative z-[6] -mt-3 sm:-mt-4 rounded-t-[1.5rem] sm:rounded-t-[3rem] bg-white shadow-[0_-4px_24px_rgba(0,0,0,0.06)]"
           style={{ willChange: "transform" }}
         >
           <FaqSection />
         </section>
 
         <section
-          className="relative z-[7] -mt-4 rounded-t-[2.5rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-4px_24px_rgba(0,0,0,0.06)]"
+          className="relative z-[7] -mt-3 sm:-mt-4 rounded-t-[1.5rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-4px_24px_rgba(0,0,0,0.06)]"
           style={{ willChange: "transform" }}
         >
           <FoundersSection />
         </section>
 
         <section
-          className="relative z-[8] -mt-4 rounded-t-[2.5rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-4px_24px_rgba(0,0,0,0.06)]"
+          className="relative z-[8] -mt-3 sm:-mt-4 rounded-t-[1.5rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-4px_24px_rgba(0,0,0,0.06)]"
           style={{ willChange: "transform" }}
         >
           <ContactSection />

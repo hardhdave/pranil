@@ -32,15 +32,15 @@ export function Footer({ companyLogoUrl }: { companyLogoUrl?: string }) {
   return (
     <footer ref={ref} className="relative overflow-hidden">
       {/* Main footer */}
-      <div className="gradient-navy py-16 sm:py-20 relative">
+      <div className="gradient-navy py-10 sm:py-20 relative">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
           backgroundSize: '30px 30px'
         }} />
 
-        <div className="mx-auto max-w-7xl px-6 relative z-10">
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
+          <div className="grid gap-8 sm:gap-10 grid-cols-2 lg:grid-cols-4">
             {/* Brand + tagline */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -171,7 +171,7 @@ export function Footer({ companyLogoUrl }: { companyLogoUrl?: string }) {
 
       {/* Copyright bar */}
       <div className="bg-[#041d33] py-4">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 sm:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 sm:px-6 sm:flex-row">
           <p className="text-xs text-slate-400">
             © Copyright PRANIL Group of Companies {new Date().getFullYear()}. All rights reserved.
           </p>
@@ -185,7 +185,7 @@ export function Footer({ companyLogoUrl }: { companyLogoUrl?: string }) {
       {/* Scroll to top button */}
       <motion.button
         onClick={scrollToTop}
-        className="fixed z-50 grid h-10 w-10 place-items-center rounded-full bg-[var(--navy)] text-white shadow-lg hover:bg-[var(--teal)] transition-all duration-300"
+        className="fixed z-50 grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-full bg-[var(--navy)] text-white shadow-lg hover:bg-[var(--teal)] transition-all duration-300"
         style={{ bottom: 'max(1.5rem, calc(env(safe-area-inset-bottom, 0px) + 1.5rem))', left: '1.5rem' }}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}

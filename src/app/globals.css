@@ -106,16 +106,13 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Ensure touch targets are accessible (min 44px) */
+/* Ensure touch targets are accessible via padding, not forced min-size */
 a, button {
-  min-height: 44px;
-  min-width: 44px;
+  touch-action: manipulation;
 }
 
 /* Fix for mobile position:fixed elements behind safe areas */
-.fixed {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
+/* Applied selectively, not globally, to avoid layout issues */
 
 /* ── Card styles ── */
 .paper-card {
@@ -355,15 +352,28 @@ a, button {
 
 /* ── Responsive ── */
 @media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
   .section-shell {
-    width: min(100% - 1.25rem, 78rem);
+    width: min(100% - 1rem, 78rem);
   }
   /* Smaller card padding on mobile */
   .company-card {
     padding: 1.25rem 1rem;
   }
   .value-card {
-    padding: 1.5rem 1rem;
+    padding: 1.25rem 0.75rem;
+  }
+  /* Reduce heavy blurs on mobile for performance */
+  .blur-\[120px\],
+  .blur-\[140px\],
+  .blur-\[100px\] {
+    filter: blur(40px) !important;
+  }
+  /* Stat box compact */
+  .stat-box {
+    padding: 0.75rem;
   }
 }
 

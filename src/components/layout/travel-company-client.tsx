@@ -183,9 +183,9 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
               <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-1 transition-transform" /> Home
             </Link>
             <span className="text-slate-200">|</span>
-            <span className="text-xl font-black text-[#0D3E36] tracking-tight flex items-center gap-2">
+            <span className="text-lg sm:text-xl font-black text-[#0D3E36] tracking-tight flex items-center gap-2">
               <Image src="/logos/travel-logo.png" alt="PRANIL Tours" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
-              PRANIL <span className="text-[#FFAE12] font-serif italic font-semibold">Tours</span>
+              PRANIL <span className="text-[#FFAE12] font-serif italic font-semibold hidden sm:inline">Tours</span>
             </span>
           </div>
           
@@ -253,7 +253,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  2. HERO SECTION — Full-bleed Cinematic Design                       */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[95vh] lg:min-h-screen pt-36 pb-32 overflow-hidden flex items-center bg-[#0d3e36]">
+      <section className="relative min-h-[85vh] lg:min-h-screen pt-24 sm:pt-36 pb-20 sm:pb-32 overflow-hidden flex items-center bg-[#0d3e36]">
         {/* Full-bleed Cinematic Background Video */}
         <div className="absolute inset-0 z-0">
           <video
@@ -299,7 +299,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
               </motion.div>
 
               <div className="space-y-4">
-                <h1 className="text-[2.8rem] sm:text-[4.5rem] lg:text-[5.8rem] font-black leading-[1.05] tracking-tight text-white font-sans uppercase">
+                <h1 className="text-[1.8rem] sm:text-[4.5rem] lg:text-[5.8rem] font-black leading-[1.05] tracking-tight text-white font-sans uppercase">
                   Unlock Exclusive <br />
                   <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#FFAE12] via-[#FF8C32] to-[#FFAE12]">
                     Travel Journeys
@@ -508,7 +508,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
             <div className="w-12 h-1 bg-[#FFAE12] mx-auto rounded-full mt-4" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {services.map((s, i) => {
               const Icon = s.icon;
               return (
@@ -519,16 +519,16 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.05 }}
                   whileHover={{ y: -6 }}
-                  className="bg-white border border-[#0D3E36]/5 hover:border-[#0D3E36]/20 rounded-3xl p-8 text-left group shadow-sm hover:shadow-[0_15px_45px_rgba(13,62,54,0.04)] transition-all duration-300 flex flex-col justify-between min-h-[220px]"
+                  className="bg-white border border-[#0D3E36]/5 hover:border-[#0D3E36]/20 rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-left group shadow-sm hover:shadow-[0_15px_45px_rgba(13,62,54,0.04)] transition-all duration-300 flex flex-col justify-between min-h-[170px] sm:min-h-[220px]"
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-[#FEFAF6] border border-[#0D3E36]/10 text-[#0D3E36] flex items-center justify-center mb-6 shadow-sm group-hover:bg-[#0D3E36] group-hover:text-[#FFAE12] transition duration-300">
-                      <Icon className="h-5 w-5" />
+                    <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#FEFAF6] border border-[#0D3E36]/10 text-[#0D3E36] flex items-center justify-center mb-4 sm:mb-6 shadow-sm group-hover:bg-[#0D3E36] group-hover:text-[#FFAE12] transition duration-300 shrink-0">
+                      <Icon className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
                     </div>
-                    <h3 className="text-sm font-black text-[#0D3E36] uppercase tracking-wider mb-2">{s.title}</h3>
-                    <p className="text-[11px] text-slate-500 leading-relaxed font-semibold">{s.desc}</p>
+                    <h3 className="text-xs sm:text-sm font-black text-[#0D3E36] uppercase tracking-wider mb-1 sm:mb-2 leading-tight min-h-[28px] sm:min-h-0">{s.title}</h3>
+                    <p className="text-[9px] sm:text-[11px] text-slate-500 leading-relaxed font-semibold">{s.desc}</p>
                   </div>
-                  <div className="text-[10px] font-black text-[#FFAE12] mt-6 tracking-widest">{s.num}</div>
+                  <div className="text-[9px] sm:text-[10px] font-black text-[#FFAE12] mt-4 sm:mt-6 tracking-widest">{s.num}</div>
                 </motion.div>
               );
             })}
@@ -614,7 +614,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
           </div>
 
           {/* Destinations Grid Cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
             <AnimatePresence mode="wait">
               {(activeTab === "domestic" ? domesticDestinations : internationalDestinations).map((dest, i) => (
                 <motion.div
@@ -625,7 +625,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
                   transition={{ duration: 0.35, delay: i * 0.05 }}
                   whileHover={{ y: -8 }}
                   onClick={() => handleBookTour(dest.name, dest.duration, dest.price)}
-                  className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl group text-left cursor-pointer transition-all duration-300"
+                  className="bg-white rounded-2xl sm:rounded-[2rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl group text-left cursor-pointer transition-all duration-300"
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#FEFAF6]">
                     <img 
@@ -634,33 +634,33 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     
-                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-black text-slate-800 flex items-center gap-1 shadow-sm">
-                      <Star className="h-3 w-3 fill-current text-[#FFAE12]" /> {dest.rating}
+                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-white/95 backdrop-blur-sm px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[8px] sm:text-[10px] font-black text-slate-800 flex items-center gap-0.5 sm:gap-1 shadow-sm">
+                      <Star className="h-2.5 w-2.5 sm:h-3 sm:w-3 fill-current text-[#FFAE12]" /> {dest.rating}
                     </div>
 
-                    <div className="absolute top-4 right-4 bg-[#0D3E36]/90 backdrop-blur-sm px-3 py-1 rounded-full text-[9px] font-black text-[#FFAE12] uppercase tracking-wider shadow-sm">
+                    <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-[#0D3E36]/90 backdrop-blur-sm px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[7px] sm:text-[9px] font-black text-[#FFAE12] uppercase tracking-wider shadow-sm">
                       {dest.tag}
                     </div>
                   </div>
 
-                  <div className="p-6 sm:p-8 space-y-4">
-                    <div className="flex justify-between items-start">
+                  <div className="p-3 sm:p-8 space-y-3 sm:space-y-4">
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-1 sm:gap-0">
                       <div>
-                        <h3 className="text-base font-black text-[#0D3E36] uppercase tracking-wide">{dest.name}</h3>
-                        <div className="flex items-center gap-1.5 text-[9px] text-slate-500 font-bold uppercase mt-1">
-                          <Clock className="h-3.5 w-3.5 text-[#FFAE12]" /> {dest.duration}
+                        <h3 className="text-xs sm:text-base font-black text-[#0D3E36] uppercase tracking-wide leading-tight min-h-[30px] sm:min-h-0">{dest.name}</h3>
+                        <div className="flex items-center gap-1 text-[8px] sm:text-[9px] text-slate-500 font-bold uppercase mt-1">
+                          <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#FFAE12]" /> {dest.duration}
                         </div>
                       </div>
-                      <div className="text-right">
-                        <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Starts From</div>
-                        <div className="text-sm font-black text-[#FFAE12] mt-0.5">{dest.price}</div>
+                      <div className="text-left sm:text-right mt-1 sm:mt-0">
+                        <div className="text-[7px] sm:text-[9px] font-black text-slate-400 uppercase tracking-widest">Starts From</div>
+                        <div className="text-xs sm:text-sm font-black text-[#FFAE12] mt-0.5">{dest.price}</div>
                       </div>
                     </div>
 
-                    <div className="border-t border-slate-50 pt-4 flex items-center justify-between text-xs font-black uppercase text-[#0D3E36] tracking-widest group-hover:text-[#FFAE12] transition-colors">
-                      <span>Book Tour Package</span>
-                      <div className="w-8 h-8 rounded-full bg-[#FEFAF6] border border-slate-100 flex items-center justify-center group-hover:bg-[#0D3E36] group-hover:text-[#FFAE12] group-hover:border-transparent transition duration-300">
-                        <ArrowRight className="h-3.5 w-3.5" />
+                    <div className="border-t border-slate-50 pt-2.5 sm:pt-4 flex items-center justify-between text-[9px] sm:text-xs font-black uppercase text-[#0D3E36] tracking-widest group-hover:text-[#FFAE12] transition-colors">
+                      <span>Book Tour</span>
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#FEFAF6] border border-slate-100 flex items-center justify-center group-hover:bg-[#0D3E36] group-hover:text-[#FFAE12] group-hover:border-transparent transition duration-300">
+                        <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                       </div>
                     </div>
                   </div>
@@ -675,7 +675,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  6. HOLIDAY PACKAGES PRICE SECTION (Blue/Green overlay wave)        */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 bg-[#EBF7F5] relative overflow-hidden">
+      <section className="py-12 sm:py-24 bg-[#EBF7F5] relative overflow-hidden">
         {/* Wave cutouts top/bottom */}
         <div className="absolute top-0 left-0 right-0 h-8 bg-white" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 25%)' }} />
         
@@ -689,7 +689,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-x-visible pb-6 md:pb-0 gap-6 md:gap-8 snap-x snap-mandatory scrollbar-none">
             {[
               { type: "Basic Travel", price: "₹12,500", img: "https://wallpaperaccess.com/full/4815103.jpg", days: "3 Days", nights: "2 Nights", hotel: "Standard Hotel", meal: "Breakfast Included", visa: "Tourist Visa Support" },
               { type: "Standard Travel", price: "₹21,000", img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80", days: "6 Days", nights: "5 Nights", hotel: "3-Star Hotel", meal: "All Meals Included", visa: "Tourist Visa Assistance" },
@@ -698,7 +698,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
               <motion.div
                 key={idx}
                 whileHover={{ y: -8 }}
-                className="bg-white rounded-[2.5rem] p-8 text-center shadow-md relative group flex flex-col justify-between pt-16 border border-slate-100"
+                className="bg-white rounded-[2.5rem] p-6 sm:p-8 text-center shadow-md relative group flex flex-col justify-between pt-16 border border-slate-100 snap-start shrink-0 w-[280px] md:w-auto"
               >
                 {/* Floating circular thumbnail */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg bg-slate-50">
@@ -871,7 +871,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  9. CLIENT TESTIMONIALS — Our Client Says!                         */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 bg-[#FEFAF6] relative z-10 overflow-hidden">
+      <section className="py-12 sm:py-24 bg-[#FEFAF6] relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16 max-w-lg mx-auto">

@@ -115,7 +115,7 @@ export function Navbar() {
           {/* Logo */}
           <motion.a
             href="#"
-            className={`flex items-center justify-center bg-white px-4 py-2 rounded-xl transition-all duration-300 ${
+            className={`flex items-center justify-center bg-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl transition-all duration-300 ${
               scrolled 
                 ? "shadow-sm border border-gray-100" 
                 : "shadow-lg border border-white/20"
@@ -128,7 +128,7 @@ export function Navbar() {
               alt="PRANIL Group of Companies"
               width={160}
               height={50}
-              className={`transition-all duration-300 ${scrolled ? "h-8 sm:h-10 lg:h-11" : "h-9 sm:h-11 lg:h-12"} w-auto object-contain`}
+              className={`transition-all duration-300 ${scrolled ? "h-7 sm:h-10 lg:h-11" : "h-8 sm:h-11 lg:h-12"} w-auto object-contain`}
               priority
             />
           </motion.a>
@@ -265,10 +265,10 @@ export function Navbar() {
           href="https://wa.me/917383997825"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300"
+          className="relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300"
           aria-label="Chat on WhatsApp"
         >
-          <WhatsAppIcon className="h-7 w-7" />
+          <WhatsAppIcon className="h-6 w-6 sm:h-7 sm:w-7" />
           {/* Pulse ring */}
           <span className="absolute inset-0 rounded-full bg-[#25D366]/30 animate-ping" />
         </a>
@@ -284,7 +284,7 @@ export function Navbar() {
             exit={{ opacity: 0, x: 300 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
-            <nav className="flex flex-col overflow-y-auto max-h-[75vh] pr-1">
+            <nav className="flex flex-col overflow-y-auto max-h-[70vh] pr-1">
               {navItems.map((item, i) => {
                 if (item.label === "Our Companies") {
                   return (
@@ -356,8 +356,9 @@ export function Navbar() {
               })}
             </nav>
             <div className="mt-auto space-y-3 pt-6">
-              <a href="tel:+917383997825" className="flex items-center gap-2 text-sm font-bold text-[var(--navy)]">
-                <Phone className="h-4 w-4 text-[var(--teal)]" /> +91 73839 97825 / +91 88499 48279
+              <a href="tel:+917383997825" className="flex items-center gap-2 text-xs sm:text-sm font-bold text-[var(--navy)]">
+                <Phone className="h-4 w-4 text-[var(--teal)] shrink-0" /> 
+                <span className="leading-tight">+91 73839 97825 / +91 88499 48279</span>
               </a>
               <a href="#contact" onClick={close} className="block w-full rounded-lg bg-gradient-to-r from-[var(--teal)] to-[var(--blue)] py-3.5 text-center text-sm font-bold text-white shadow-lg">
                 Get in Touch

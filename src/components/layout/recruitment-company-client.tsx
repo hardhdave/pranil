@@ -355,7 +355,7 @@ function CareerJourney() {
           />
         </div>
 
-        <div className="grid lg:grid-cols-7 gap-6 relative z-10">
+        <div className="grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-7 gap-4 lg:gap-6 relative z-10">
           {steps.map((s, idx) => {
             const Icon = s.icon;
             return (
@@ -368,17 +368,17 @@ function CareerJourney() {
                 className="flex flex-col items-center text-center group"
               >
                 {/* Circle Node */}
-                <div className="w-16 h-16 rounded-full bg-white border border-slate-200 shadow-[0_8px_25px_rgba(0,0,0,0.02)] flex items-center justify-center mb-4 group-hover:border-[#0B4F8A] group-hover:shadow-[0_0_20px_rgba(11,79,138,0.15)] transition-all duration-300 relative">
-                  <Icon className="h-6 w-6 text-[#0B4F8A] group-hover:text-[#00A6D6] transition-colors" />
-                  <div className="absolute -top-1 -right-1 bg-slate-100 border border-slate-200 text-[8px] font-mono px-1.5 py-0.5 rounded text-slate-500">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white border border-slate-200 shadow-[0_8px_25px_rgba(0,0,0,0.02)] flex items-center justify-center mb-3 sm:mb-4 group-hover:border-[#0B4F8A] group-hover:shadow-[0_0_20px_rgba(11,79,138,0.15)] transition-all duration-300 relative shrink-0">
+                  <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-[#0B4F8A] group-hover:text-[#00A6D6] transition-colors" />
+                  <div className="absolute -top-1 -right-1 bg-slate-50 border border-slate-200 text-[6px] sm:text-[8px] font-mono px-1 py-0.5 sm:px-1.5 sm:py-0.5 rounded text-slate-500">
                     {idx + 1}
                   </div>
                 </div>
 
-                <h4 className="text-[12px] font-black text-[#0B1B3D] uppercase tracking-wider mb-2 group-hover:text-[#0B4F8A] transition-colors">
+                <h4 className="text-[10px] sm:text-[12px] font-black text-[#0B1B3D] uppercase tracking-wider mb-1.5 sm:mb-2 group-hover:text-[#0B4F8A] transition-colors leading-tight">
                   {s.title}
                 </h4>
-                <p className="text-[10px] text-slate-400 leading-relaxed font-medium px-2 group-hover:text-slate-600 transition-colors">
+                <p className="text-[8px] sm:text-[10px] text-slate-400 leading-normal font-semibold px-1 group-hover:text-slate-600 transition-colors">
                   {s.desc}
                 </p>
               </motion.div>
@@ -520,7 +520,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
   ];
 
   return (
-    <div className="bg-white text-slate-800 min-h-screen font-sans antialiased overflow-hidden relative selection:bg-[#0B4F8A]/10 selection:text-[#0B4F8A]">
+    <div className="bg-white text-slate-800 min-h-screen font-sans antialiased overflow-x-hidden relative selection:bg-[#0B4F8A]/10 selection:text-[#0B4F8A]">
 
       {/* Global Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -538,9 +538,9 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
               <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-1 transition-transform" /> Home
             </Link>
             <span className="text-slate-200">|</span>
-            <span className="text-xl font-black text-[#0B1B3D] tracking-tight flex items-center gap-2">
+            <span className="text-lg sm:text-xl font-black text-[#0B1B3D] tracking-tight flex items-center gap-2">
               <Image src="/logos/recruitment-logo.png" alt="PRANIL Recruitment" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
-              PRANIL <span className="text-[#0B4F8A] font-semibold">Recruitment</span>
+              PRANIL <span className="text-[#0B4F8A] font-semibold hidden sm:inline">Recruitment</span>
             </span>
           </div>
           
@@ -631,7 +631,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
       </AnimatePresence>
 
       {/* 2. HERO — Premium Light-Theme Dashboard */}
-      <section className="relative min-h-screen pt-32 pb-16 overflow-hidden z-10 flex items-center bg-gradient-to-b from-[#F5F8FC]/60 via-white to-white">
+      <section className="relative min-h-[85vh] sm:min-h-screen pt-24 sm:pt-32 pb-12 sm:pb-16 overflow-hidden z-10 flex items-center bg-gradient-to-b from-[#F5F8FC]/60 via-white to-white">
         
         {/* Particle / flight canvas background */}
         <FlightNetworkCanvas />
@@ -646,7 +646,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
                 PRANIL RECRUITMENT SERVICES
               </span>
 
-              <h1 className="font-display text-[2.8rem] sm:text-[3.8rem] lg:text-[4.2rem] font-black text-[#0B1B3D] leading-[1.1] mb-6 tracking-tight">
+              <h1 className="font-display text-[1.8rem] sm:text-[3.8rem] lg:text-[4.2rem] font-black text-[#0B1B3D] leading-[1.1] mb-4 sm:mb-6 tracking-tight">
                 Your Career<br />
                 <span className="bg-gradient-to-r from-[#0B4F8A] to-[#00A6D6] bg-clip-text text-transparent italic">
                   Has No Borders
@@ -670,7 +670,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
 
             {/* Right side: Circular frame representation from reference */}
             <div className="lg:col-span-5 flex justify-center lg:justify-end relative z-20">
-              <div className="relative w-[340px] h-[340px] sm:w-[400px] sm:h-[400px]">
+              <div className="relative w-[260px] h-[260px] sm:w-[400px] sm:h-[400px]">
                 
                 {/* Dotted border guides floating around */}
                 <motion.div
@@ -803,7 +803,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
             <div className="flex justify-center"><BlueDivider /></div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 max-w-5xl mx-auto">
             {[
               { name: "Education", desc: "Global academic institutes & study transits.", icon: GraduationCap },
               { name: "BPO", desc: "MNC business operations support.", icon: Headphones },
@@ -819,13 +819,13 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
                 <motion.div
                   key={idx}
                   whileHover={{ y: -8, border: "1px solid rgba(11, 79, 138, 0.25)" }}
-                  className="bg-white rounded-2xl p-6 border border-slate-200/80 hover:shadow-[0_12px_30px_rgba(0,0,0,0.02)] transition-all duration-300 group cursor-pointer text-left"
+                  className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/80 hover:shadow-[0_12px_30px_rgba(0,0,0,0.02)] transition-all duration-300 group cursor-pointer text-left"
                 >
-                  <div className="w-11 h-11 rounded-xl bg-[#0B4F8A]/6 text-[#0B4F8A] flex items-center justify-center mb-5 group-hover:bg-[#0B4F8A] group-hover:text-white transition duration-300">
-                    <Icon className="h-5 w-5" />
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-[#0B4F8A]/6 text-[#0B4F8A] flex items-center justify-center mb-4 sm:mb-5 group-hover:bg-[#0B4F8A] group-hover:text-white transition duration-300 shrink-0">
+                    <Icon className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
                   </div>
-                  <h3 className="text-xs font-black text-[#0B1B3D] uppercase tracking-wider mb-2">{ind.name}</h3>
-                  <p className="text-[10px] text-slate-400 leading-relaxed font-medium">{ind.desc}</p>
+                  <h3 className="text-[10px] sm:text-xs font-black text-[#0B1B3D] uppercase tracking-wider mb-1.5 sm:mb-2">{ind.name}</h3>
+                  <p className="text-[9px] sm:text-[10px] text-slate-400 leading-relaxed font-medium">{ind.desc}</p>
                 </motion.div>
               );
             })}
@@ -842,11 +842,11 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
             <div className="flex justify-center"><BlueDivider /></div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-x-visible pb-6 md:pb-0 gap-6 md:gap-8 snap-x snap-mandatory scrollbar-none max-w-5xl mx-auto">
             {successStories.map((s, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm text-left hover:border-[#0B4F8A]/30 transition-all duration-300 relative group flex flex-col justify-between"
+                className="bg-white border border-slate-200/80 rounded-2xl p-5 sm:p-6 shadow-sm text-left hover:border-[#0B4F8A]/30 transition-all duration-300 relative group flex flex-col justify-between snap-start shrink-0 w-[280px] md:w-auto"
               >
                 <div>
                   <div className="flex justify-between items-start mb-5">
@@ -891,7 +891,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
             <div className="flex justify-center"><BlueDivider /></div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 max-w-5xl mx-auto">
             {[
               { title: "Industry Expertise", desc: "Expert recruiters across BPO, KPO, Finance, Healthcare, and IT systems.", icon: Target },
               { title: "Quality Matching", desc: "Precise candidate-to-corporate profile matching metrics.", icon: Sparkles },
@@ -904,14 +904,14 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl p-6 border border-slate-200/80 text-left hover:border-[#0B4F8A]/30 transition-all duration-300 flex flex-col justify-between"
+                  className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/80 text-left hover:border-[#0B4F8A]/30 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-[#0B4F8A]/6 text-[#0B4F8A] flex items-center justify-center mb-5 border border-[#0B4F8A]/10">
-                      <Icon className="h-5 w-5" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#0B4F8A]/6 text-[#0B4F8A] flex items-center justify-center mb-4 sm:mb-5 border border-[#0B4F8A]/10 shrink-0">
+                      <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                     </div>
-                    <h3 className="text-xs font-black text-[#0B1B3D] uppercase tracking-wider mb-2">{pt.title}</h3>
-                    <p className="text-[11px] text-slate-400 leading-relaxed font-medium">{pt.desc}</p>
+                    <h3 className="text-[10px] sm:text-xs font-black text-[#0B1B3D] uppercase tracking-wider mb-1.5 sm:mb-2 leading-tight min-h-[30px] sm:min-h-0">{pt.title}</h3>
+                    <p className="text-[9px] sm:text-[11px] text-slate-400 leading-relaxed font-medium">{pt.desc}</p>
                   </div>
                 </div>
               );
@@ -921,7 +921,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 11. STATS COUNTER BAR */}
-      <section className="bg-slate-50 border-y border-slate-100 py-10 relative z-10 overflow-hidden">
+      <section className="bg-slate-50 border-y border-slate-100 py-6 sm:py-10 relative z-10 overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-wrap justify-between items-center gap-8">
             {[
@@ -942,7 +942,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 12. FINAL CTA SECTION (Light skyline outline) */}
-      <section className="py-24 bg-gradient-to-tr from-blue-50/50 via-white to-white relative z-10 overflow-hidden border-b border-slate-100">
+      <section className="py-12 sm:py-24 bg-gradient-to-tr from-blue-50/50 via-white to-white relative z-10 overflow-hidden border-b border-slate-100">
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0B4F8A]/10 to-transparent" />
           <svg className="absolute bottom-0 left-0 w-full h-48" viewBox="0 0 1000 200" preserveAspectRatio="none">
@@ -968,7 +968,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 13. TESTIMONIALS (Marquee) */}
-      <section id="testimonials" className="py-24 bg-white border-b border-slate-100 relative z-10 overflow-hidden">
+      <section id="testimonials" className="py-12 sm:py-24 bg-white border-b border-slate-100 relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 mb-14 text-center">
           <SectionLabel>TESTIMONIALS</SectionLabel>
           <SectionTitle>Global Transit Feedback</SectionTitle>

@@ -10,7 +10,7 @@ export function ValuesSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-20 sm:py-28 bg-white relative overflow-hidden">
+    <section id="about" className="py-12 sm:py-28 bg-white relative overflow-hidden">
       {/* Moving background luxury shapes */}
       <MovingShapes variant="light" />
 
@@ -35,7 +35,7 @@ export function ValuesSection() {
       <div ref={ref} className="section-shell px-4 relative z-10">
         {/* Section heading */}
         <motion.div
-          className="text-center mb-16 sm:mb-20"
+          className="text-center mb-10 sm:mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -54,7 +54,7 @@ export function ValuesSection() {
         </motion.div>
 
         {/* Values grid container */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-4 max-w-5xl mx-auto relative">
+        <div className="grid grid-cols-2 gap-3 sm:gap-8 lg:grid-cols-4 max-w-5xl mx-auto relative">
           
           {/* ─── Luxury Horizontal Laser Vector Connector Line (Behind Icons) ─── */}
           <div className="absolute top-[56px] left-[12%] right-[12%] h-[1px] bg-gradient-to-r from-transparent via-[var(--teal)]/20 to-transparent z-0 hidden lg:block" />
@@ -78,34 +78,34 @@ export function ValuesSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-[#ffb703]/3 via-transparent to-[var(--teal)]/4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                 {/* ─── Dynamic Dual-Orbit Visuals (Moving All The Time) ─── */}
-                <div className="relative mb-8 h-28 flex items-center justify-center z-10">
+                <div className="relative mb-4 sm:mb-8 h-20 sm:h-28 flex items-center justify-center z-10">
                   
                   {/* Outer Dashed Gold Orbit (Clockwise Spin) */}
                   <motion.div
-                    className="absolute w-[100px] h-[100px] rounded-full border border-dashed border-[#ffb703]/30"
+                    className="absolute w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] rounded-full border border-dashed border-[#ffb703]/30"
                     animate={{ rotate: 360 }}
                     transition={{ duration: 18 + i * 4, repeat: Infinity, ease: "linear" }}
                   />
 
                   {/* Inner Dotted Teal Orbit (Counter-Clockwise Spin) */}
                   <motion.div
-                    className="absolute w-[116px] h-[116px] rounded-full border border-dotted border-[var(--teal)]/20"
+                    className="absolute w-[85px] h-[85px] sm:w-[116px] sm:h-[116px] rounded-full border border-dotted border-[var(--teal)]/20"
                     animate={{ rotate: -360 }}
                     transition={{ duration: 26 + i * 4, repeat: Infinity, ease: "linear" }}
                   />
 
                   {/* Continuous Breathing Glow Field */}
                   <motion.div
-                    className="absolute w-20 h-20 rounded-full bg-[var(--teal)]/5 blur-md"
+                    className="absolute w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-[var(--teal)]/5 blur-md"
                     animate={{ scale: [1, 1.25, 1], opacity: [0.3, 0.7, 0.3] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.6 }}
                   />
 
                   {/* Central Core Icon Ring */}
                   <motion.div
-                    className="relative z-10 bg-gradient-to-b from-white to-[var(--gray-50)] border border-[var(--teal)]/15 group-hover:border-[#ffb703]/35 shadow-sm flex items-center justify-center w-20 h-20 rounded-full transition-all duration-300 group-hover:shadow-[0_8px_24px_rgba(14,110,122,0.15)] group-hover:scale-105"
+                    className="relative z-10 bg-gradient-to-b from-white to-[var(--gray-50)] border border-[var(--teal)]/15 group-hover:border-[#ffb703]/35 shadow-sm flex items-center justify-center w-14 h-14 sm:w-20 sm:h-20 rounded-full transition-all duration-300 group-hover:shadow-[0_8px_24px_rgba(14,110,122,0.15)] group-hover:scale-105"
                   >
-                    <Icon className="h-7 w-7 sm:h-8 sm:w-8 text-[var(--teal)] group-hover:text-[var(--navy)] transition-colors duration-300" />
+                    <Icon className="h-5 w-5 sm:h-8 sm:w-8 text-[var(--teal)] group-hover:text-[var(--navy)] transition-colors duration-300" />
                   </motion.div>
                 </div>
 
@@ -120,7 +120,7 @@ export function ValuesSection() {
                 </p>
 
                 {/* Bottom accent divider with continuous laser shimmers */}
-                <div className="relative mt-6 h-[2px] w-[50%] mx-auto overflow-hidden bg-gray-100/80 rounded-full z-10">
+                <div className="relative mt-4 sm:mt-6 h-[2px] w-[50%] mx-auto overflow-hidden bg-gray-100/80 rounded-full z-10">
                   <motion.div
                     className="absolute inset-y-0 w-[50%] bg-gradient-to-r from-transparent via-[var(--teal)] to-transparent"
                     animate={{ x: ["-100%", "200%"] }}

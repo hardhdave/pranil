@@ -12,7 +12,7 @@ export function FaqSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 sm:py-28 relative overflow-hidden">
+    <section className="py-12 sm:py-28 relative overflow-hidden">
       <MovingShapes variant="light" />
 
       {/* Floating question marks */}
@@ -24,10 +24,10 @@ export function FaqSection() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}>?</motion.div>
 
       <div ref={ref} className="section-shell px-4 relative z-10">
-        <motion.div className="text-center mb-12 sm:mb-14"
+        <motion.div className="text-center mb-8 sm:mb-14"
           initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--navy)]">FAQ&apos;s</h2>
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--navy)]">FAQ&apos;s</h2>
           <motion.div className="h-[3px] rounded-full mx-auto mt-5 bg-gradient-to-r from-[var(--teal)] to-[var(--blue)]"
             animate={{ width: [0, 60, 60] }} transition={{ duration: 1, delay: 0.5 }} />
         </motion.div>

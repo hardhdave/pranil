@@ -112,9 +112,9 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
               <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-1 transition-transform" /> Home
             </Link>
             <span className="text-white/10">|</span>
-            <span className="text-xl font-black tracking-tight flex items-center gap-2">
+            <span className="text-lg sm:text-xl font-black tracking-tight flex items-center gap-2">
               <Image src="/logos/karv-logo.png" alt="KARV Media" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
-              KARV <span className="text-[#0099FF] font-semibold">Media</span>
+              KARV <span className="text-[#0099FF] font-semibold hidden sm:inline">Media</span>
             </span>
           </div>
 
@@ -181,7 +181,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  HERO — Giant Instagram Post frame and stats                        */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section id="hero" className="relative pt-32 pb-24 lg:pt-40 lg:pb-36 px-4 max-w-7xl mx-auto z-10">
+      <section id="hero" className="relative pt-24 pb-12 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-36 px-4 max-w-7xl mx-auto z-10">
         
         {/* Animated Gradient meshes in background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -189,7 +189,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
           <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-[#8B5CF6]/10 blur-[150px] animate-pulse" style={{ animationDelay: "2s" }} />
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-16 items-center">
+        <div className="grid lg:grid-cols-12 gap-8 sm:gap-16 items-center">
           
           {/* Left Text Column */}
           <div className="lg:col-span-6 text-left space-y-8">
@@ -208,7 +208,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15 }}
-              className="text-[2.8rem] sm:text-[4rem] lg:text-[4.6rem] font-black leading-[1.05] tracking-tight"
+              className="text-[1.8rem] sm:text-[4rem] lg:text-[4.6rem] font-black leading-[1.05] tracking-tight"
             >
               We Create Content <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0099FF] via-[#8B5CF6] to-[#FF7A00]">
@@ -229,12 +229,12 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.45 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
             >
-              <a href="#portfolio" className="bg-gradient-to-r from-[#0099FF] to-[#8B5CF6] text-white text-[11px] font-black uppercase tracking-widest px-8 py-4 rounded-xl hover:shadow-[0_8px_25px_rgba(0,153,255,0.3)] transition-all">
+              <a href="#portfolio" className="bg-gradient-to-r from-[#0099FF] to-[#8B5CF6] text-white text-[11px] font-black uppercase tracking-widest px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl hover:shadow-[0_8px_25px_rgba(0,153,255,0.3)] transition-all text-center">
                 View Portfolio
               </a>
-              <a href="#contact" className="border border-white/10 hover:bg-white/5 text-[#F8FAFC] text-[11px] font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all">
+              <a href="#contact" className="border border-white/10 hover:bg-white/5 text-[#F8FAFC] text-[11px] font-black uppercase tracking-widest px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl transition-all text-center">
                 Start Your Project
               </a>
             </motion.div>
@@ -242,7 +242,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
           </div>
 
           {/* Right Column: Instagram Post mockup & widgets */}
-          <div className="lg:col-span-6 relative flex items-center justify-center min-h-[500px]">
+          <div className="lg:col-span-6 relative flex items-center justify-center min-h-[350px] sm:min-h-[500px]">
             
             {/* ── Floating growth cards surrounding Instagram post ── */}
             
@@ -250,7 +250,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
             <motion.div 
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-10 -left-6 z-20 bg-[#161922]/90 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-2xl flex items-center gap-3"
+              className="absolute top-10 -left-2 sm:-left-6 z-20 bg-[#161922]/90 backdrop-blur-md border border-white/10 rounded-2xl p-3 sm:p-4 shadow-2xl flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-full bg-[#0099FF]/10 flex items-center justify-center text-[#0099FF]">
                 <Users className="h-5 w-5" />
@@ -265,7 +265,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
             <motion.div 
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute bottom-16 -right-6 z-20 bg-[#161922]/90 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-2xl flex items-start gap-3 max-w-[200px]"
+              className="absolute bottom-16 -right-2 sm:-right-6 z-20 bg-[#161922]/90 backdrop-blur-md border border-white/10 rounded-2xl p-3 sm:p-4 shadow-2xl flex items-start gap-3 max-w-[180px] sm:max-w-[200px]"
             >
               <div className="w-8 h-8 rounded-full overflow-hidden shrink-0">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="avatar" className="w-full h-full object-cover" />
@@ -281,7 +281,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="w-full max-w-[380px] bg-[#161922] border border-white/10 rounded-3xl shadow-2xl overflow-hidden z-10"
+              className="w-full max-w-[320px] sm:max-w-[380px] bg-[#161922] border border-white/10 rounded-3xl shadow-2xl overflow-hidden z-10"
             >
               {/* Instgram Post Header */}
               <div className="px-4 py-3 flex items-center justify-between border-b border-white/5">
@@ -380,7 +380,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  ABOUT TIMELINE STORYTELLING                                      */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section id="about" className="py-28 bg-[#161922] relative border-y border-white/5">
+      <section id="about" className="py-14 sm:py-28 bg-[#161922] relative border-y border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16 max-w-lg mx-auto">
@@ -425,12 +425,12 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
           <div className="border-t border-white/5 pt-12">
             <h3 className="text-xs font-black uppercase text-slate-400 tracking-[0.2em] mb-10 text-center">Our Execution Blueprint</h3>
             
-            <div className="grid sm:grid-cols-4 gap-6 text-left">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 text-left">
               {processTimeline.map((p, idx) => (
-                <div key={idx} className="relative bg-[#0F1117]/50 rounded-2xl p-6 border border-white/5 hover:border-[#0099FF]/20 transition">
-                  <div className="absolute top-4 right-4 text-[2.5rem] font-black text-white/5 select-none leading-none">0{idx + 1}</div>
-                  <h4 className="text-sm font-black text-white uppercase tracking-wider mb-2 pr-6">{p.step}</h4>
-                  <p className="text-[11px] text-slate-400 leading-relaxed font-medium">{p.desc}</p>
+                <div key={idx} className="relative bg-[#0F1117]/50 rounded-2xl p-4 sm:p-6 border border-white/5 hover:border-[#0099FF]/20 transition flex flex-col justify-between">
+                  <div className="absolute top-2 right-2 sm:top-4 sm:right-4 text-[1.8rem] sm:text-[2.5rem] font-black text-white/5 select-none leading-none">0{idx + 1}</div>
+                  <h4 className="text-xs sm:text-sm font-black text-white uppercase tracking-wider mb-1.5 pr-6 leading-tight min-h-[30px] sm:min-h-0">{p.step}</h4>
+                  <p className="text-[10px] sm:text-[11px] text-slate-400 leading-relaxed font-medium">{p.desc}</p>
                 </div>
               ))}
             </div>
@@ -442,7 +442,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  SERVICE ECOSYSTEM — Orbiting service layout                        */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section id="services" className="py-28 bg-[#0F1117] relative">
+      <section id="services" className="py-14 sm:py-28 bg-[#0F1117] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16 max-w-lg mx-auto">
@@ -588,7 +588,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  PORTFOLIO: FLYER DESIGN SHOWCASE                                  */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section id="portfolio" className="py-28 bg-[#161922] relative border-y border-white/5">
+      <section id="portfolio" className="py-14 sm:py-28 bg-[#161922] relative border-y border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-20 max-w-lg mx-auto">
@@ -598,7 +598,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
           </div>
 
           {/* Auto-scrolling Showcase columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
             {[
               { img: "photo-1611162617213-7d7a39e9b1d7", title: "Social Campaign Graphic" },
               { img: "photo-1559028012-481c04fa702d", title: "Corporate Branding Flyer" },
@@ -634,7 +634,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  CAROUSEL DESIGN SECTION                                          */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-28 bg-[#0F1117] relative">
+      <section className="py-14 sm:py-28 bg-[#0F1117] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -720,7 +720,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  WEB DEVELOPMENT SECTION                                          */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-28 bg-[#0F1117] relative">
+      <section className="py-14 sm:py-28 bg-[#0F1117] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -894,7 +894,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
             <div className="w-12 h-1 bg-gradient-to-r from-[#8B5CF6] to-[#0099FF] mx-auto rounded-full mt-4" />
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 text-left">
             {[
               { title: "Elevate Your Brand", desc: "Build unmatched visibility, positioning, and global reach for your corporate identity.", accent: "border-[#0099FF]/20 text-[#0099FF]" },
               { title: "Drive Growth", desc: "Formulate strategic marketing funnels to scale conversions and sales pipelines.", accent: "border-[#FF7A00]/20 text-[#FF7A00]" },
@@ -904,14 +904,14 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
               <motion.div 
                 key={idx}
                 whileHover={{ y: -5 }}
-                className={`bg-[#161922] border rounded-3xl p-7 shadow-lg flex flex-col justify-between ${g.accent}`}
+                className={`bg-[#161922] border rounded-2xl sm:rounded-3xl p-4 sm:p-7 shadow-lg flex flex-col justify-between ${g.accent}`}
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-6">
-                    <CheckCircle className="h-5 w-5" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white/5 flex items-center justify-center mb-4 sm:mb-6 shrink-0">
+                    <CheckCircle className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
                   </div>
-                  <h3 className="text-base font-black uppercase tracking-wider mb-2 text-white">{g.title}</h3>
-                  <p className="text-[11px] text-slate-400 font-medium leading-relaxed">{g.desc}</p>
+                  <h3 className="text-xs sm:text-base font-black uppercase tracking-wider mb-1.5 sm:mb-2 text-white leading-tight min-h-[32px] sm:min-h-0">{g.title}</h3>
+                  <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium leading-relaxed">{g.desc}</p>
                 </div>
               </motion.div>
             ))}

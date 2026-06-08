@@ -47,7 +47,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-20 sm:py-28 bg-[var(--gray-50)] relative overflow-hidden">
+    <section id="contact" className="py-12 sm:py-28 bg-[var(--gray-50)] relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[var(--teal)]/5 blur-[120px]" />
       <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[var(--blue)]/5 blur-[120px]" />
@@ -55,7 +55,7 @@ export function ContactSection() {
       <div ref={ref} className="section-shell px-4 relative z-10">
         {/* Section heading */}
         <motion.div
-          className="text-center mb-14 sm:mb-16"
+          className="text-center mb-8 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -69,15 +69,15 @@ export function ContactSection() {
           <div className="line-separator mx-auto mt-5" />
         </motion.div>
 
-        <div className="grid gap-0 overflow-hidden rounded-2xl shadow-xl lg:grid-cols-2">
+        <div className="grid gap-0 overflow-hidden rounded-xl sm:rounded-2xl shadow-xl lg:grid-cols-2">
           {/* Left: About + contact info */}
           <motion.div
-            className="bg-white p-6 sm:p-10 lg:p-12"
+            className="bg-white p-4 sm:p-10 lg:p-12"
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <h3 className="font-display text-2xl sm:text-3xl font-bold text-[var(--navy)]">
+            <h3 className="font-display text-xl sm:text-3xl font-bold text-[var(--navy)]">
               PRANIL Group
             </h3>
             <h4 className="font-display text-base sm:text-lg font-semibold text-[var(--teal)] mt-1">
@@ -147,7 +147,7 @@ export function ContactSection() {
 
           {/* Right: form */}
           <motion.div
-            className="gradient-teal p-6 sm:p-10 lg:p-12"
+            className="gradient-teal p-4 sm:p-10 lg:p-12"
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}

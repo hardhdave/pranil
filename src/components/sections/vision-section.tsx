@@ -12,7 +12,7 @@ export function VisionSection() {
 
   return (
     <section id="vision" className="relative overflow-hidden">
-      <div className="gradient-teal py-16 sm:py-24 relative">
+      <div className="gradient-teal py-10 sm:py-24 relative">
         <MovingShapes variant="dark" />
 
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
@@ -38,7 +38,7 @@ export function VisionSection() {
         </div>
 
         <div ref={ref} className="section-shell px-4 relative z-10">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] items-center">
+          <div className="grid gap-6 sm:gap-10 lg:grid-cols-[1fr_1.2fr] items-center">
             <motion.div initial={{ opacity: 0, x: -40 }} animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 px-4 py-1.5 mb-5">
@@ -47,7 +47,7 @@ export function VisionSection() {
                   transition={{ duration: 2, repeat: Infinity }} />
                 <span className="text-xs font-semibold text-white/80 tracking-wider uppercase">OUR VISION</span>
               </div>
-              <h2 className="font-display text-2xl sm:text-3xl lg:text-[2.5rem] font-bold text-white leading-tight">
+              <h2 className="font-display text-xl sm:text-3xl lg:text-[2.5rem] font-bold text-white leading-tight">
                 To be a trusted group recognized for{" "}
                 <motion.span className="text-[var(--accent)]" animate={{ opacity: [1, 0.7, 1] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>excellence</motion.span>,{" "}
@@ -61,9 +61,9 @@ export function VisionSection() {
                 transition={{ duration: 1, delay: 0.5 }} />
             </motion.div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4">
               {statsCounters.map((stat, i) => (
-                <motion.div key={stat.label} className="stat-box p-4 sm:p-6 text-center relative overflow-hidden"
+                <motion.div key={stat.label} className="stat-box p-3 sm:p-6 text-center relative overflow-hidden"
                   initial={{ opacity: 0, y: 30, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                   transition={{ duration: 0.6, delay: i * 0.12 + 0.3, ease: [0.16, 1, 0.3, 1] }}>
@@ -71,7 +71,7 @@ export function VisionSection() {
                     animate={{ x: ["-200%", "200%"] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: i * 0.8 }} />
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} duration={2.5}
-                    className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white relative z-10" />
+                    className="font-display text-xl sm:text-3xl lg:text-4xl font-bold text-white relative z-10" />
                   <p className="mt-2 text-[10px] sm:text-xs text-white/60 font-medium leading-tight relative z-10">{stat.label}</p>
                 </motion.div>
               ))}

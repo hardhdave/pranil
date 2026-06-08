@@ -20,7 +20,7 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-20 sm:py-28 relative overflow-hidden">
+    <section className="py-12 sm:py-28 relative overflow-hidden">
       <MovingShapes variant="light" />
 
       {/* Large floating quote mark */}
@@ -31,10 +31,10 @@ export function TestimonialsSection() {
       </motion.div>
 
       <div ref={ref} className="section-shell px-4 relative z-10">
-        <div className="flex items-end justify-between mb-10 sm:mb-14">
+        <div className="flex items-end justify-between mb-8 sm:mb-14">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-[2.5rem] font-extrabold text-[var(--navy)] leading-tight">
+            <h2 className="font-display text-xl sm:text-3xl lg:text-[2.5rem] font-extrabold text-[var(--navy)] leading-tight">
               What They Have to Say!{" "}
               <span className="underline decoration-[var(--teal)] decoration-[3px] underline-offset-4">SUCCESS</span>{" "}
               Stories
@@ -63,7 +63,7 @@ export function TestimonialsSection() {
           >
             {testimonials.map((item, index) => (
               <article key={`${item.name}-${index}`}
-                className="w-[20rem] sm:w-[24rem] shrink-0 mr-5 rounded-2xl border border-[var(--gray-200)] bg-white p-5 sm:p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
+                className="w-[16rem] sm:w-[24rem] shrink-0 mr-4 sm:mr-5 rounded-2xl border border-[var(--gray-200)] bg-white p-4 sm:p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
                 {/* Animated gradient border shimmer */}
                 <motion.div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[var(--teal)]/40 to-transparent"
                   animate={{ x: ["-100%", "100%"] }}
@@ -95,7 +95,7 @@ export function TestimonialsSection() {
           >
             {testimonials.map((item, index) => (
               <article key={`${item.name}-${index}-dup`}
-                className="w-[20rem] sm:w-[24rem] shrink-0 mr-5 rounded-2xl border border-[var(--gray-200)] bg-white p-5 sm:p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
+                className="w-[16rem] sm:w-[24rem] shrink-0 mr-4 sm:mr-5 rounded-2xl border border-[var(--gray-200)] bg-white p-4 sm:p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
                 {/* Animated gradient border shimmer */}
                 <motion.div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[var(--teal)]/40 to-transparent"
                   animate={{ x: ["-100%", "100%"] }}

@@ -30,7 +30,7 @@ export function FoundersSection() {
   ];
 
   return (
-    <section id="founders" className="py-20 sm:py-28 bg-[var(--gray-50)] relative overflow-hidden">
+    <section id="founders" className="py-12 sm:py-28 bg-[var(--gray-50)] relative overflow-hidden">
       {/* Moving background luxury shapes */}
       <MovingShapes variant="light" />
 
@@ -46,7 +46,7 @@ export function FoundersSection() {
       <div ref={ref} className="section-shell px-6 relative z-10 max-w-7xl mx-auto">
         {/* Section Heading */}
         <motion.div
-          className="text-center mb-16 sm:mb-20"
+          className="text-center mb-10 sm:mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -66,7 +66,7 @@ export function FoundersSection() {
         </motion.div>
 
         {/* Founders Cards */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 max-w-4xl mx-auto">
           {founders.map((founder, i) => (
             <motion.div
               key={founder.name}
@@ -74,13 +74,13 @@ export function FoundersSection() {
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: i * 0.2, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -8 }}
-              className="group relative overflow-hidden bg-white/80 backdrop-blur-md rounded-[2rem] border border-gray-200/50 hover:border-[var(--teal)]/30 shadow-[0_10px_35px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 p-8 sm:p-10 flex flex-col items-center text-center"
+              className="group relative overflow-hidden bg-white/80 backdrop-blur-md rounded-[1.5rem] sm:rounded-[2rem] border border-gray-200/50 hover:border-[var(--teal)]/30 shadow-[0_10px_35px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 p-5 sm:p-10 flex flex-col items-center text-center"
             >
               {/* Photo Area with Rotating Dashed Ring */}
-              <div className="relative mb-6 w-44 h-44 flex items-center justify-center">
+              <div className="relative mb-4 sm:mb-6 w-32 h-32 sm:w-44 sm:h-44 flex items-center justify-center">
                 {/* Dashed Spin Ring */}
                 <motion.div
-                  className="absolute w-[186px] h-[186px] rounded-full border border-dashed border-[#ffb703]/40"
+                  className="absolute w-[140px] h-[140px] sm:w-[186px] sm:h-[186px] rounded-full border border-dashed border-[#ffb703]/40"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                 />
@@ -89,7 +89,7 @@ export function FoundersSection() {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--teal)]/20 to-[var(--blue)]/10 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Photo frame */}
-                <div className="relative z-10 w-40 h-40 rounded-full overflow-hidden border-[4px] border-white shadow-lg bg-slate-100 flex items-center justify-center">
+                <div className="relative z-10 w-28 h-28 sm:w-40 sm:h-40 rounded-full overflow-hidden border-[3px] sm:border-[4px] border-white shadow-lg bg-slate-100 flex items-center justify-center">
                   <Image
                     src={founder.img}
                     alt={founder.name}

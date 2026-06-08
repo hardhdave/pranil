@@ -200,7 +200,7 @@ export function CompaniesSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="companies" className="py-28 sm:py-36 relative overflow-hidden bg-[var(--gray-50)]">
+    <section id="companies" className="py-14 sm:py-36 relative overflow-hidden bg-[var(--gray-50)]">
       {/* Decorative moving shapes background */}
       <MovingShapes variant="light" />
 
@@ -222,19 +222,19 @@ export function CompaniesSection() {
         
         {/* Luxury Typography Heading */}
         <motion.div
-          className="text-center mb-20 sm:mb-24"
+          className="text-center mb-10 sm:mb-24"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         >
 
           
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-[var(--navy)] leading-[1.05] tracking-tight">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-[var(--navy)] leading-[1.05] tracking-tight">
             Four Masterpiece Businesses. <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--teal)] via-[var(--blue)] to-[#ffb703] drop-shadow-[0_4px_10px_rgba(255,183,3,0.1)]">One Unifying Core.</span>
           </h2>
           
-          <p className="mt-5 text-sm sm:text-base lg:text-lg text-[var(--text-muted)] max-w-2xl mx-auto leading-relaxed font-light">
+          <p className="mt-3 sm:mt-5 text-xs sm:text-base lg:text-lg text-[var(--text-muted)] max-w-2xl mx-auto leading-relaxed font-light">
             We deliver highly integrated, world-class experiences across strategic immigration consulting, selective placement, customized travel curation, and innovative digital event engineering.
           </p>
 
@@ -247,7 +247,7 @@ export function CompaniesSection() {
         </motion.div>
 
         {/* Real-time Spotlight Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8">
           {companies.map((company, i) => (
             <CompanyCard 
               key={company.name} 

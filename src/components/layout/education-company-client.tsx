@@ -145,6 +145,7 @@ function RedDivider() {
 function CircularFlag({ code, alt, size = 12 }: { code: string; alt: string; size?: number }) {
   let sizeClass = "w-14 h-14";
   if (size === 12) sizeClass = "w-12 h-12";
+  if (size === 8) sizeClass = "w-8 h-8";
   if (size === 5) sizeClass = "w-5 h-5";
   return (
     <div className={`${sizeClass} rounded-full border border-white/10 bg-slate-900 flex items-center justify-center overflow-hidden shrink-0 shadow-sm group-hover:scale-110 group-hover:border-[#6366F1] group-hover:shadow-md transition-all duration-500`}>
@@ -317,7 +318,7 @@ function VisaPathwaysDashboard() {
   return (
     <div className="max-w-6xl mx-auto text-left relative z-10 px-4">
       {/* Tab Selector Buttons */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-12">
         {(Object.keys(categories) as Array<keyof typeof categories>).map((key) => {
           const cat = categories[key];
           const TabIcon = cat.icon;
@@ -326,22 +327,22 @@ function VisaPathwaysDashboard() {
             <button
               key={key}
               onClick={() => setActiveTab(key)}
-              className={`flex items-center gap-3.5 p-4 rounded-2xl transition-all duration-300 border text-left ${
+              className={`flex items-center gap-2 sm:gap-3.5 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl transition-all duration-300 border text-left ${
                 isSelected
                   ? "bg-gradient-to-br from-[#3730A3] to-[#1E1B4B] border-[#3730A3] text-white shadow-lg shadow-[#3730A3]/10 scale-[1.02]"
                   : "bg-white border-slate-200/80 text-slate-600 hover:bg-slate-50 hover:border-slate-300"
               }`}
             >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition duration-300 ${
+              <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center border transition duration-300 shrink-0 ${
                 isSelected ? "bg-white/10 border-white/20 text-white" : "bg-slate-50 border-slate-100 text-[#3730A3]"
               }`}>
-                <TabIcon className="h-5 w-5" />
+                <TabIcon className="h-4 w-4 sm:h-5 sm:w-5" />
               </div>
               <div>
-                <div className={`text-xs font-black uppercase tracking-wider ${isSelected ? "text-white" : "text-slate-800"}`}>
+                <div className={`text-[10px] sm:text-xs font-black uppercase tracking-wider leading-tight ${isSelected ? "text-white" : "text-slate-800"}`}>
                   {cat.title}
                 </div>
-                <div className={`text-[8px] font-bold uppercase tracking-widest mt-0.5 ${isSelected ? "text-[#6366F1]" : "text-slate-400"}`}>
+                <div className={`text-[7px] sm:text-[8px] font-bold uppercase tracking-widest mt-0.5 ${isSelected ? "text-[#6366F1]" : "text-slate-400"}`}>
                   Visa Pathway
                 </div>
               </div>
@@ -400,26 +401,26 @@ function VisaPathwaysDashboard() {
         </div>
 
         {/* Right Side: Countries Grid */}
-        <div className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl p-6 sm:p-8 shadow-sm">
+        <div className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl p-4 sm:p-8 shadow-sm">
           <div className="mb-6 flex justify-between items-center">
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Countries & Perks</span>
-            <span className="text-[9px] font-mono font-bold bg-[#6366F1]/8 text-[#6366F1] px-2 py-0.5 rounded-full border border-[#6366F1]/15 uppercase">
+            <span className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Countries & Perks</span>
+            <span className="text-[8px] sm:text-[9px] font-mono font-bold bg-[#6366F1]/8 text-[#6366F1] px-2 py-0.5 rounded-full border border-[#6366F1]/15 uppercase">
               {active.countries.length} Destinations
             </span>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-3">
             {active.countries.map((c, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-100 hover:border-[#6366F1]/50 bg-slate-50/20 hover:bg-white hover:shadow-md transition-all duration-300 group"
+                className="flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3.5 p-3 rounded-xl sm:rounded-2xl border border-slate-100 hover:border-[#6366F1]/50 bg-slate-50/20 hover:bg-white hover:shadow-md transition-all duration-300 group"
               >
-                <CircularFlag code={c.code} alt={c.name} size={12} />
-                <div className="text-left">
-                  <h4 className="text-xs font-black text-[#3730A3] uppercase tracking-wider mb-1 group-hover:text-[#6366F1] transition-colors">
+                <CircularFlag code={c.code} alt={c.name} size={8} />
+                <div className="text-left min-w-0">
+                  <h4 className="text-[11px] sm:text-xs font-black text-[#3730A3] uppercase tracking-wider mb-0.5 group-hover:text-[#6366F1] transition-colors leading-tight">
                     {c.name}
                   </h4>
-                  <p className="text-[10px] text-slate-400 leading-normal font-semibold font-sans">
+                  <p className="text-[8px] sm:text-[10px] text-slate-400 leading-normal font-semibold font-sans">
                     {c.detail}
                   </p>
                 </div>
@@ -471,8 +472,8 @@ function StudentJourney() {
   ];
 
   return (
-    <div className="relative max-w-6xl mx-auto py-12 px-4">
-      <div className="grid lg:grid-cols-3 gap-8 relative z-10">
+    <div className="relative max-w-6xl mx-auto py-6 sm:py-12 px-4">
+      <div className="grid lg:grid-cols-3 gap-4 lg:gap-8 relative z-10">
         {phases.map((phase, pIdx) => (
           <motion.div
             key={pIdx}
@@ -480,24 +481,24 @@ function StudentJourney() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.6, delay: pIdx * 0.15 }}
-            className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.015)] relative overflow-hidden flex flex-col justify-between group hover:border-[#6366F1]/30 hover:shadow-[0_15px_40px_rgba(99,102,241,0.04)] transition-all duration-500"
+            className="bg-white border border-slate-200/80 rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.015)] relative overflow-hidden flex flex-col justify-between group hover:border-[#6366F1]/30 hover:shadow-[0_15px_40px_rgba(99,102,241,0.04)] transition-all duration-500"
           >
             {/* Ambient corner glow */}
             <div className={`absolute top-0 right-0 w-24 h-24 rounded-full blur-2xl opacity-40 -mr-6 -mt-6 bg-gradient-to-br ${phase.color}`} />
             
             <div>
               {/* Phase Header */}
-              <div className="mb-6 pb-4 border-b border-slate-100">
+              <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-slate-100">
                 <span className={`inline-block bg-gradient-to-r ${phase.color} bg-clip-text text-transparent text-[10px] font-black uppercase tracking-widest`}>
                   {phase.title}
                 </span>
-                <p className="text-[10px] text-slate-400 font-semibold mt-1">{phase.desc}</p>
+                <p className="text-[9px] sm:text-[10px] text-slate-400 font-semibold mt-1">{phase.desc}</p>
               </div>
 
               {/* Vertical steps */}
-              <div className="space-y-8 relative">
+              <div className="space-y-4 sm:space-y-8 relative">
                 {/* Vertical connecting line */}
-                <div className="absolute top-4 bottom-4 left-6 w-[1.5px] bg-slate-100 z-0">
+                <div className="absolute top-3 bottom-3 left-[18px] sm:left-6 w-[1.5px] bg-slate-100 z-0">
                   <motion.div
                     animate={{ y: ["-100%", "100%"] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -508,21 +509,21 @@ function StudentJourney() {
                 {phase.steps.map((s, sIdx) => {
                   const Icon = s.icon;
                   return (
-                    <div key={sIdx} className="flex items-start gap-4 text-left relative z-10 group/step">
+                    <div key={sIdx} className="flex items-start gap-3 text-left relative z-10 group/step">
                       {/* Step Circle Node */}
-                      <div className="w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center shrink-0 group-hover/step:border-[#6366F1] group-hover/step:shadow-[0_0_15px_rgba(99,102,241,0.15)] transition-all duration-300 relative bg-white">
-                        <Icon className="h-5 w-5 text-[#3730A3] group-hover/step:text-[#6366F1] transition-colors" />
-                        <div className="absolute -top-1 -right-1 bg-slate-50 border border-slate-200 text-[7px] font-mono px-1 py-0.5 rounded text-slate-500">
+                      <div className="w-9 h-9 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center shrink-0 group-hover/step:border-[#6366F1] group-hover/step:shadow-[0_0_15px_rgba(99,102,241,0.15)] transition-all duration-300 relative bg-white">
+                        <Icon className="h-4 w-4 text-[#3730A3] group-hover/step:text-[#6366F1] transition-colors" />
+                        <div className="absolute -top-1 -right-1 bg-slate-50 border border-slate-200 text-[6px] font-mono px-1 py-0.5 rounded text-slate-500">
                           {s.num}
                         </div>
                       </div>
 
                       {/* Step Description */}
-                      <div className="pt-1">
-                        <h4 className="text-xs font-black text-[#3730A3] uppercase tracking-wider mb-1 group-hover/step:text-[#6366F1] transition-colors">
+                      <div className="pt-0.5 text-left">
+                        <h4 className="text-[11px] sm:text-xs font-black text-[#3730A3] uppercase tracking-wider mb-0.5 group-hover/step:text-[#6366F1] transition-colors">
                           {s.title}
                         </h4>
-                        <p className="text-[10px] text-slate-400 leading-relaxed font-semibold">
+                        <p className="text-[9px] sm:text-[10px] text-slate-400 leading-normal font-semibold">
                           {s.desc}
                         </p>
                       </div>
@@ -938,15 +939,15 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 4. LANGUAGE TRAINING ECOSYSTEM */}
-      <section id="training" className="py-24 bg-[#F8FAFF] border-b border-slate-200/50 relative z-10">
+      <section id="training" className="py-12 sm:py-24 bg-[#F8FAFF] border-b border-slate-200/50 relative z-10">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <SectionLabel>LANGUAGE ACADEMY</SectionLabel>
             <SectionTitle>Language Training Ecosystem</SectionTitle>
             <div className="flex justify-center"><RedDivider /></div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 max-w-5xl mx-auto">
             {[
               { name: "IELTS", desc: "International English Language Testing System. Comprehensive study paths.", score: "Target Band 7.5+" },
               { name: "PTE", desc: "Pearson Test of English. Fast score releases and certified mock platforms.", score: "Target Score 79+" },
@@ -956,19 +957,19 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
               <motion.div
                 key={idx}
                 whileHover={{ y: -6 }}
-                className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:border-[#6366F1] hover:shadow-[0_12px_30px_rgba(99,102,241,0.08)] transition-all duration-300 text-left group flex flex-col justify-between"
+                className="bg-white border border-slate-200/80 rounded-2xl p-3.5 sm:p-6 shadow-sm hover:border-[#6366F1] hover:shadow-[0_12px_30px_rgba(99,102,241,0.08)] transition-all duration-300 text-left group flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-[#6366F1]/6 text-[#6366F1] flex items-center justify-center mb-5 border border-[#6366F1]/15 group-hover:bg-[#6366F1] group-hover:text-white transition duration-300">
-                    <ScrollText className="h-5 w-5" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#6366F1]/6 text-[#6366F1] flex items-center justify-center mb-3 sm:mb-5 border border-[#6366F1]/15 group-hover:bg-[#6366F1] group-hover:text-white transition duration-300">
+                    <ScrollText className="h-4 w-4 sm:h-5 sm:w-5" />
                   </div>
-                  <h3 className="text-sm font-black text-[#3730A3] uppercase tracking-wider mb-2">{lh.name}</h3>
-                  <p className="text-[11px] text-slate-400 leading-relaxed font-semibold mb-4">{lh.desc}</p>
+                  <h3 className="text-xs sm:text-sm font-black text-[#3730A3] uppercase tracking-wider mb-1 sm:mb-2 leading-tight">{lh.name}</h3>
+                  <p className="text-[9px] sm:text-[11px] text-slate-400 leading-relaxed font-semibold mb-3 sm:mb-4">{lh.desc}</p>
                 </div>
 
-                <div className="border-t border-slate-100 pt-3 flex items-center justify-between text-[9px] font-mono font-black uppercase text-[#6366F1] tracking-wider">
+                <div className="border-t border-slate-100 pt-2.5 sm:pt-3 flex flex-col xs:flex-row xs:items-center justify-between text-[8px] sm:text-[9px] font-mono font-black uppercase text-[#6366F1] tracking-wider gap-0.5 xs:gap-0">
                   <span>Standard</span>
-                  <span>{lh.score}</span>
+                  <span className="truncate">{lh.score}</span>
                 </div>
               </motion.div>
             ))}
@@ -997,7 +998,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
             <div className="flex justify-center"><RedDivider /></div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 max-w-5xl mx-auto">
             {chooseCards.map((cc, idx) => {
               const Icon = cc.icon;
               return (
@@ -1008,15 +1009,15 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:border-[#6366F1] hover:shadow-[0_12px_35px_rgba(99,102,241,0.1)] transition-all duration-300 text-left group cursor-pointer"
+                  className="bg-white border border-slate-200/80 rounded-2xl p-3 sm:p-6 shadow-sm hover:border-[#6366F1] hover:shadow-[0_12px_35px_rgba(99,102,241,0.1)] transition-all duration-300 text-left group cursor-pointer"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#3730A3]/6 text-[#3730A3] flex items-center justify-center mb-5 border border-[#3730A3]/10 group-hover:bg-[#3730A3] group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition duration-300">
-                    <Icon className="h-5 w-5" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#3730A3]/6 text-[#3730A3] flex items-center justify-center mb-3 sm:mb-5 border border-[#3730A3]/10 group-hover:bg-[#3730A3] group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition duration-300">
+                    <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                   </div>
-                  <h3 className="text-xs font-black text-[#3730A3] uppercase tracking-wider mb-2 group-hover:text-[#6366F1] transition-colors">
+                  <h3 className="text-[10px] sm:text-xs font-black text-[#3730A3] uppercase tracking-wider mb-1 sm:mb-2 group-hover:text-[#6366F1] transition-colors leading-tight min-h-[30px] sm:min-h-0">
                     {cc.title}
                   </h3>
-                  <p className="text-[10px] text-slate-400 leading-relaxed font-semibold">
+                  <p className="text-[9px] sm:text-[10px] text-slate-400 leading-relaxed font-semibold">
                     {cc.desc}
                   </p>
                 </motion.div>
