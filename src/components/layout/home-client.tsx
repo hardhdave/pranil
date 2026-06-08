@@ -8,6 +8,7 @@ import { ValuesSection } from "@/components/sections/values-section";
 import { VisionSection } from "@/components/sections/vision-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { FaqSection } from "@/components/sections/faq-section";
+import { FoundersSection } from "@/components/sections/founders-section";
 import { ContactSection } from "@/components/sections/contact-section";
 
 /*
@@ -66,6 +67,13 @@ export function HomeClient() {
 
         <section
           className="relative z-[7] -mt-4 rounded-t-[2.5rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-4px_24px_rgba(0,0,0,0.06)]"
+          style={{ willChange: "transform" }}
+        >
+          <FoundersSection />
+        </section>
+
+        <section
+          className="relative z-[8] -mt-4 rounded-t-[2.5rem] sm:rounded-t-[3rem] bg-[var(--gray-50)] shadow-[0_-4px_24px_rgba(0,0,0,0.06)]"
           style={{ willChange: "transform" }}
         >
           <ContactSection />

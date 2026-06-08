@@ -119,7 +119,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
           </div>
 
           <div className="hidden lg:flex items-center gap-9">
-            {["Hero", "About", "Services", "Portfolio", "Dashboard", "Team", "Contact"].map((item) => (
+            {["Hero", "About", "Services", "Portfolio", "Dashboard", "Contact"].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`}
@@ -156,7 +156,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
             className="fixed top-20 left-0 right-0 bg-[#0F1117] border-b border-white/5 shadow-xl z-40 lg:hidden p-6 space-y-4"
           >
             <div className="flex flex-col gap-4">
-              {["Hero", "About", "Services", "Portfolio", "Dashboard", "Team", "Contact"].map((item) => (
+              {["Hero", "About", "Services", "Portfolio", "Dashboard", "Contact"].map((item) => (
                 <a 
                   key={item} 
                   href={`#${item.toLowerCase()}`}
@@ -966,43 +966,7 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  FOUNDERS / TEAM SECTION                                          */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section id="team" className="py-28 bg-[#0F1117] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center mb-20 max-w-lg mx-auto">
-            <span className="text-[#FF7A00] text-[10px] font-extrabold uppercase tracking-[0.3em] block mb-3">Our leadership</span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight">Meet The Founders</h2>
-            <div className="w-12 h-1 bg-gradient-to-r from-[#FF7A00] to-[#8B5CF6] mx-auto rounded-full mt-4" />
-          </div>
 
-          <div className="flex flex-wrap justify-center gap-8 text-left">
-            {[
-              { name: "Komal Tewari", title: "Founder & Director", details: "Managing creative pipelines and brand architectures across corporate projects.", img: "photo-1573496359142-b8d87734a5a2" },
-              { name: "Arvind Tewari", title: "Co-Founder & Director", details: "Coordinating technical structures, campaigns, and digital infrastructure operations.", img: "photo-1560250097-0b93528c311a" }
-            ].map((f, idx) => (
-              <div 
-                key={idx}
-                className="w-full max-w-[340px] bg-[#161922]/50 border border-white/5 rounded-3xl p-6 shadow-xl flex flex-col items-center text-center relative overflow-hidden"
-              >
-                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white/10 mb-6 bg-slate-900 shadow-inner">
-                  <img 
-                    src={`https://images.unsplash.com/${f.img}?auto=format&fit=crop&w=200&q=80`} 
-                    alt={f.name} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <h3 className="text-base font-black text-white uppercase tracking-wider">{f.name}</h3>
-                  <span className="text-[9px] text-[#0099FF] font-black uppercase tracking-widest block">{f.title}</span>
-                  <p className="text-[11px] text-slate-400 font-medium leading-relaxed max-w-[240px] mx-auto">{f.details}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  FINAL CTA & METRICS                                              */}
@@ -1202,8 +1166,6 @@ export function DigitalMediaCompanyClient({ data }: { data: CompanyPageData }) {
                 {[
                   { Icon: Facebook, href: "https://www.facebook.com/share/1AHGgjP4Qn/" },
                   { Icon: Instagram, href: "https://www.instagram.com/karvdigitalmedia?igsh=c2hxdXgxYWFjOGRp" },
-                  { Icon: Twitter, href: "#" },
-                  { Icon: Youtube, href: "#" },
                 ].map((item, i) => (
                   <a key={i} href={item.href} target={item.href !== "#" ? "_blank" : undefined} rel={item.href !== "#" ? "noopener noreferrer" : undefined} className="w-9 h-9 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/50 hover:bg-[#0099FF] hover:text-white hover:border-transparent transition">
                     <item.Icon className="h-4 w-4" />

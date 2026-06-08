@@ -545,15 +545,27 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
           </div>
           
           <div className="hidden lg:flex items-center gap-9">
-            {["Home", "About Us", "Industries", "Services", "Success Stories", "Contact"].map((item) => (
-              <a 
-                key={item} 
-                href={item === "Home" ? "#" : `#${item.toLowerCase().replace(/ /g, "-")}`} 
-                className="text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-[#0B4F8A] transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#0B4F8A] hover:after:w-full after:transition-all after:duration-300"
-              >
-                {item}
-              </a>
-            ))}
+            {["Home", "About Us", "Industries", "Services", "Success Stories", "Contact"].map((item) => {
+              let href = "#";
+              if (item !== "Home") {
+                if (item === "Contact") {
+                  href = "#contact-form";
+                } else if (item === "About Us") {
+                  href = "#journey";
+                } else {
+                  href = `#${item.toLowerCase().replace(/ /g, "-")}`;
+                }
+              }
+              return (
+                <a 
+                  key={item} 
+                  href={href} 
+                  className="text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-[#0B4F8A] transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#0B4F8A] hover:after:w-full after:transition-all after:duration-300"
+                >
+                  {item}
+                </a>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-4">
@@ -584,16 +596,28 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
             className="fixed top-20 left-0 right-0 bg-white border-b border-slate-100 shadow-xl z-40 lg:hidden p-6 space-y-4"
           >
             <div className="flex flex-col gap-4">
-              {["Home", "About Us", "Industries", "Services", "Success Stories", "Contact"].map((item) => (
-                <a 
-                  key={item} 
-                  href={item === "Home" ? "#" : `#${item.toLowerCase().replace(/ /g, "-")}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-xs font-black text-slate-500 uppercase tracking-widest hover:text-[#0B4F8A] transition py-2 border-b border-slate-50"
-                >
-                  {item}
-                </a>
-              ))}
+              {["Home", "About Us", "Industries", "Services", "Success Stories", "Contact"].map((item) => {
+                let href = "#";
+                if (item !== "Home") {
+                  if (item === "Contact") {
+                    href = "#contact-form";
+                  } else if (item === "About Us") {
+                    href = "#journey";
+                  } else {
+                    href = `#${item.toLowerCase().replace(/ /g, "-")}`;
+                  }
+                }
+                return (
+                  <a 
+                    key={item} 
+                    href={href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-xs font-black text-slate-500 uppercase tracking-widest hover:text-[#0B4F8A] transition py-2 border-b border-slate-50"
+                  >
+                    {item}
+                  </a>
+                );
+              })}
               <a 
                 href="#contact-form"
                 onClick={() => setMobileMenuOpen(false)}
@@ -1079,7 +1103,6 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
               <div className="flex gap-3">
                 {[
                   { SIcon: Facebook, href: "https://www.facebook.com/share/18jzwzF5fx/" },
-                  { SIcon: Twitter, href: "#" },
                   { SIcon: Linkedin, href: "#" },
                   { SIcon: Instagram, href: "https://www.instagram.com/pranil_recruitment_services?igsh=MTMyanQ5b2V0cWV3Ng==" },
                 ].map((item, i) => (

@@ -252,7 +252,7 @@ export const companyPages: Record<string, CompanyPageData> = {
     ctaTitle: "Plan Your Dream Vacation Today",
     ctaDescription: "Get a customized itinerary and the best deals on flights, hotels, and tour packages.",
     phone: "+91 88499 48279",
-    email: "admin@pranileducation.com"
+    email: "praniltoursandtravel@gmail.com"
   },
 
   "digital-media": {

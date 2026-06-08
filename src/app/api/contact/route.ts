@@ -9,7 +9,7 @@ const companyEmailConfig: Record<string, { to: string; name: string; phone: stri
     phone: "+91 73839 97825 / +91 88499 48279",
   },
   "pranil-travel": {
-    to: "admin@pranileducation.com, pranileducation76@gmail.com",
+    to: "praniltoursandtravel@gmail.com, pranileducation76@gmail.com",
     name: "PRANIL Tours & Travels",
     phone: "+91 88499 48279",
   },

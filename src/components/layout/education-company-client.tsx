@@ -10,7 +10,7 @@ import {
   Facebook, Instagram, GraduationCap, FileCheck2,
   BookOpen, ScrollText, CheckCircle2, Landmark,
   Award, Plane, Users, Compass, HelpCircle, ChevronRight,
-  TrendingUp, Users2, FileText, Globe, Sparkles, Briefcase, Heart, Menu, X
+  TrendingUp, Users2, FileText, Globe, Sparkles, Briefcase, Heart, Menu, X, Youtube
 } from "lucide-react";
 import type { CompanyPageData } from "@/lib/company-pages-data";
 import { EarthGlobe3D } from "@/components/ui/earth-globe-3d";
@@ -612,15 +612,27 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
           </div>
           
           <div className="hidden lg:flex items-center gap-9">
-            {["Home", "About Us", "Destinations", "Training", "Pathways", "Contact"].map((item) => (
-              <a 
-                key={item} 
-                href={item === "Home" ? "#" : `#${item.toLowerCase().replace(/ /g, "-")}`} 
-                className="text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-[#E11D48] transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#E11D48] hover:after:w-full after:transition-all after:duration-300"
-              >
-                {item}
-              </a>
-            ))}
+            {["Home", "About Us", "Destinations", "Training", "Pathways", "Contact"].map((item) => {
+              let href = "#";
+              if (item !== "Home") {
+                if (item === "Contact") {
+                  href = "#contact-form";
+                } else if (item === "About Us") {
+                  href = "#why-us";
+                } else {
+                  href = `#${item.toLowerCase().replace(/ /g, "-")}`;
+                }
+              }
+              return (
+                <a 
+                  key={item} 
+                  href={href} 
+                  className="text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-[#E11D48] transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#E11D48] hover:after:w-full after:transition-all after:duration-300"
+                >
+                  {item}
+                </a>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-4">
@@ -651,16 +663,28 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
             className="fixed top-20 left-0 right-0 bg-white border-b border-slate-100 shadow-xl z-40 lg:hidden p-6 space-y-4"
           >
             <div className="flex flex-col gap-4">
-              {["Home", "About Us", "Destinations", "Training", "Pathways", "Contact"].map((item) => (
-                <a 
-                  key={item} 
-                  href={item === "Home" ? "#" : `#${item.toLowerCase().replace(/ /g, "-")}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-xs font-black text-slate-500 uppercase tracking-widest hover:text-[#E11D48] transition py-2 border-b border-slate-50"
-                >
-                  {item}
-                </a>
-              ))}
+              {["Home", "About Us", "Destinations", "Training", "Pathways", "Contact"].map((item) => {
+                let href = "#";
+                if (item !== "Home") {
+                  if (item === "Contact") {
+                    href = "#contact-form";
+                  } else if (item === "About Us") {
+                    href = "#why-us";
+                  } else {
+                    href = `#${item.toLowerCase().replace(/ /g, "-")}`;
+                  }
+                }
+                return (
+                  <a 
+                    key={item} 
+                    href={href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-xs font-black text-slate-500 uppercase tracking-widest hover:text-[#E11D48] transition py-2 border-b border-slate-50"
+                  >
+                    {item}
+                  </a>
+                );
+              })}
               <a 
                 href="#contact-form"
                 onClick={() => setMobileMenuOpen(false)}
@@ -852,7 +876,9 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
             <SectionTitle>Services & Visa Categories</SectionTitle>
             <div className="flex justify-center"><RedDivider /></div>
           </div>
-          <VisaPathwaysDashboard />
+          <div id="pathways">
+            <VisaPathwaysDashboard />
+          </div>
         </div>
       </section>
 
@@ -1157,8 +1183,8 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
               <div className="flex gap-3">
                 {[
                   { SIcon: Facebook, href: "https://www.facebook.com/share/18i3WEoGMT/" },
-                  { SIcon: Twitter, href: "#" },
                   { SIcon: Instagram, href: "https://www.instagram.com/pranil_education_services_llp?igsh=b3dlanZuaXpsZzUy" },
+                  { SIcon: Youtube, href: "https://youtube.com/@pranileducationservices?si=zISk1AzY8EAwiflh" },
                 ].map((item, i) => (
                   <a key={i} href={item.href} target={item.href !== "#" ? "_blank" : undefined} rel={item.href !== "#" ? "noopener noreferrer" : undefined} className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition">
                     <item.SIcon className="h-3.5 w-3.5" />

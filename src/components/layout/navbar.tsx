@@ -21,10 +21,10 @@ const dropdownCompanies = [
     color: "#991B1B",
     accentColor: "#E11D48",
     subItems: [
-      { label: "Student Visa (USA, UK, Canada)", href: "/companies/education#coaching" },
-      { label: "Visitor & Tourist Visa", href: "/companies/education#visa-process" },
-      { label: "Canada PR & Express Entry", href: "/companies/education#visa-process" },
-      { label: "IELTS / PTE / Duolingo Coaching", href: "/companies/education#coaching" }
+      { label: "Student Visa (USA, UK, Canada)", href: "/companies/education#destinations" },
+      { label: "Visitor & Tourist Visa", href: "/companies/education#destinations" },
+      { label: "Canada PR & Express Entry", href: "/companies/education#destinations" },
+      { label: "IELTS / PTE / Duolingo Coaching", href: "/companies/education#training" }
     ]
   },
   {
@@ -35,8 +35,8 @@ const dropdownCompanies = [
     color: "#0B4F8A",
     accentColor: "#00A6D6",
     subItems: [
-      { label: "Overseas Placements", href: "/companies/recruitment#why-choose-us" },
-      { label: "Corporate HR Consultancy", href: "/companies/recruitment#why-choose-us" },
+      { label: "Overseas Placements", href: "/companies/recruitment#why-us" },
+      { label: "Corporate HR Consultancy", href: "/companies/recruitment#why-us" },
       { label: "Global Talent Acquisition", href: "/companies/recruitment" }
     ]
   },
