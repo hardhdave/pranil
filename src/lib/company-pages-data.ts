@@ -38,7 +38,7 @@ export const companyPages: Record<string, CompanyPageData> = {
     logoUrl: "/logos/main-logo.png",
     color: "#991B1B",
     accentColor: "#E11D48",
-    heroImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2000&q=90",
+    heroImage: "/image.png",
     heroTitle: "Your Gateway to Global Education",
     heroSubtitle: "Expert visa consulting, university admissions & career counselling across 15+ countries. We turn your study abroad dreams into reality.",
     about: {

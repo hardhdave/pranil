@@ -13,7 +13,7 @@ import {
   TrendingUp, Users2, FileText, Globe, Sparkles, Briefcase, Heart, Menu, X, Youtube
 } from "lucide-react";
 import type { CompanyPageData } from "@/lib/company-pages-data";
-import { EarthGlobe3D } from "@/components/ui/earth-globe-3d";
+
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /*  HELPERS & SUB-COMPONENTS                                                 */
@@ -21,7 +21,7 @@ import { EarthGlobe3D } from "@/components/ui/earth-globe-3d";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="text-[#E11D48] text-[11px] font-black uppercase tracking-[0.25em] block mb-2">
+    <span className="text-[#6366F1] text-[11px] font-black uppercase tracking-[0.25em] block mb-2">
       {children}
     </span>
   );
@@ -29,7 +29,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <h2 className={`font-display text-2xl sm:text-[2.2rem] font-black text-[#991B1B] leading-[1.2] tracking-tight ${className}`}>
+    <h2 className={`font-display text-2xl sm:text-[2.2rem] font-black text-[#3730A3] leading-[1.2] tracking-tight ${className}`}>
       {children}
     </h2>
   );
@@ -64,7 +64,7 @@ function StudentSlideshow() {
   const active = students[idx];
 
   return (
-    <div className="relative w-full max-w-[240px] bg-white/95 backdrop-blur-md border border-white/70 rounded-3xl p-4 shadow-2xl overflow-hidden group flex flex-col text-left">
+    <div className="relative w-full max-w-[240px] bg-slate-950/85 backdrop-blur-xl border border-white/10 rounded-3xl p-4 shadow-2xl overflow-hidden group flex flex-col text-left">
       {/* Opacity-only fade — no y-movement prevents any layout shift */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -76,21 +76,21 @@ function StudentSlideshow() {
           className="flex flex-col gap-3"
         >
           {/* Portrait Image */}
-          <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shrink-0 border border-slate-100 shadow-sm relative bg-slate-100">
+          <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden shrink-0 border border-white/5 shadow-sm relative bg-slate-900">
             <img src={active.image} alt={active.name} className="w-full h-full object-cover object-top" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             {/* Country badge */}
-            <div className="absolute top-2.5 right-2.5 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full border border-white/20 shadow-sm">
+            <div className="absolute top-2.5 right-2.5 flex items-center gap-1 bg-slate-950/80 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 shadow-sm">
               <CircularFlag code={active.code} alt={active.destination} size={5} />
-              <span className="text-[8px] font-black uppercase text-[#991B1B] tracking-wider">{active.destination}</span>
+              <span className="text-[8px] font-black uppercase text-indigo-300 tracking-wider">{active.destination}</span>
             </div>
           </div>
           
           {/* Student details */}
           <div className="text-left min-w-0 px-0.5">
-            <h4 className="text-[11px] font-black text-[#991B1B] leading-tight mb-0.5">{active.name}</h4>
-            <p className="text-[9px] text-slate-500 font-bold leading-tight mb-1.5">{active.university}</p>
-            <span className="inline-block bg-[#E11D48]/8 border border-[#E11D48]/15 rounded-md px-2 py-0.5 text-[7px] font-black uppercase tracking-wider text-[#E11D48]">
+            <h4 className="text-[11px] font-black text-white leading-tight mb-0.5">{active.name}</h4>
+            <p className="text-[9px] text-slate-400 font-bold leading-tight mb-1.5">{active.university}</p>
+            <span className="inline-block bg-indigo-500/10 border border-indigo-500/20 rounded-md px-2 py-0.5 text-[7px] font-black uppercase tracking-wider text-indigo-300">
               {active.score}
             </span>
           </div>
@@ -98,13 +98,13 @@ function StudentSlideshow() {
       </AnimatePresence>
       
       {/* Indicators */}
-      <div className="flex gap-1.5 justify-center mt-3 pt-2 border-t border-slate-100/50">
+      <div className="flex gap-1.5 justify-center mt-3 pt-2 border-t border-white/5">
         {students.map((_, i) => (
           <button
             key={i}
             onClick={() => setIdx(i)}
             className="min-h-0 min-w-0 h-1 rounded-full transition-all duration-300 p-0 border-none outline-none shrink-0"
-            style={{ width: idx === i ? "20px" : "6px", backgroundColor: idx === i ? "#991B1B" : "#cbd5e1" }}
+            style={{ width: idx === i ? "20px" : "6px", backgroundColor: idx === i ? "#6366F1" : "rgba(255, 255, 255, 0.2)" }}
           />
         ))}
       </div>
@@ -139,7 +139,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 }
 
 function RedDivider() {
-  return <div className="h-[3px] w-14 bg-gradient-to-r from-[#991B1B] to-[#E11D48] mt-4" />;
+  return <div className="h-[3px] w-14 bg-gradient-to-r from-[#3730A3] to-[#6366F1] mt-4" />;
 }
 
 function CircularFlag({ code, alt, size = 12 }: { code: string; alt: string; size?: number }) {
@@ -147,7 +147,7 @@ function CircularFlag({ code, alt, size = 12 }: { code: string; alt: string; siz
   if (size === 12) sizeClass = "w-12 h-12";
   if (size === 5) sizeClass = "w-5 h-5";
   return (
-    <div className={`${sizeClass} rounded-full border border-slate-200 bg-slate-50 flex items-center justify-center overflow-hidden shrink-0 shadow-sm group-hover:scale-110 group-hover:border-[#E11D48] group-hover:shadow-md transition-all duration-500`}>
+    <div className={`${sizeClass} rounded-full border border-white/10 bg-slate-900 flex items-center justify-center overflow-hidden shrink-0 shadow-sm group-hover:scale-110 group-hover:border-[#6366F1] group-hover:shadow-md transition-all duration-500`}>
       <img 
         src={`https://flagcdn.com/w160/${code.toLowerCase()}.png`} 
         alt={alt} 
@@ -157,12 +157,42 @@ function CircularFlag({ code, alt, size = 12 }: { code: string; alt: string; siz
   );
 }
 
-const heroSlides = [
-  "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80",
-  "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80",
-  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80",
-  "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1920&q=80",
-  "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1920&q=80"
+const universitySlides = [
+  {
+    name: "Cambridge University",
+    location: "Cambridge, United Kingdom",
+    image: "/image.png",
+    quote: "Invest in yourself. Education pays the best interest.",
+    author: "Benjamin Franklin"
+  },
+  {
+    name: "Oxford University",
+    location: "Oxford, United Kingdom",
+    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80",
+    quote: "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.",
+    author: "Malcolm X"
+  },
+  {
+    name: "Harvard University",
+    location: "Massachusetts, USA",
+    image: "https://images.unsplash.com/photo-1622397333309-3056849bc70b?auto=format&fit=crop&w=1920&q=80",
+    quote: "The mind is not a vessel to be filled, but a fire to be kindled.",
+    author: "Plutarch"
+  },
+  {
+    name: "University of Toronto",
+    location: "Toronto, Canada",
+    image: "https://images.unsplash.com/photo-1592066575517-58df903152f2?auto=format&fit=crop&w=1920&q=80",
+    quote: "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+    author: "Mahatma Gandhi"
+  },
+  {
+    name: "Stanford University",
+    location: "Stanford, California, USA",
+    image: "https://images.unsplash.com/photo-1527891751199-7225231a68dd?auto=format&fit=crop&w=1920&q=80",
+    quote: "Real education should consist of drawing the goodness and the best out of our own students.",
+    author: "Cesar Chavez"
+  }
 ];
 
 // ─── Unified Visa Category Pathways Dashboard ───
@@ -298,12 +328,12 @@ function VisaPathwaysDashboard() {
               onClick={() => setActiveTab(key)}
               className={`flex items-center gap-3.5 p-4 rounded-2xl transition-all duration-300 border text-left ${
                 isSelected
-                  ? "bg-gradient-to-br from-[#991B1B] to-[#881337] border-[#991B1B] text-white shadow-lg shadow-[#991B1B]/10 scale-[1.02]"
+                  ? "bg-gradient-to-br from-[#3730A3] to-[#1E1B4B] border-[#3730A3] text-white shadow-lg shadow-[#3730A3]/10 scale-[1.02]"
                   : "bg-white border-slate-200/80 text-slate-600 hover:bg-slate-50 hover:border-slate-300"
               }`}
             >
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition duration-300 ${
-                isSelected ? "bg-white/10 border-white/20 text-white" : "bg-slate-50 border-slate-100 text-[#991B1B]"
+                isSelected ? "bg-white/10 border-white/20 text-white" : "bg-slate-50 border-slate-100 text-[#3730A3]"
               }`}>
                 <TabIcon className="h-5 w-5" />
               </div>
@@ -311,7 +341,7 @@ function VisaPathwaysDashboard() {
                 <div className={`text-xs font-black uppercase tracking-wider ${isSelected ? "text-white" : "text-slate-800"}`}>
                   {cat.title}
                 </div>
-                <div className={`text-[8px] font-bold uppercase tracking-widest mt-0.5 ${isSelected ? "text-[#E11D48]" : "text-slate-400"}`}>
+                <div className={`text-[8px] font-bold uppercase tracking-widest mt-0.5 ${isSelected ? "text-[#6366F1]" : "text-slate-400"}`}>
                   Visa Pathway
                 </div>
               </div>
@@ -327,12 +357,12 @@ function VisaPathwaysDashboard() {
         <div className="lg:col-span-5 bg-slate-50/50 border border-slate-200/60 rounded-3xl p-6 sm:p-8 min-h-[460px] flex flex-col justify-between shadow-sm">
           <div>
             <div className="flex items-center gap-4 pb-5 mb-5 border-b border-slate-200/60">
-              <div className="w-12 h-12 rounded-2xl bg-[#991B1B]/6 text-[#991B1B] flex items-center justify-center border border-[#991B1B]/10 shadow-inner">
+              <div className="w-12 h-12 rounded-2xl bg-[#3730A3]/6 text-[#3730A3] flex items-center justify-center border border-[#3730A3]/10 shadow-inner">
                 <ActiveIcon className="h-6 w-6" />
               </div>
               <div>
-                <span className="text-[9px] font-black text-[#E11D48] uppercase tracking-[0.2em]">{active.title} Services</span>
-                <h3 className="text-lg sm:text-xl font-black text-[#991B1B] uppercase tracking-wide leading-none mt-0.5">{active.intro}</h3>
+                <span className="text-[9px] font-black text-[#6366F1] uppercase tracking-[0.2em]">{active.title} Services</span>
+                <h3 className="text-lg sm:text-xl font-black text-[#3730A3] uppercase tracking-wide leading-none mt-0.5">{active.intro}</h3>
               </div>
             </div>
 
@@ -346,11 +376,11 @@ function VisaPathwaysDashboard() {
               <div className="space-y-4">
                 {active.process.map((p, idx) => (
                   <div key={idx} className="flex gap-4 items-start text-left">
-                    <div className="w-6 h-6 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center shrink-0 font-mono text-[10px] font-black text-[#991B1B]">
+                    <div className="w-6 h-6 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center shrink-0 font-mono text-[10px] font-black text-[#3730A3]">
                       {idx + 1}
                     </div>
                     <div>
-                      <h4 className="text-xs font-black text-[#991B1B] uppercase tracking-wider leading-none mb-1">{p.title}</h4>
+                      <h4 className="text-xs font-black text-[#3730A3] uppercase tracking-wider leading-none mb-1">{p.title}</h4>
                       <p className="text-[10px] text-slate-400 font-semibold leading-normal">{p.desc}</p>
                     </div>
                   </div>
@@ -362,7 +392,7 @@ function VisaPathwaysDashboard() {
           <div className="pt-6 border-t border-slate-200/60 mt-8">
             <a
               href="#contact-form"
-              className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#991B1B] to-[#E11D48] hover:from-[#E11D48] hover:to-[#881337] text-white text-xs font-black uppercase tracking-widest py-4 rounded-xl shadow-lg shadow-[#991B1B]/10 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-[#E11D48]/20"
+              className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#3730A3] to-[#6366F1] hover:from-[#6366F1] hover:to-[#1E1B4B] text-white text-xs font-black uppercase tracking-widest py-4 rounded-xl shadow-lg shadow-[#3730A3]/10 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-[#6366F1]/20"
             >
               Consult for {active.title}
             </a>
@@ -373,7 +403,7 @@ function VisaPathwaysDashboard() {
         <div className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl p-6 sm:p-8 shadow-sm">
           <div className="mb-6 flex justify-between items-center">
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Countries & Perks</span>
-            <span className="text-[9px] font-mono font-bold bg-[#E11D48]/8 text-[#E11D48] px-2 py-0.5 rounded-full border border-[#E11D48]/15 uppercase">
+            <span className="text-[9px] font-mono font-bold bg-[#6366F1]/8 text-[#6366F1] px-2 py-0.5 rounded-full border border-[#6366F1]/15 uppercase">
               {active.countries.length} Destinations
             </span>
           </div>
@@ -382,11 +412,11 @@ function VisaPathwaysDashboard() {
             {active.countries.map((c, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-100 hover:border-[#E11D48]/50 bg-slate-50/20 hover:bg-white hover:shadow-md transition-all duration-300 group"
+                className="flex items-start gap-3.5 p-4 rounded-2xl border border-slate-100 hover:border-[#6366F1]/50 bg-slate-50/20 hover:bg-white hover:shadow-md transition-all duration-300 group"
               >
                 <CircularFlag code={c.code} alt={c.name} size={12} />
                 <div className="text-left">
-                  <h4 className="text-xs font-black text-[#991B1B] uppercase tracking-wider mb-1 group-hover:text-[#E11D48] transition-colors">
+                  <h4 className="text-xs font-black text-[#3730A3] uppercase tracking-wider mb-1 group-hover:text-[#6366F1] transition-colors">
                     {c.name}
                   </h4>
                   <p className="text-[10px] text-slate-400 leading-normal font-semibold font-sans">
@@ -411,7 +441,7 @@ function StudentJourney() {
     {
       title: "Phase I: Foundation & Prep",
       desc: "Laying the groundwork for your international academic path.",
-      color: "from-[#991B1B] to-[#E11D48]",
+      color: "from-[#3730A3] to-[#6366F1]",
       steps: [
         { title: "Dream", desc: "Envision your global career and destination.", icon: Compass, num: 1 },
         { title: "Prepare", desc: "Profile assessment and university shortlisting.", icon: BookOpen, num: 2 },
@@ -421,7 +451,7 @@ function StudentJourney() {
     {
       title: "Phase II: Admissions & Filing",
       desc: "Navigating university applications and visa procedures.",
-      color: "from-[#E11D48] to-[#F43F5E]",
+      color: "from-[#6366F1] to-[#8B5CF6]",
       steps: [
         { title: "Apply", desc: "Structured admissions and scholarship filings.", icon: FileCheck2, num: 4 },
         { title: "Visa Approval", desc: "High-success immigration file reviews.", icon: ShieldCheck, num: 5 },
@@ -431,7 +461,7 @@ function StudentJourney() {
     {
       title: "Phase III: Arrival & Success",
       desc: "Succeeding in your studies and launching your global career.",
-      color: "from-[#F43F5E] to-[#991B1B]",
+      color: "from-[#8B5CF6] to-[#3730A3]",
       steps: [
         { title: "Study", desc: "Engage in international university systems.", icon: GraduationCap, num: 7 },
         { title: "Graduate", desc: "Complete degree programs with high grades.", icon: Award, num: 8 },
@@ -450,7 +480,7 @@ function StudentJourney() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.6, delay: pIdx * 0.15 }}
-            className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.015)] relative overflow-hidden flex flex-col justify-between group hover:border-[#E11D48]/30 hover:shadow-[0_15px_40px_rgba(153,27,27,0.04)] transition-all duration-500"
+            className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.015)] relative overflow-hidden flex flex-col justify-between group hover:border-[#6366F1]/30 hover:shadow-[0_15px_40px_rgba(99,102,241,0.04)] transition-all duration-500"
           >
             {/* Ambient corner glow */}
             <div className={`absolute top-0 right-0 w-24 h-24 rounded-full blur-2xl opacity-40 -mr-6 -mt-6 bg-gradient-to-br ${phase.color}`} />
@@ -471,7 +501,7 @@ function StudentJourney() {
                   <motion.div
                     animate={{ y: ["-100%", "100%"] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                    className={`w-full h-1/2 bg-gradient-to-b from-transparent via-[#E11D48] to-transparent`}
+                    className={`w-full h-1/2 bg-gradient-to-b from-transparent via-[#6366F1] to-transparent`}
                   />
                 </div>
 
@@ -480,8 +510,8 @@ function StudentJourney() {
                   return (
                     <div key={sIdx} className="flex items-start gap-4 text-left relative z-10 group/step">
                       {/* Step Circle Node */}
-                      <div className="w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center shrink-0 group-hover/step:border-[#E11D48] group-hover/step:shadow-[0_0_15px_rgba(225,29,72,0.15)] transition-all duration-300 relative bg-white">
-                        <Icon className="h-5 w-5 text-[#991B1B] group-hover/step:text-[#E11D48] transition-colors" />
+                      <div className="w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center shrink-0 group-hover/step:border-[#6366F1] group-hover/step:shadow-[0_0_15px_rgba(99,102,241,0.15)] transition-all duration-300 relative bg-white">
+                        <Icon className="h-5 w-5 text-[#3730A3] group-hover/step:text-[#6366F1] transition-colors" />
                         <div className="absolute -top-1 -right-1 bg-slate-50 border border-slate-200 text-[7px] font-mono px-1 py-0.5 rounded text-slate-500">
                           {s.num}
                         </div>
@@ -489,7 +519,7 @@ function StudentJourney() {
 
                       {/* Step Description */}
                       <div className="pt-1">
-                        <h4 className="text-xs font-black text-[#991B1B] uppercase tracking-wider mb-1 group-hover/step:text-[#E11D48] transition-colors">
+                        <h4 className="text-xs font-black text-[#3730A3] uppercase tracking-wider mb-1 group-hover/step:text-[#6366F1] transition-colors">
                           {s.title}
                         </h4>
                         <p className="text-[10px] text-slate-400 leading-relaxed font-semibold">
@@ -538,10 +568,10 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setHeroSlideIdx((prev) => (prev + 1) % heroSlides.length);
+      setHeroSlideIdx((prev) => (prev + 1) % universitySlides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [heroSlideIdx]);
 
   useEffect(() => {
     const handler = () => setScrolledNav(window.scrollY > 60);
@@ -593,7 +623,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
   ];
 
   return (
-    <div className="bg-[#F4F7FB] text-slate-800 min-h-screen font-sans antialiased overflow-hidden relative selection:bg-[#E11D48]/10 selection:text-[#991B1B]">
+    <div className="bg-[#F8FAFF] text-slate-800 min-h-screen font-sans antialiased overflow-hidden relative selection:bg-[#6366F1]/10 selection:text-[#3730A3]">
       
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/*  1. NAVBAR                                                        */}
@@ -601,13 +631,13 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAFBFD]/80 backdrop-blur-xl border-b border-slate-100/50 shadow-[0_2px_30px_rgba(0,0,0,0.02)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
           <div className="flex items-center gap-6">
-            <Link href="/" className="group text-[10px] font-black text-slate-400 hover:text-[#E11D48] transition-all flex items-center gap-1.5 uppercase tracking-wider">
+            <Link href="/" className="group text-[10px] font-black text-slate-400 hover:text-[#6366F1] transition-all flex items-center gap-1.5 uppercase tracking-wider">
               <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-1 transition-transform" /> Home
             </Link>
             <span className="text-slate-200">|</span>
-            <span className="text-xl font-black text-[#991B1B] tracking-tight flex items-center gap-2">
+            <span className="text-xl font-black text-[#3730A3] tracking-tight flex items-center gap-2">
               <Image src="/logos/main-logo.png" alt="PRANIL Education" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
-              PRANIL <span className="text-[#E11D48] font-semibold">Education</span>
+              PRANIL <span className="text-[#6366F1] font-semibold">Education</span>
             </span>
           </div>
           
@@ -627,7 +657,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
                 <a 
                   key={item} 
                   href={href} 
-                  className="text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-[#E11D48] transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#E11D48] hover:after:w-full after:transition-all after:duration-300"
+                  className="text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-[#6366F1] transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#6366F1] hover:after:w-full after:transition-all after:duration-300"
                 >
                   {item}
                 </a>
@@ -636,15 +666,15 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="#contact-form" className="hidden sm:inline-block relative group overflow-hidden bg-gradient-to-r from-[#991B1B] to-[#E11D48] text-white text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-xl hover:shadow-[0_8px_25px_rgba(225,29,72,0.25)] transition-all">
+            <a href="#contact-form" className="hidden sm:inline-block relative group overflow-hidden bg-gradient-to-r from-[#3730A3] to-[#6366F1] text-white text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-xl hover:shadow-[0_8px_25px_rgba(99,102,241,0.25)] transition-all">
               <span className="relative z-10">Apply Now</span>
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-[#E11D48] to-[#881337] transition-transform duration-500" />
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-[#6366F1] to-[#1E1B4B] transition-transform duration-500" />
             </a>
 
             {/* Mobile hamburger menu button */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-slate-100 text-[#991B1B] hover:bg-slate-200 transition cursor-pointer"
+              className="lg:hidden p-2 rounded-xl bg-slate-100 text-[#3730A3] hover:bg-slate-200 transition cursor-pointer"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -679,7 +709,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
                     key={item} 
                     href={href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-xs font-black text-slate-500 uppercase tracking-widest hover:text-[#E11D48] transition py-2 border-b border-slate-50"
+                    className="text-xs font-black text-slate-500 uppercase tracking-widest hover:text-[#6366F1] transition py-2 border-b border-slate-50"
                   >
                     {item}
                   </a>
@@ -688,7 +718,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
               <a 
                 href="#contact-form"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full bg-gradient-to-r from-[#991B1B] to-[#E11D48] text-white text-center text-xs font-black uppercase tracking-widest py-3.5 rounded-xl block mt-2"
+                className="w-full bg-gradient-to-r from-[#3730A3] to-[#6366F1] text-white text-center text-xs font-black uppercase tracking-widest py-3.5 rounded-xl block mt-2"
               >
                 Apply Now
               </a>
@@ -697,154 +727,179 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
         )}
       </AnimatePresence>
 
-      {/* 2. HERO — Centered layout with fanned visual dashboard cards */}
-      <section ref={heroRef} className="relative min-h-[95vh] lg:min-h-screen pt-32 pb-20 overflow-hidden z-10 flex items-center bg-[#F4F7FB] border-b border-slate-200/50">
+      {/* 2. HERO — Full-Width Cinematic University Showcase */}
+      <section ref={heroRef} className="relative min-h-[100vh] pt-24 pb-24 overflow-hidden z-10 flex items-center bg-slate-950">
         
-        {/* Full-bleed background image slideshow with slow zoom transition (Ken Burns effect) */}
+        {/* Full-bleed background — university campus images at high visibility */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={heroSlideIdx}
-              initial={{ scale: 1.08, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.75 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.85 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-              style={{ backgroundImage: `url(${heroSlides[heroSlideIdx]})` }}
+              transition={{ duration: 0.5, ease: "linear" }}
+              style={{ backgroundImage: `url(${universitySlides[heroSlideIdx].image})` }}
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             />
           </AnimatePresence>
-          {/* Dark Red Gradient Overlays to preserve white text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#991B1B] via-[#991B1B]/85 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#F4F7FB] via-transparent to-[#991B1B]/40" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:44px_44px]" />
+          {/* Dark overlay gradients for text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-transparent to-slate-950/20" />
           
-          {/* Ambient light glow spheres */}
-          <div className="absolute top-[12%] left-[30%] w-[550px] h-[550px] rounded-full bg-[#E11D48]/12 blur-[130px] pointer-events-none" />
+          {/* Subtle grid texture */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:50px_50px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-4">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+        {/* Main hero content — centered layout */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
             
-            {/* Left Column: Centered-left Typography & CTA */}
-            <motion.div 
-              style={{ y: textY, opacity: textOpacity }}
-              className="lg:col-span-6 text-left flex flex-col justify-center items-start"
+            {/* Badge */}
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 text-amber-300 text-[10px] font-black uppercase tracking-[0.3em] mb-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-5 py-2.5"
             >
-              <span className="inline-flex items-center gap-1.5 text-[#991B1B] text-[10px] font-black uppercase tracking-[0.25em] mb-5 bg-white/90 backdrop-blur-sm border border-white/50 rounded-full px-3.5 py-1.5 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] animate-pulse" />
-                TRUSTED IMMIGRATION SERVICES
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              PRANIL EDUCATION — TRUSTED IMMIGRATION SERVICES
+            </motion.span>
+
+            {/* Main heading */}
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-[2.6rem] sm:text-[4rem] lg:text-[5.2rem] font-black text-white leading-[1.1] mb-6 tracking-tight"
+            >
+              Your Future <br />
+              <span className="bg-gradient-to-r from-[#FBBF24] via-[#F59E0B] to-[#D97706] bg-clip-text text-transparent italic whitespace-nowrap">
+                Has No Borders
               </span>
+            </motion.h1>
 
-              <h1 className="font-display text-[2.8rem] sm:text-[3.8rem] lg:text-[4.2rem] font-black text-white leading-[1.1] mb-6 tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
-                Your Future<br />
-                <span className="bg-gradient-to-r from-[#FFD700] via-[#FFC107] to-[#FFAA00] bg-clip-text text-transparent italic drop-shadow-none">
-                  Has No Borders
-                </span>
-              </h1>
-
-              <p className="text-white/90 text-sm sm:text-base leading-[1.8] font-medium max-w-lg mb-8 drop-shadow-[0_1px_3px_rgba(0,0,0,0.2)]">
-                From IELTS preparation to university admissions, student visas, work permits and permanent residency pathways, we help students and professionals build successful global futures.
-              </p>
-
-              <div className="flex flex-wrap gap-4">
-                <a href="#destinations" className="inline-flex items-center justify-center bg-gradient-to-r from-[#991B1B] to-[#E11D48] hover:from-[#E11D48] hover:to-[#881337] text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:shadow-[#E11D48]/20 transition-all hover:scale-[1.02] gap-2">
-                  Explore Destinations <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-                <a href="#contact-form" className="inline-flex items-center justify-center bg-white/10 border border-white/20 text-white hover:bg-white/25 text-xs font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all gap-2 hover:scale-[1.02] shadow-sm">
-                  Book Free Consultation
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Right Column: Fanned visual dashboard cards stack beside quotes */}
-            <motion.div
-              style={{ y: cardsY, scale: cardsScale, opacity: cardsOpacity }}
-              className="lg:col-span-6 relative w-full flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-3 py-12"
+            {/* Description */}
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-slate-300/90 text-base sm:text-lg leading-[1.8] font-medium max-w-2xl mb-8"
             >
-              {/* Card 1: Left Rotated Card (Language Prep Stats) */}
-              <motion.div
-                initial={{ opacity: 0, y: 40, rotate: 0 }}
-                animate={{ opacity: 1, y: 0, rotate: -6 }}
-                whileHover={{ y: -10, scale: 1.04, rotate: 0, zIndex: 30 }}
-                transition={{ type: "spring", stiffness: 90, damping: 14 }}
-                className="w-full max-w-[210px] bg-white/90 backdrop-blur-md border border-white/70 rounded-3xl p-5 shadow-xl text-left shrink-0 cursor-pointer hover:shadow-2xl sm:-mr-8"
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <div className="w-9 h-9 rounded-xl bg-[#E11D48]/8 flex items-center justify-center text-[#E11D48] border border-[#E11D48]/15">
-                    <BookOpen className="h-4.5 w-4.5" />
-                  </div>
-                  <span className="inline-block bg-[#E11D48]/8 border border-[#E11D48]/15 rounded-md px-2 py-0.5 text-[8px] font-black uppercase text-[#E11D48]">Academy</span>
-                </div>
-                <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Language Coaching</h4>
-                <h3 className="text-xs font-black text-[#991B1B] uppercase mb-3 tracking-wider">Expert Preparation</h3>
-                <div className="space-y-2 text-[10px] font-bold">
-                  <div className="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                    <span className="text-slate-500">IELTS Classes</span>
-                    <span className="text-[#E11D48] font-black">Band 7.5+</span>
-                  </div>
-                  <div className="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                    <span className="text-slate-500">PTE Academic</span>
-                    <span className="text-[#E11D48] font-black">79+ Score</span>
-                  </div>
-                  <div className="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                    <span className="text-slate-500">Duolingo Test</span>
-                    <span className="text-[#E11D48] font-black">125+ Score</span>
-                  </div>
-                </div>
-              </motion.div>
+              From expert IELTS/PTE preparation to university admissions, study visas, work permits and permanent residency — we help students and professionals build successful global futures.
+            </motion.p>
 
-              {/* Card 2: Center Elevated Card (Student Showcase slideshow) */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -12, scale: 1.05, zIndex: 30 }}
-                transition={{ type: "spring", stiffness: 90, damping: 14 }}
-                className="z-10 shadow-2xl shrink-0 scale-95 sm:scale-100"
-              >
-                <StudentSlideshow />
-              </motion.div>
-
-              {/* Card 3: Right Rotated Card (Global Pathways countries list) */}
-              <motion.div
-                initial={{ opacity: 0, y: 40, rotate: 0 }}
-                animate={{ opacity: 1, y: 0, rotate: 6 }}
-                whileHover={{ y: -10, scale: 1.04, rotate: 0, zIndex: 30 }}
-                transition={{ type: "spring", stiffness: 90, damping: 14 }}
-                className="w-full max-w-[210px] bg-white/90 backdrop-blur-md border border-white/70 rounded-3xl p-5 shadow-xl text-left shrink-0 cursor-pointer hover:shadow-2xl sm:-ml-8"
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <div className="w-9 h-9 rounded-xl bg-[#991B1B]/8 flex items-center justify-center text-[#991B1B] border border-[#991B1B]/15">
-                    <Globe className="h-4.5 w-4.5" />
-                  </div>
-                  <span className="inline-block bg-[#991B1B]/8 border border-[#991B1B]/15 rounded-md px-2 py-0.5 text-[8px] font-black uppercase text-[#991B1B]">Pathways</span>
-                </div>
-                <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Global Transits</h4>
-                <h3 className="text-xs font-black text-[#991B1B] uppercase mb-3 tracking-wider">Active Countries</h3>
-                <div className="grid grid-cols-2 gap-2 text-[9px] font-black uppercase tracking-wider text-slate-600">
-                  <div className="flex items-center gap-1.5 bg-slate-50 p-2 rounded-xl border border-slate-100">
-                    <CircularFlag code="ca" alt="Canada" size={5} />
-                    <span>Canada</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 bg-slate-50 p-2 rounded-xl border border-slate-100">
-                    <CircularFlag code="au" alt="Australia" size={5} />
-                    <span>Australia</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 bg-slate-50 p-2 rounded-xl border border-slate-100">
-                    <CircularFlag code="gb" alt="UK" size={5} />
-                    <span>UK</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 bg-slate-50 p-2 rounded-xl border border-slate-100">
-                    <CircularFlag code="de" alt="Germany" size={5} />
-                    <span>Germany</span>
-                  </div>
-                </div>
-              </motion.div>
-
+            {/* CTAs */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap gap-4 justify-center mb-12"
+            >
+              <a href="#destinations" className="inline-flex items-center justify-center bg-gradient-to-r from-[#4F46E5] to-[#6366F1] hover:from-[#6366F1] hover:to-[#4F46E5] text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-xl shadow-lg shadow-indigo-600/25 hover:shadow-xl hover:shadow-indigo-600/35 transition-all hover:scale-[1.03] gap-2">
+                Explore Destinations <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+              <a href="#contact-form" className="inline-flex items-center justify-center bg-white/8 border border-white/15 text-white hover:bg-white/12 text-xs font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all gap-2 hover:scale-[1.03] backdrop-blur-sm">
+                Book Free Consultation
+              </a>
             </motion.div>
 
+            {/* Dynamic Quote — changes with each university */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={heroSlideIdx}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.5 }}
+                className="w-full max-w-2xl bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl px-6 py-4 relative overflow-hidden"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="text-[#FBBF24] text-3xl font-serif leading-none mt-1 select-none">&ldquo;</div>
+                  <div className="flex-1">
+                    <p className="text-white/90 italic text-sm sm:text-base font-medium leading-relaxed">
+                      {universitySlides[heroSlideIdx].quote}
+                    </p>
+                    <div className="mt-2 flex items-center gap-2">
+                      <div className="h-[2px] w-6 bg-gradient-to-r from-[#FBBF24] to-[#D97706] rounded-full" />
+                      <span className="text-[10px] text-[#FBBF24] uppercase tracking-widest font-black">
+                        {universitySlides[heroSlideIdx].author}
+                      </span>
+                      <span className="text-[9px] text-[#FBBF24] font-bold uppercase tracking-wider">
+                        • {universitySlides[heroSlideIdx].name}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                {/* Progress bar */}
+                <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-white/5">
+                  <motion.div
+                    key={heroSlideIdx}
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 6, ease: "linear" }}
+                    className="h-full bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] rounded-full"
+                  />
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
+
+        {/* Bottom-left corner: University Name and Location */}
+        <div className="absolute bottom-8 left-8 z-20">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={heroSlideIdx}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.4 }}
+              className="flex items-center gap-2.5 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-2.5 rounded-xl shadow-lg"
+            >
+              <MapPin className="w-4 h-4 text-[#FBBF24] shrink-0" />
+              <div className="flex flex-col text-left">
+                <span className="text-[11px] font-black uppercase text-white tracking-widest leading-none mb-1">
+                  {universitySlides[heroSlideIdx].name}
+                </span>
+                <span className="text-[9px] font-bold text-slate-300 uppercase tracking-widest leading-none">
+                  {universitySlides[heroSlideIdx].location}
+                </span>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Bottom-right corner: Slide Navigation Controls */}
+        <div className="absolute bottom-8 right-8 z-20 flex items-center gap-3">
+          <button
+            onClick={() => setHeroSlideIdx((prev) => (prev - 1 + universitySlides.length) % universitySlides.length)}
+            className="w-9 h-9 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition cursor-pointer backdrop-blur-sm shadow-md"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+          </button>
+          <div className="flex gap-1.5 items-center">
+            {universitySlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setHeroSlideIdx(i)}
+                className="h-1.5 rounded-full transition-all duration-300 cursor-pointer p-0 border-none outline-none"
+                style={{
+                  width: heroSlideIdx === i ? "28px" : "8px",
+                  backgroundColor: heroSlideIdx === i ? "#FBBF24" : "rgba(255,255,255,0.25)"
+                }}
+              />
+            ))}
+          </div>
+          <button
+            onClick={() => setHeroSlideIdx((prev) => (prev + 1) % universitySlides.length)}
+            className="w-9 h-9 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition cursor-pointer backdrop-blur-sm shadow-md"
+          >
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </section>
+
 
       {/* ─── Floating statistics Counter grid overlaying Hero Bottom ─── */}
       <div className="relative z-20 max-w-5xl mx-auto -mt-10 px-4">
@@ -857,10 +912,10 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
               { val: 4, suffix: "+", label: "Training Programs", text: "Language Academics" }
             ].map((st, idx) => (
               <div key={idx} className="text-center md:border-r border-slate-100 last:border-0 flex flex-col justify-center">
-                <div className="text-2xl sm:text-3xl font-black text-[#991B1B] bg-clip-text mb-1">
+                <div className="text-2xl sm:text-3xl font-black text-[#3730A3] bg-clip-text mb-1">
                   <Counter value={st.val} suffix={st.suffix} />
                 </div>
-                <div className="text-[10px] font-black text-[#E11D48] uppercase tracking-wider mb-0.5">{st.label}</div>
+                <div className="text-[10px] font-black text-[#6366F1] uppercase tracking-wider mb-0.5">{st.label}</div>
                 <div className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">{st.text}</div>
               </div>
             ))}
@@ -869,7 +924,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       </div>
 
       {/* 3. IMMERSIVE DESTINATION & SERVICES CATEGORIES */}
-      <section id="destinations" className="py-24 bg-[#FDF2F2]/40 border-b border-slate-200/50 relative z-10">
+      <section id="destinations" className="py-24 bg-[#EEF2FF]/40 border-b border-slate-200/50 relative z-10">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <SectionLabel>GLOBAL PATHWAYS</SectionLabel>
@@ -883,7 +938,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 4. LANGUAGE TRAINING ECOSYSTEM */}
-      <section id="training" className="py-24 bg-[#F4F7FB] border-b border-slate-200/50 relative z-10">
+      <section id="training" className="py-24 bg-[#F8FAFF] border-b border-slate-200/50 relative z-10">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <SectionLabel>LANGUAGE ACADEMY</SectionLabel>
@@ -901,17 +956,17 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
               <motion.div
                 key={idx}
                 whileHover={{ y: -6 }}
-                className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:border-[#E11D48] hover:shadow-[0_12px_30px_rgba(225,29,72,0.08)] transition-all duration-300 text-left group flex flex-col justify-between"
+                className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:border-[#6366F1] hover:shadow-[0_12px_30px_rgba(99,102,241,0.08)] transition-all duration-300 text-left group flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-[#E11D48]/6 text-[#E11D48] flex items-center justify-center mb-5 border border-[#E11D48]/15 group-hover:bg-[#E11D48] group-hover:text-white transition duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-[#6366F1]/6 text-[#6366F1] flex items-center justify-center mb-5 border border-[#6366F1]/15 group-hover:bg-[#6366F1] group-hover:text-white transition duration-300">
                     <ScrollText className="h-5 w-5" />
                   </div>
-                  <h3 className="text-sm font-black text-[#991B1B] uppercase tracking-wider mb-2">{lh.name}</h3>
+                  <h3 className="text-sm font-black text-[#3730A3] uppercase tracking-wider mb-2">{lh.name}</h3>
                   <p className="text-[11px] text-slate-400 leading-relaxed font-semibold mb-4">{lh.desc}</p>
                 </div>
 
-                <div className="border-t border-slate-100 pt-3 flex items-center justify-between text-[9px] font-mono font-black uppercase text-[#E11D48] tracking-wider">
+                <div className="border-t border-slate-100 pt-3 flex items-center justify-between text-[9px] font-mono font-black uppercase text-[#6366F1] tracking-wider">
                   <span>Standard</span>
                   <span>{lh.score}</span>
                 </div>
@@ -922,7 +977,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 5. CINEMATIC JOURNEY MAP */}
-      <section id="journey" className="py-24 bg-[#FDF2F2]/40 border-b border-slate-200/50 relative z-10">
+      <section id="journey" className="py-24 bg-[#EEF2FF]/40 border-b border-slate-200/50 relative z-10">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <SectionLabel>STUDENT TIMELINE</SectionLabel>
@@ -934,7 +989,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 9. WHY CHOOSE US */}
-      <section id="why-us" className="py-24 bg-[#FDF2F2]/40 border-b border-slate-200/50 relative z-10">
+      <section id="why-us" className="py-24 bg-[#EEF2FF]/40 border-b border-slate-200/50 relative z-10">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <SectionLabel>WHY CHOOSE PRANIL</SectionLabel>
@@ -953,12 +1008,12 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:border-[#E11D48] hover:shadow-[0_12px_35px_rgba(225,29,72,0.1)] transition-all duration-300 text-left group cursor-pointer"
+                  className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:border-[#6366F1] hover:shadow-[0_12px_35px_rgba(99,102,241,0.1)] transition-all duration-300 text-left group cursor-pointer"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#991B1B]/6 text-[#991B1B] flex items-center justify-center mb-5 border border-[#991B1B]/10 group-hover:bg-[#991B1B] group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-[#3730A3]/6 text-[#3730A3] flex items-center justify-center mb-5 border border-[#3730A3]/10 group-hover:bg-[#3730A3] group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition duration-300">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-xs font-black text-[#991B1B] uppercase tracking-wider mb-2 group-hover:text-[#E11D48] transition-colors">
+                  <h3 className="text-xs font-black text-[#3730A3] uppercase tracking-wider mb-2 group-hover:text-[#6366F1] transition-colors">
                     {cc.title}
                   </h3>
                   <p className="text-[10px] text-slate-400 leading-relaxed font-semibold">
@@ -972,7 +1027,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 10. UNIVERSITY GRADUATE EDITORIAL */}
-      <section id="success" className="py-24 bg-[#F4F7FB] border-b border-slate-200/50 relative z-10">
+      <section id="success" className="py-24 bg-[#F8FAFF] border-b border-slate-200/50 relative z-10">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <SectionLabel>GRADUATE STORIES</SectionLabel>
@@ -982,16 +1037,16 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-center">
             {/* Editorial graphic */}
-            <div className="relative rounded-3xl overflow-hidden border border-slate-200/60 p-8 min-h-[350px] bg-[#FDF2F2]/50 flex flex-col justify-between text-left group shadow-sm">
+            <div className="relative rounded-3xl overflow-hidden border border-slate-200/60 p-8 min-h-[350px] bg-[#EEF2FF]/50 flex flex-col justify-between text-left group shadow-sm">
               <div className="flex justify-between items-start">
-                <div className="w-12 h-12 rounded-xl bg-[#E11D48]/8 flex items-center justify-center text-[#E11D48] border border-[#E11D48]/15">
+                <div className="w-12 h-12 rounded-xl bg-[#6366F1]/8 flex items-center justify-center text-[#6366F1] border border-[#6366F1]/15">
                   <GraduationCap className="h-6 w-6" />
                 </div>
                 <span className="text-[9px] font-mono text-slate-400 font-black uppercase tracking-widest">EDITORIAL v2.0</span>
               </div>
               <div>
-                <span className="text-[9px] font-black text-[#E11D48] tracking-widest uppercase block mb-1">GLOBAL FUTURE</span>
-                <h3 className="text-xl font-black text-[#991B1B] uppercase tracking-wider mb-3 leading-snug">Empowering Candidates to Excel Worldwide</h3>
+                <span className="text-[9px] font-black text-[#6366F1] tracking-widest uppercase block mb-1">GLOBAL FUTURE</span>
+                <h3 className="text-xl font-black text-[#3730A3] uppercase tracking-wider mb-3 leading-snug">Empowering Candidates to Excel Worldwide</h3>
                 <p className="text-xs text-slate-500 leading-relaxed font-semibold max-w-sm">
                   Our certified counselling team has mapped thousands of students to top ranking universities in UK, Canada, Australia, and USA.
                 </p>
@@ -1007,8 +1062,8 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
               ].map((s, idx) => (
                 <div key={idx} className="border-b border-slate-200/50 pb-5 last:border-0">
                   <div className="flex justify-between items-center mb-2">
-                    <h4 className="text-xs font-black text-[#991B1B] uppercase tracking-wider">{s.name}</h4>
-                    <span className="text-[9px] font-mono text-[#E11D48] font-black uppercase tracking-wider">{s.route}</span>
+                    <h4 className="text-xs font-black text-[#3730A3] uppercase tracking-wider">{s.name}</h4>
+                    <span className="text-[9px] font-mono text-[#6366F1] font-black uppercase tracking-wider">{s.route}</span>
                   </div>
                   <p className="text-xs text-slate-500 italic leading-relaxed font-semibold">&ldquo;{s.text}&rdquo;</p>
                 </div>
@@ -1019,11 +1074,11 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 11. FINAL CTA SECTION (Clean background) */}
-      <section className="py-24 bg-gradient-to-b from-[#F4F7FB] via-[#FDF2F2] to-[#F4F7FB] relative z-10 overflow-hidden border-b border-slate-200/50">
+      <section className="py-24 bg-gradient-to-b from-[#F8FAFF] via-[#EEF2FF] to-[#F8FAFF] relative z-10 overflow-hidden border-b border-slate-200/50">
         
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <SectionLabel>START TODAY</SectionLabel>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-[#991B1B] leading-tight uppercase mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-[#3730A3] leading-tight uppercase mb-6">
             Where Will Your Future Take You?
           </h2>
           <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-lg mx-auto mb-10 font-semibold">
@@ -1032,7 +1087,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
           <div className="flex justify-center gap-4">
             <a
               href="#contact-form"
-              className="inline-flex items-center justify-center bg-gradient-to-r from-[#991B1B] to-[#E11D48] hover:from-[#E11D48] hover:to-[#881337] text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-xl shadow-lg shadow-[#991B1B]/10 transition-all hover:scale-[1.03]"
+              className="inline-flex items-center justify-center bg-gradient-to-r from-[#3730A3] to-[#6366F1] hover:from-[#6366F1] hover:to-[#1E1B4B] text-white text-xs font-black uppercase tracking-widest px-8 py-4 rounded-xl shadow-lg shadow-[#3730A3]/10 transition-all hover:scale-[1.03]"
             >
               Book Consultation
             </a>
@@ -1041,7 +1096,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 12. TESTIMONIALS (Marquee) */}
-      <section id="testimonials" className="py-24 bg-[#FDF2F2]/40 border-b border-slate-200/50 relative z-10 overflow-hidden">
+      <section id="testimonials" className="py-24 bg-[#EEF2FF]/40 border-b border-slate-200/50 relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 mb-14 text-center">
           <SectionLabel>TESTIMONIALS</SectionLabel>
           <SectionTitle>Student Success Feedbacks</SectionTitle>
@@ -1056,16 +1111,16 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
                 className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm w-[320px] shrink-0 mr-6 whitespace-normal text-left select-none"
               >
                 <div className="flex gap-0.5 mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current text-[#E11D48]" />)}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current text-amber-500" />)}
                 </div>
                 <p className="text-xs text-slate-500 font-medium italic leading-relaxed mb-6 h-[70px] overflow-hidden">&ldquo;{t.quote}&rdquo;</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-[#991B1B]/10 text-[#991B1B] flex items-center justify-center font-black text-xs border border-[#991B1B]/20 shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-[#3730A3]/10 text-[#3730A3] flex items-center justify-center font-black text-xs border border-[#3730A3]/20 shrink-0">
                     {t.name[0]}
                   </div>
                   <div>
                     <div className="text-xs font-black text-slate-800 uppercase tracking-wider">{t.name}</div>
-                    <div className="text-[9px] text-[#E11D48] font-bold uppercase tracking-widest">{t.role}</div>
+                    <div className="text-[9px] text-[#6366F1] font-bold uppercase tracking-widest">{t.role}</div>
                   </div>
                 </div>
               </div>
@@ -1078,16 +1133,16 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
                 className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm w-[320px] shrink-0 mr-6 whitespace-normal text-left select-none"
               >
                 <div className="flex gap-0.5 mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current text-[#E11D48]" />)}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current text-amber-500" />)}
                 </div>
                 <p className="text-xs text-slate-500 font-medium italic leading-relaxed mb-6 h-[70px] overflow-hidden">&ldquo;{t.quote}&rdquo;</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-[#991B1B]/10 text-[#991B1B] flex items-center justify-center font-black text-xs border border-[#991B1B]/20 shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-[#3730A3]/10 text-[#3730A3] flex items-center justify-center font-black text-xs border border-[#3730A3]/20 shrink-0">
                     {t.name[0]}
                   </div>
                   <div>
                     <div className="text-xs font-black text-slate-800 uppercase tracking-wider">{t.name}</div>
-                    <div className="text-[9px] text-[#E11D48] font-bold uppercase tracking-widest">{t.role}</div>
+                    <div className="text-[9px] text-[#6366F1] font-bold uppercase tracking-widest">{t.role}</div>
                   </div>
                 </div>
               </div>
@@ -1097,7 +1152,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 13. CONTACT FORM */}
-      <section id="contact-form" className="py-24 bg-[#F4F7FB] relative z-10">
+      <section id="contact-form" className="py-24 bg-[#F8FAFF] relative z-10">
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <SectionLabel>PORTAL ENTRANCE</SectionLabel>
@@ -1111,7 +1166,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
                 <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mb-4 border border-emerald-100">
                   <CheckCircle2 className="h-7 w-7" />
                 </div>
-                <h3 className="font-display text-xl font-bold text-[#991B1B] uppercase tracking-wider">Consultation Booked!</h3>
+                <h3 className="font-display text-xl font-bold text-[#3730A3] uppercase tracking-wider">Consultation Booked!</h3>
                 <p className="text-xs text-slate-400 font-medium mt-2 max-w-sm font-semibold font-mono">A certified counsellor will contact you within 2 hours.</p>
               </div>
             ) : (
@@ -1120,24 +1175,24 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
                   <div>
                     <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Full Name</label>
                     <input type="text" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Your Name"
-                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#991B1B] text-xs font-semibold focus:outline-none focus:border-[#E11D48] transition font-medium" />
+                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#3730A3] text-xs font-semibold focus:outline-none focus:border-[#6366F1] transition font-medium" />
                   </div>
                   <div>
                     <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Email Address</label>
                     <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="you@example.com"
-                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#991B1B] text-xs font-semibold focus:outline-none focus:border-[#E11D48] transition font-medium" />
+                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#3730A3] text-xs font-semibold focus:outline-none focus:border-[#6366F1] transition font-medium" />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Phone Number</label>
                     <input type="tel" required value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} placeholder="+91 99999 99999"
-                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#991B1B] text-xs font-semibold focus:outline-none focus:border-[#E11D48] transition font-medium" />
+                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#3730A3] text-xs font-semibold focus:outline-none focus:border-[#6366F1] transition font-medium" />
                   </div>
                   <div>
                     <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Select Program</label>
                     <select value={formData.service} onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#991B1B] text-xs font-semibold focus:outline-none focus:border-[#E11D48] transition font-medium">
+                      className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#3730A3] text-xs font-semibold focus:outline-none focus:border-[#6366F1] transition font-medium">
                       <option value="">Choose global service...</option>
                       <option value="student">Student Visa</option>
                       <option value="work">Work Permit</option>
@@ -1150,9 +1205,9 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
                 <div>
                   <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Message</label>
                   <textarea rows={4} required value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Tell us about your study abroad or migration preferences..."
-                    className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#991B1B] text-xs font-semibold focus:outline-none focus:border-[#E11D48] transition resize-none font-medium" />
+                    className="w-full mt-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#3730A3] text-xs font-semibold focus:outline-none focus:border-[#6366F1] transition resize-none font-medium" />
                 </div>
-                <button type="submit" className="w-full py-4 bg-gradient-to-r from-[#991B1B] to-[#E11D48] hover:from-[#E11D48] hover:to-[#881337] text-white text-[11px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-[#991B1B]/10 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-[#E11D48]/20">
+                <button type="submit" className="w-full py-4 bg-gradient-to-r from-[#3730A3] to-[#6366F1] hover:from-[#6366F1] hover:to-[#1E1B4B] text-white text-[11px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-[#3730A3]/10 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-[#6366F1]/20">
                   Book Free Consultation
                 </button>
               </form>
@@ -1162,14 +1217,14 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
       </section>
 
       {/* 14. FOOTER */}
-      <footer className="bg-[#991B1B] text-white relative z-10">
+      <footer className="bg-[#0B0A1F] text-white relative z-10 border-t border-indigo-950/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-left">
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
             
             {/* Brand */}
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#991B1B] to-[#E11D48] flex items-center justify-center text-white shadow-md">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#3730A3] to-[#6366F1] flex items-center justify-center text-white shadow-md">
                   <GraduationCap className="h-5 w-5" />
                 </div>
                 <div className="leading-none">
@@ -1218,15 +1273,15 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
               <h4 className="text-xs font-black text-white uppercase tracking-widest mb-5">Contact Info</h4>
               <ul className="space-y-3">
                 <li className="flex items-start gap-2.5">
-                  <Phone className="h-3.5 w-3.5 text-[#E11D48] shrink-0 mt-0.5" />
+                  <Phone className="h-3.5 w-3.5 text-[#6366F1] shrink-0 mt-0.5" />
                   <span className="text-[11px] text-white/40 font-medium">{data.phone}</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <Mail className="h-3.5 w-3.5 text-[#E11D48] shrink-0 mt-0.5" />
+                  <Mail className="h-3.5 w-3.5 text-[#6366F1] shrink-0 mt-0.5" />
                   <span className="text-[11px] text-white/40 font-medium">{data.email}</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <MapPin className="h-3.5 w-3.5 text-[#E11D48] shrink-0 mt-0.5" />
+                  <MapPin className="h-3.5 w-3.5 text-[#6366F1] shrink-0 mt-0.5" />
                   <span className="text-[11px] text-white/40 font-medium leading-relaxed">525, SV SQUARE, New Ranip,<br />Ahmedabad, Gujarat - 382470</span>
                 </li>
               </ul>
