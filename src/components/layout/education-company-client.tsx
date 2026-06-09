@@ -446,7 +446,7 @@ function StudentJourney() {
       steps: [
         { title: "Dream", desc: "Envision your global career and destination.", icon: Compass, num: 1 },
         { title: "Prepare", desc: "Profile assessment and university shortlisting.", icon: BookOpen, num: 2 },
-        { title: "Learn", desc: "Expert coaching for IELTS, PTE, and Duolingo.", icon: ScrollText, num: 3 }
+        { title: "Learn", desc: "Expert coaching for IELTS, PTE, and French Language.", icon: ScrollText, num: 3 }
       ]
     },
     {
@@ -951,7 +951,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
             {[
               { name: "IELTS", desc: "International English Language Testing System. Comprehensive study paths.", score: "Target Band 7.5+" },
               { name: "PTE", desc: "Pearson Test of English. Fast score releases and certified mock platforms.", score: "Target Score 79+" },
-              { name: "Duolingo", desc: "Duolingo English Test. Dynamic home-based test preparation.", score: "Target Score 125+" },
+              { name: "French Language", desc: "DELF/TEF training from A1 to B2 levels for Canadian PR and study pathways.", score: "DELF / TEF Prep" },
               { name: "Spoken English", desc: "Accent training, general dialogue, and corporate presentation modules.", score: "Fluency Confident" }
             ].map((lh, idx) => (
               <motion.div

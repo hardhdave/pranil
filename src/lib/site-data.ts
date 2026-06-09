@@ -244,7 +244,7 @@ export const services = [
   },
   {
     title: "IELTS / PTE Coaching",
-    description: "Expert coaching for IELTS, PTE, Spoken English, and Duolingo with interactive sessions and individual attention.",
+    description: "Expert coaching for IELTS, PTE, Spoken English, and French with interactive sessions and individual attention.",
     icon: ScrollText,
     stat: "4 programs"
   },
@@ -443,7 +443,7 @@ export const testimonials = [
   }
 ];
 
-export const coachingServices = ["IELTS", "PTE", "Spoken English", "Duolingo"];
+export const coachingServices = ["IELTS", "PTE", "Spoken English", "French"];
 
 export const visaProcessServices = [
   "Student Visa",

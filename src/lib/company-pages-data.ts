@@ -55,7 +55,7 @@ export const companyPages: Record<string, CompanyPageData> = {
       { title: "Permanent Residency (PR)", description: "PR assistance for Canada, Australia, New Zealand, UK, Germany, Portugal, Malta, and UAE with profile assessment and settlement planning.", icon: "Landmark" },
       { title: "Spouse Visa", description: "Spouse visa processing for Canada, Australia, New Zealand, UK, USA, Germany, France, Italy, Portugal, and UAE.", icon: "ShieldCheck" },
       { title: "Student Visa Processing", description: "Complete documentation, visa file preparation, interview readiness, mock interviews, and transparent application tracking.", icon: "FileCheck2" },
-      { title: "IELTS / PTE Coaching", description: "Expert coaching for IELTS, PTE, Spoken English, and Duolingo with interactive sessions and personalized attention.", icon: "ScrollText" },
+      { title: "IELTS / PTE Coaching", description: "Expert coaching for IELTS, PTE, Spoken English, and French with interactive sessions and personalized attention.", icon: "ScrollText" },
       { title: "Study Abroad Consulting", description: "University shortlisting, admissions strategy, SOP guidance, and end-to-end overseas education support.", icon: "GraduationCap" },
       { title: "Career Counselling", description: "Expert career guidance to help you choose the right course, university, and country based on your profile.", icon: "BookOpen" },
       { title: "Post-Visa Support", description: "Complete assistance from training to post-visa support including accommodation, airport pickup, and settlement.", icon: "Plane" }
@@ -84,7 +84,7 @@ export const companyPages: Record<string, CompanyPageData> = {
         "Supportive and engaging learning environment",
         "Complete assistance from training to post-visa support",
         "Dedicated activities for student encouragement",
-        "Specialized coaching for IELTS, PTE, Spoken English & Duolingo"
+        "Specialized coaching for IELTS, PTE, Spoken English & French"
       ]
     },
     gallery: [

@@ -24,7 +24,7 @@ const dropdownCompanies = [
       { label: "Student Visa (USA, UK, Canada)", href: "/companies/education#destinations" },
       { label: "Visitor & Tourist Visa", href: "/companies/education#destinations" },
       { label: "Canada PR & Express Entry", href: "/companies/education#destinations" },
-      { label: "IELTS / PTE / Duolingo Coaching", href: "/companies/education#training" }
+      { label: "IELTS / PTE / French Coaching", href: "/companies/education#training" }
     ]
   },
   {
