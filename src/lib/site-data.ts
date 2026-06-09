@@ -460,7 +460,7 @@ export const companyContacts = [
     short: "PRANIL",
     logoUrl: "/logos/main-logo.png",
     phone: "+91 73839 97825 / +91 88499 48279",
-    email: "inquiry.pranileducation@gmail.com"
+    email: "admission@pranileducation.com"
   }
 ];
 

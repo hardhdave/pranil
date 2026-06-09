@@ -93,8 +93,8 @@ export function ContactSection() {
                 {
                   icon: Mail,
                   label: "EMAIL US",
-                  value: "inquiry.pranileducation@gmail.com",
-                  href: "mailto:inquiry.pranileducation@gmail.com"
+                  value: "admission@pranileducation.com",
+                  href: "mailto:admission@pranileducation.com"
                 },
                 {
                   icon: Phone,

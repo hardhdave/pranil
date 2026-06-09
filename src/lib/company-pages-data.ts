@@ -103,7 +103,7 @@ export const companyPages: Record<string, CompanyPageData> = {
     ctaTitle: "Start Your Study Abroad Journey Today",
     ctaDescription: "Book a FREE counselling session with our expert education consultants.",
     phone: "+91 73839 97825 / +91 88499 48279",
-    email: "inquiry.pranileducation@gmail.com"
+    email: "admission@pranileducation.com"
   },
 
   recruitment: {

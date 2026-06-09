@@ -17,7 +17,7 @@ export function FoundersSection() {
       details: "Managing creative pipelines, global educational consultation, and brand architectures across corporate projects.",
       img: "/ceo-komal.png",
       linkedin: "https://www.linkedin.com/in/komal-tiwari-36230266?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-      email: "inquiry.pranileducation@gmail.com"
+      email: "admission@pranileducation.com"
     },
     {
       name: "Arvind Tiwari",
@@ -25,7 +25,7 @@ export function FoundersSection() {
       details: "Coordinating technical structures, global tours and travel strategies, and digital infrastructure operations.",
       img: "/ceo-arvind.png",
       linkedin: "#",
-      email: "inquiry.pranileducation@gmail.com"
+      email: "admission@pranileducation.com"
     }
   ];
 

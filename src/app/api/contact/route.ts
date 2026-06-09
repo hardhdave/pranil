@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 // Company-specific email routing
 const companyEmailConfig: Record<string, { to: string; name: string; phone: string }> = {
   "pranil-education": {
-    to: "inquiry.pranileducation@gmail.com, pranileducation76@gmail.com",
+    to: "admission@pranileducation.com, pranileducation76@gmail.com",
     name: "PRANIL Education Services",
     phone: "+91 73839 97825 / +91 88499 48279",
   },

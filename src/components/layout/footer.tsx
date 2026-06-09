@@ -146,8 +146,8 @@ export function Footer({ companyLogoUrl }: { companyLogoUrl?: string }) {
                   <Mail className="h-4 w-4 text-[var(--teal-light)] mt-0.5 shrink-0" />
                   <div>
                     <p className="text-xs text-slate-400 font-semibold">Email</p>
-                    <a href="mailto:inquiry.pranileducation@gmail.com" className="text-sm text-slate-200 hover:text-white transition">
-                      inquiry.pranileducation@gmail.com
+                    <a href="mailto:admission@pranileducation.com" className="text-sm text-slate-200 hover:text-white transition">
+                      admission@pranileducation.com
                     </a>
                   </div>
                 </div>
