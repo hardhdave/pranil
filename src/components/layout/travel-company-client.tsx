@@ -9,7 +9,7 @@ import {
   MapPin, Clock, Calendar, MessageSquare, ShieldCheck, Heart, Sparkles,
   HelpCircle, UserCheck, Compass, Send, ThumbsUp, Globe2, Twitter, Facebook, Instagram,
   Plane, Train, Bus, Hotel, Shield, FileText, Map, Camera, Car, ArrowRight,
-  ChevronRight, Users, Award, Headphones, Youtube, Search, Info, Menu, X, CreditCard, Wallet, MapPinIcon
+  ChevronRight, Users, Award, Headphones, Youtube, Search, Info, Menu, X, CreditCard, Wallet, MapPinIcon, Linkedin
 } from "lucide-react";
 import type { CompanyPageData } from "@/lib/company-pages-data";
 
@@ -184,8 +184,8 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
             </Link>
             <span className="text-slate-200">|</span>
             <span className="text-lg sm:text-xl font-black text-[#0D3E36] tracking-tight flex items-center gap-2">
-              <Image src="/logos/travel-logo.png" alt="PRANIL Tours" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
-              PRANIL <span className="text-[#FFAE12] font-serif italic font-semibold hidden sm:inline">Tours</span>
+              <Image src="/logos/travel-logo.png" alt="PRANIL Tours & Travels" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
+              PRANIL <span className="text-[#FFAE12] font-serif italic font-semibold">Tours & Travels</span>
             </span>
           </div>
           
@@ -320,10 +320,6 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
                 <div className="flex items-center gap-2.5">
                   <div className="w-2 h-2 rounded-full bg-[#85CD32] shadow-[0_0_10px_#85CD32] animate-pulse" />
                   <span>Flight & Train booking</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <div className="w-2 h-2 rounded-full bg-[#85CD32] shadow-[0_0_10px_#85CD32] animate-pulse" />
-                  <span>24/7 Helpline Support</span>
                 </div>
               </div>
 
@@ -855,7 +851,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
 
             {/* Right side contact CTA call layout */}
             <div className="lg:col-span-5 bg-white/5 border border-white/10 rounded-[2rem] p-8 text-center space-y-4">
-              <span className="text-[#FFAE12] text-[10px] font-black uppercase tracking-[0.2em] block">24 Hours Service</span>
+              <span className="text-[#FFAE12] text-[10px] font-black uppercase tracking-[0.2em] block">Get In Touch</span>
               <h4 className="text-2xl font-black uppercase text-white tracking-widest">Call Us</h4>
               <div className="text-xl sm:text-2xl font-extrabold text-[#FFAE12] tracking-wider font-mono">
                 +91 88499 48279
@@ -1170,6 +1166,7 @@ export function TravelCompanyClient({ data }: { data: CompanyPageData }) {
               <div className="flex gap-3">
                 {[
                   { Icon: Facebook, href: "https://www.facebook.com/share/1L9KZqZKbS/" },
+                  { Icon: Linkedin, href: "https://www.linkedin.com/company/pranil-tours-and-travels/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3B28zPlhd8QZiPNT17IhCtCA%3D%3D" },
                   { Icon: Instagram, href: "https://www.instagram.com/pranil_tours_and_travels?igsh=cXU4N2k4OG1pdnQw" },
                 ].map((item, i) => (
                   <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-white transition">

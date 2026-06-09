@@ -63,7 +63,7 @@ export function Footer({ companyLogoUrl }: { companyLogoUrl?: string }) {
               <div className="flex items-center gap-3">
                 {[
                   { icon: Facebook, href: "https://www.facebook.com/share/18i3WEoGMT/", label: "Facebook" },
-                  { icon: Linkedin, href: "https://www.linkedin.com/in/komal-tiwari-36230266?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/komal-tiwari-36230266/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BNXjVwaP4RkmPPTVXSvKTXg%3D%3D", label: "LinkedIn" },
                   { icon: Instagram, href: "https://www.instagram.com/pranil_education_services_llp?igsh=b3dlanZuaXpsZzUy", label: "Instagram" }
                 ].map((social) => (
                   <motion.a

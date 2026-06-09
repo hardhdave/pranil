@@ -1103,7 +1103,7 @@ export function RecruitmentCompanyClient({ data }: { data: CompanyPageData }) {
               <div className="flex gap-3">
                 {[
                   { SIcon: Facebook, href: "https://www.facebook.com/share/18jzwzF5fx/" },
-                  { SIcon: Linkedin, href: "#" },
+                  { SIcon: Linkedin, href: "https://www.linkedin.com/company/pranil-recruitment/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3B4YqMGym5TPm9nnSsec6QTA%3D%3D" },
                   { SIcon: Instagram, href: "https://www.instagram.com/pranil_recruitment_services?igsh=MTMyanQ5b2V0cWV3Ng==" },
                 ].map((item, i) => (
                   <a key={i} href={item.href} target={item.href !== "#" ? "_blank" : undefined} rel={item.href !== "#" ? "noopener noreferrer" : undefined} className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition">

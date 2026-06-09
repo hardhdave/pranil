@@ -10,7 +10,7 @@ import {
   Facebook, Instagram, GraduationCap, FileCheck2,
   BookOpen, ScrollText, CheckCircle2, Landmark,
   Award, Plane, Users, Compass, HelpCircle, ChevronRight,
-  TrendingUp, Users2, FileText, Globe, Sparkles, Briefcase, Heart, Menu, X, Youtube
+  TrendingUp, Users2, FileText, Globe, Sparkles, Briefcase, Heart, Menu, X, Youtube, Linkedin
 } from "lucide-react";
 import type { CompanyPageData } from "@/lib/company-pages-data";
 
@@ -214,9 +214,9 @@ interface CategoryData {
 }
 
 function VisaPathwaysDashboard() {
-  const [activeTab, setActiveTab] = useState<"student" | "work" | "pr" | "spouse" | "visitor">("student");
+  const [activeTab, setActiveTab] = useState<"student" | "visitor" | "work" | "pr" | "spouse">("student");
 
-  const categories: Record<"student" | "work" | "pr" | "spouse" | "visitor", CategoryData> = {
+  const categories: Record<"student" | "visitor" | "work" | "pr" | "spouse", CategoryData> = {
     student: {
       title: "Student Visa",
       id: "student",
@@ -238,6 +238,20 @@ function VisaPathwaysDashboard() {
         { title: "SOP & Admission", desc: "Crafting professional SOPs, LORs, and processing university offers." },
         { title: "Visa File Preparation", desc: "Comprehensive documentation, financial proof checks, and interview drills." },
         { title: "Departure Settlement", desc: "Pre-departure briefings, flight transits, and accommodation help." }
+      ]
+    },
+    visitor: {
+      title: "Visitor Visa",
+      id: "visitor",
+      icon: Compass,
+      intro: "Global Tourism & Business Travel",
+      description: "Quick and hassle-free processing for tourist visas, business visitor visas, and family visits worldwide. We manage complete file preparation for high approval rates.",
+      countries: [],
+      process: [
+        { title: "Profile Assessment", desc: "Evaluating traveler's intent, financial stability, and ties to home country." },
+        { title: "Document Check", desc: "Preparing invitation letters, hotel bookings, flight itineraries, and tax files." },
+        { title: "Visa Filing", desc: "Accurate filing of visa forms and scheduling biometrics/interviews." },
+        { title: "Approval & Stamp", desc: "Biometrics submission support, prompt tracking, and final visa stamping." }
       ]
     },
     work: {
@@ -308,29 +322,6 @@ function VisaPathwaysDashboard() {
         { title: "Sponsor Evaluation", desc: "Reviewing the sponsor's income levels, tax status, and legal declarations." },
         { title: "Immigration Lodgement", desc: "Lodging high-compliance visa files with the target nation's registry." },
         { title: "Biometrics & Stamp", desc: "Completing scans, attending embassy interviews if required, and visa stamp." }
-      ]
-    },
-    visitor: {
-      title: "Visitor Visa",
-      id: "visitor",
-      icon: Compass,
-      intro: "Global Tourism & Business Travel",
-      description: "Quick and hassle-free processing for tourist visas, business visitor visas, and family visits worldwide. We manage complete file preparation for high approval rates.",
-      countries: [
-        { name: "Schengen Area", code: "eu", detail: "29 European nations with a single visa. Unlimited tourist exploration." },
-        { name: "Canada", code: "ca", detail: "Multiple-entry tourist/super visas for family visits up to 10 years." },
-        { name: "United States", code: "us", detail: "B1/B2 tourist and business travel visas for up to 10 years validity." },
-        { name: "United Kingdom", code: "gb", detail: "Standard Visitor visas for tourism, family visits, or business events." },
-        { name: "Australia", code: "au", detail: "Subclass 600 visitor visas for holidaying, family visits, or business meetings." },
-        { name: "New Zealand", code: "nz", detail: "Flexible tourist visas for vacationing or visiting family and friends." },
-        { name: "Singapore / Dubai", code: "sg", detail: "Rapid processing for short-term tourism and leisure packages." },
-        { name: "Any Other Country", code: "un", detail: "Universal visa processing. We help you travel to any destination globally." }
-      ],
-      process: [
-        { title: "Profile Assessment", desc: "Evaluating traveler's intent, financial stability, and ties to home country." },
-        { title: "Document Check", desc: "Preparing invitation letters, hotel bookings, flight itineraries, and tax files." },
-        { title: "Visa Filing", desc: "Accurate filing of visa forms and scheduling biometrics/interviews." },
-        { title: "Approval & Stamp", desc: "Biometrics submission support, prompt tracking, and final visa stamping." }
       ]
     }
   };
@@ -424,32 +415,48 @@ function VisaPathwaysDashboard() {
         </div>
 
         {/* Right Side: Countries Grid */}
-        <div className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl p-4 sm:p-8 shadow-sm">
-          <div className="mb-6 flex justify-between items-center">
-            <span className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Countries & Perks</span>
-            <span className="text-[8px] sm:text-[9px] font-mono font-bold bg-[#6366F1]/8 text-[#6366F1] px-2 py-0.5 rounded-full border border-[#6366F1]/15 uppercase">
-              {active.countries.length} Destinations
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-2 gap-3">
-            {active.countries.map((c, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3.5 p-3 rounded-xl sm:rounded-2xl border border-slate-100 hover:border-[#6366F1]/50 bg-slate-50/20 hover:bg-white hover:shadow-md transition-all duration-300 group"
-              >
-                <CircularFlag code={c.code} alt={c.name} size={8} />
-                <div className="text-left min-w-0">
-                  <h4 className="text-[11px] sm:text-xs font-black text-[#3730A3] uppercase tracking-wider mb-0.5 group-hover:text-[#6366F1] transition-colors leading-tight">
-                    {c.name}
-                  </h4>
-                  <p className="text-[8px] sm:text-[10px] text-slate-400 leading-normal font-semibold font-sans">
-                    {c.detail}
-                  </p>
-                </div>
+        <div className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl p-4 sm:p-8 shadow-sm min-h-[460px] flex flex-col justify-center">
+          {activeTab === "visitor" ? (
+            <div className="flex flex-col justify-center items-center text-center p-6 my-auto">
+              <div className="w-16 h-16 rounded-2xl bg-indigo-50 border border-indigo-100/50 flex items-center justify-center mb-6 shadow-inner text-[#3730A3]">
+                <Globe2 className="h-8 w-8 animate-[spin_12s_linear_infinite]" />
               </div>
-            ))}
-          </div>
+              <h4 className="text-lg font-black text-[#3730A3] uppercase tracking-wider mb-3">
+                Global Visitor Visa Coverage
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-semibold max-w-md">
+                We provide visitor and tourist visa services for every country globally. No matter your destination, our experienced team handles all document files, invitation requirements, and applications for a smooth travel approval.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="mb-6 flex justify-between items-center">
+                <span className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Countries & Perks</span>
+                <span className="text-[8px] sm:text-[9px] font-mono font-bold bg-[#6366F1]/8 text-[#6366F1] px-2 py-0.5 rounded-full border border-[#6366F1]/15 uppercase">
+                  {active.countries.length} Destinations
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-2 gap-3">
+                {active.countries.map((c, idx) => (
+                  <div
+                    key={idx}
+                    className="flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3.5 p-3 rounded-xl sm:rounded-2xl border border-slate-100 hover:border-[#6366F1]/50 bg-slate-50/20 hover:bg-white hover:shadow-md transition-all duration-300 group"
+                  >
+                    <CircularFlag code={c.code} alt={c.name} size={8} />
+                    <div className="text-left min-w-0">
+                      <h4 className="text-[11px] sm:text-xs font-black text-[#3730A3] uppercase tracking-wider mb-0.5 group-hover:text-[#6366F1] transition-colors leading-tight">
+                        {c.name}
+                      </h4>
+                      <p className="text-[8px] sm:text-[10px] text-slate-400 leading-normal font-semibold font-sans">
+                        {c.detail}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
       </div>
@@ -660,7 +667,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
             </Link>
             <span className="text-slate-200">|</span>
             <span className="text-xl font-black text-[#3730A3] tracking-tight flex items-center gap-2">
-              <Image src="/logos/main-logo.png" alt="PRANIL Education" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
+              <Image src="/logos/education-logo.jpeg" alt="PRANIL Education Services" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
               PRANIL <span className="text-[#6366F1] font-semibold">Education</span>
             </span>
           </div>
@@ -1262,6 +1269,7 @@ export function EducationCompanyClient({ data }: { data: CompanyPageData }) {
               <div className="flex gap-3">
                 {[
                   { SIcon: Facebook, href: "https://www.facebook.com/share/18i3WEoGMT/" },
+                  { SIcon: Linkedin, href: "https://www.linkedin.com/company/pranil-education-services/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BpMhoMY2gRe6aFuRigA5Viw%3D%3D" },
                   { SIcon: Instagram, href: "https://www.instagram.com/pranil_education_services_llp?igsh=b3dlanZuaXpsZzUy" },
                   { SIcon: Youtube, href: "https://youtube.com/@pranileducationservices?si=zISk1AzY8EAwiflh" },
                 ].map((item, i) => (

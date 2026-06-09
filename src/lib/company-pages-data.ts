@@ -35,7 +35,7 @@ export const companyPages: Record<string, CompanyPageData> = {
     name: "Education & Visa",
     fullName: "PRANIL Education Services LLP",
     tagline: "Success is Our New Horizon",
-    logoUrl: "/logos/main-logo.png",
+    logoUrl: "/logos/education-logo.jpeg",
     color: "#991B1B",
     accentColor: "#E11D48",
     heroImage: "/image.png",

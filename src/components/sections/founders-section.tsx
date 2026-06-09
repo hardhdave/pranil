@@ -16,7 +16,7 @@ export function FoundersSection() {
       title: "Founder & Director",
       details: "Managing creative pipelines, global educational consultation, and brand architectures across corporate projects.",
       img: "/ceo-komal.png",
-      linkedin: "https://www.linkedin.com/in/komal-tiwari-36230266?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+      linkedin: "https://www.linkedin.com/in/komal-tiwari-36230266/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BNXjVwaP4RkmPPTVXSvKTXg%3D%3D",
       email: "admission@pranileducation.com"
     },
     {

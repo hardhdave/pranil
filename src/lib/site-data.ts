@@ -75,7 +75,7 @@ export const companies = [
     slug: "education",
     fullName: "PRANIL Education Services LLP",
     tagline: "Success is Our New Horizon",
-    logoUrl: "/logos/main-logo.png",
+    logoUrl: "/logos/education-logo.jpeg",
     color: "#ff4b4b"
   },
   {

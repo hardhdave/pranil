@@ -259,7 +259,7 @@ export function HeroSection() {
               <div className="h-px w-4 bg-white/15" />
               
               <a
-                href="https://www.linkedin.com/in/komal-tiwari-36230266?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                href="https://www.linkedin.com/in/komal-tiwari-36230266/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BNXjVwaP4RkmPPTVXSvKTXg%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 transition-all duration-300 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] hover:scale-110"
