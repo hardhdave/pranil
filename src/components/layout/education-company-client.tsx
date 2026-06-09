@@ -214,9 +214,9 @@ interface CategoryData {
 }
 
 function VisaPathwaysDashboard() {
-  const [activeTab, setActiveTab] = useState<"student" | "work" | "pr" | "spouse">("student");
+  const [activeTab, setActiveTab] = useState<"student" | "work" | "pr" | "spouse" | "visitor">("student");
 
-  const categories: Record<"student" | "work" | "pr" | "spouse", CategoryData> = {
+  const categories: Record<"student" | "work" | "pr" | "spouse" | "visitor", CategoryData> = {
     student: {
       title: "Student Visa",
       id: "student",
@@ -309,6 +309,29 @@ function VisaPathwaysDashboard() {
         { title: "Immigration Lodgement", desc: "Lodging high-compliance visa files with the target nation's registry." },
         { title: "Biometrics & Stamp", desc: "Completing scans, attending embassy interviews if required, and visa stamp." }
       ]
+    },
+    visitor: {
+      title: "Visitor Visa",
+      id: "visitor",
+      icon: Compass,
+      intro: "Global Tourism & Business Travel",
+      description: "Quick and hassle-free processing for tourist visas, business visitor visas, and family visits worldwide. We manage complete file preparation for high approval rates.",
+      countries: [
+        { name: "Schengen Area", code: "eu", detail: "29 European nations with a single visa. Unlimited tourist exploration." },
+        { name: "Canada", code: "ca", detail: "Multiple-entry tourist/super visas for family visits up to 10 years." },
+        { name: "United States", code: "us", detail: "B1/B2 tourist and business travel visas for up to 10 years validity." },
+        { name: "United Kingdom", code: "gb", detail: "Standard Visitor visas for tourism, family visits, or business events." },
+        { name: "Australia", code: "au", detail: "Subclass 600 visitor visas for holidaying, family visits, or business meetings." },
+        { name: "New Zealand", code: "nz", detail: "Flexible tourist visas for vacationing or visiting family and friends." },
+        { name: "Singapore / Dubai", code: "sg", detail: "Rapid processing for short-term tourism and leisure packages." },
+        { name: "Any Other Country", code: "un", detail: "Universal visa processing. We help you travel to any destination globally." }
+      ],
+      process: [
+        { title: "Profile Assessment", desc: "Evaluating traveler's intent, financial stability, and ties to home country." },
+        { title: "Document Check", desc: "Preparing invitation letters, hotel bookings, flight itineraries, and tax files." },
+        { title: "Visa Filing", desc: "Accurate filing of visa forms and scheduling biometrics/interviews." },
+        { title: "Approval & Stamp", desc: "Biometrics submission support, prompt tracking, and final visa stamping." }
+      ]
     }
   };
 
@@ -318,7 +341,7 @@ function VisaPathwaysDashboard() {
   return (
     <div className="max-w-6xl mx-auto text-left relative z-10 px-4">
       {/* Tab Selector Buttons */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-12">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-12">
         {(Object.keys(categories) as Array<keyof typeof categories>).map((key) => {
           const cat = categories[key];
           const TabIcon = cat.icon;
